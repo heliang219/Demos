@@ -12,24 +12,24 @@ import AVFoundation
 let square = [CGPoint(x: kLineMinX,y: kLineMinY),//0
     CGPoint(x: kLineMinX,y: kLineMinY),//1
     CGPoint(x: kLineMinX,y: 224),//2
-    CGPoint(x: kLineMinX,y: 364),//3
-    CGPoint(x: kLineMinX,y: 382),//4
+    CGPoint(x: kLineMinX,y: kLineMinY+kReaderHeight-kSquareWidth),//3
+    CGPoint(x: kLineMinX,y: kLineMinY+kReaderHeight-2),//4
     CGPoint(x: 100,y: 382),//5
-    CGPoint(x: 220 + kSquareWidth,y: 382),//6
-    CGPoint(x: 258,y: 344  + kSquareWidth),//7
+    CGPoint(x: kLineMinX + kReaderWidth - kSquareWidth,y: kLineMinY+kReaderHeight-2),//6
+    CGPoint(x: kLineMinX + kReaderWidth - 2,y: kLineMinY+kReaderHeight-kSquareWidth),//7
     CGPoint(x: 220,y: 344),//8
-    CGPoint(x: 258,y: kLineMinY),//9
-    CGPoint(x: 220 + kSquareWidth,y: kLineMinY),//10
+    CGPoint(x: kLineMinX + kReaderWidth - 2,y: kLineMinY),//9
+    CGPoint(x: kLineMinX + kReaderWidth - kSquareWidth,y: kLineMinY),//10
     CGPoint(x: 220,y: kLineMinY),//11
 ]
 let kReaderWidth: CGFloat = 200
 let kReaderHeight: CGFloat = 200
-let kAlpha: CGFloat = 0.7
+let kAlpha: CGFloat = 0.5
 let kSquareWidth: CGFloat = 20
 let kDeviceWidth: CGFloat = UIScreen.mainScreen().bounds.width
 let kDeviceHeigth: CGFloat = UIScreen.mainScreen().bounds.height
-let kLineMinX: CGFloat = 60
-let kLineMinY: CGFloat = 184
+let kLineMinX: CGFloat = kDeviceWidth/2 - kReaderWidth/2
+let kLineMinY: CGFloat = kDeviceHeigth/2 - kReaderHeight/2 - 50
 
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate {
@@ -52,7 +52,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "扫描/查询"
+        self.navigationController?.navigationBar.barTintColor = UIColor.greenColor()//(red: 0.863, green: 0.243, blue: 0.051, alpha: 1.0)
         
         scanLabel?.frame = CGRectMake(0, 0, kReaderWidth, 1)
         scanLabel?.backgroundColor = UIColor.greenColor()
@@ -103,7 +104,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         videoPreviewLayer?.frame = view.bounds
         videoPreviewLayer?.backgroundColor = UIColor.whiteColor().CGColor
         view.layer.addSublayer(videoPreviewLayer!)
-        captureSession?.startRunning()
+        
         
         
         qrCodeFrameView = UIView(frame: CGRectMake(kLineMinX, kLineMinY, kReaderWidth, kReaderWidth))
@@ -115,19 +116,18 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         captureMetadataOutput.rectOfInterest = CGRectMake(kLineMinY / kDeviceHeigth, kLineMinX / kDeviceWidth, kReaderWidth/kDeviceHeigth, kReaderWidth/kDeviceWidth)
         
         
-        
         loadUI()
+        animationView(scanLabel!)
+        configureSquare()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        if isStopScan == false
-        {
-            animationView(scanLabel!)
-        }
+        
+        captureSession?.startRunning()
         
         
-        configureSquare()
     }
     
     
@@ -139,18 +139,18 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         topView.alpha = kAlpha
         view.addSubview(topView)
         
-        var leftView = UIView(frame: CGRectMake(0, CGRectGetMaxY(topView.frame), (kDeviceWidth - kReaderWidth)/2, kReaderWidth))
+        var leftView = UIView(frame: CGRectMake(0, CGRectGetMaxY(topView.frame), (kDeviceWidth - kReaderWidth)/2, kReaderHeight))
         leftView.backgroundColor = UIColor.blackColor()
         leftView.alpha = kAlpha
         view.addSubview(leftView)
         
-        var rightView = UIView(frame: CGRectMake(kDeviceWidth - (kDeviceWidth - kReaderWidth)/2, CGRectGetMaxY(topView.frame), (kDeviceWidth - kReaderWidth)/2, kReaderWidth))
+        var rightView = UIView(frame: CGRectMake(kDeviceWidth - (kDeviceWidth - kReaderWidth)/2, CGRectGetMaxY(topView.frame), (kDeviceWidth - kReaderWidth)/2, kReaderHeight))
         rightView.backgroundColor = UIColor.blackColor()
         rightView.alpha = kAlpha
         view.addSubview(rightView)
         
         
-        var bottomView = UIView(frame: CGRectMake(0, CGRectGetMaxY(leftView.frame), kDeviceWidth, (kDeviceHeigth - kReaderWidth)/2))
+        var bottomView = UIView(frame: CGRectMake(0, CGRectGetMaxY(leftView.frame), kDeviceWidth, kDeviceHeigth - CGRectGetMaxY(leftView.frame)))
         bottomView.backgroundColor = UIColor.blackColor()
         bottomView.alpha = kAlpha
         view.addSubview(bottomView)
@@ -200,16 +200,26 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
             {
                 messageLabel?.text = metadataObj.stringValue
                 
-                if metadataObj.stringValue.hasPrefix("http")
+                if metadataObj.stringValue.hasPrefix("http") || metadataObj.stringValue.hasPrefix("www")
                 {
-                    UIApplication.sharedApplication().openURL(NSURL(string: metadataObj.stringValue!)!)
+                  if UIApplication.sharedApplication().openURL(NSURL(string: metadataObj.stringValue!)!) == true
+                    {
+                        UIAlertView(title: "提示", message: messageLabel?.text, delegate: self, cancelButtonTitle: "确定").show()
+                        
+                    }
+                    else
+                    {
+                        var web = WebViewController()
+                        web.url = metadataObj.stringValue
+                        self.navigationController?.pushViewController(web, animated: true)
+                    }
                 }
-                
+                UIAlertView(title: "提示", message: messageLabel?.text, delegate: self, cancelButtonTitle: "确定").show()
             }
             stopRuning()
           
+          
             
-            UIAlertView(title: "提示", message: messageLabel?.text, delegate: self, cancelButtonTitle: "确定").show()
             
         }else if metadataObj.type == AVMetadataObjectTypeEAN13Code
         {
@@ -260,8 +270,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         UIView.animateWithDuration(duration, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             
             lable.frame.origin.y = CGRectGetHeight(lable.superview!.frame) - 1
-            
-            println(CGRectGetHeight(lable.superview!.frame))
             
             }, completion: { _ in
                 
