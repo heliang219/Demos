@@ -39,6 +39,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     var qrCodeFrameView: UIView?
     var messageLabel: UILabel?
     var scanLabel: UILabel? = UILabel()
+    var isStopScan: Bool? = false
+    var isAnimation: Bool? = false
     
     var coverView: UIView?{
         didSet
@@ -52,22 +54,14 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         super.viewDidLoad()
         
         
-        messageLabel = UILabel(frame: CGRectMake(kLineMinX, kDeviceWidth - 2*kLineMinX, kReaderHeight, 40))
-        messageLabel?.font = UIFont.boldSystemFontOfSize(15)
-        messageLabel?.textAlignment = NSTextAlignment.Center
-        messageLabel?.textColor = UIColor.greenColor()
-        messageLabel?.backgroundColor = UIColor.grayColor()
-        view.addSubview(messageLabel!)
-        
         scanLabel?.frame = CGRectMake(0, 0, kReaderWidth, 1)
         scanLabel?.backgroundColor = UIColor.greenColor()
         scanLabel?.layer.shadowColor = UIColor.greenColor().CGColor
         scanLabel?.layer.shadowOpacity = 1.0
         scanLabel?.layer.shadowRadius = 5.0
         scanLabel?.layer.shadowOffset = CGSizeMake(0, -5)
-        view.addSubview(scanLabel!)
         
-        
+    
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         var error: NSError?
         var captureInput: AnyObject? = AVCaptureDeviceInput.deviceInputWithDevice(captureDevice, error: &error)
@@ -86,12 +80,19 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
             captureSession?.sessionPreset = AVCaptureSessionPreset640x480
         }
         
-        
-        captureSession?.addInput(captureInput! as! AVCaptureInput)
+        if captureSession!.canAddInput(captureInput as! AVCaptureInput)
+        {
+            captureSession?.addInput(captureInput! as! AVCaptureInput)
+        }
         
         
         let captureMetadataOutput = AVCaptureMetadataOutput()
-        captureSession?.addOutput(captureMetadataOutput)
+        
+        if captureSession!.canAddOutput(captureMetadataOutput)
+        {
+            captureSession?.addOutput(captureMetadataOutput)
+        }
+        
         
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode,AVMetadataObjectTypeEAN13Code,AVMetadataObjectTypeEAN8Code,AVMetadataObjectTypeCode128Code]
@@ -119,7 +120,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     }
     
     override func viewWillAppear(animated: Bool) {
-        animationView(scanLabel!)
+        
+        if isStopScan == false
+        {
+            animationView(scanLabel!)
+        }
+        
+        
         configureSquare()
     }
     
@@ -147,6 +154,29 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         bottomView.backgroundColor = UIColor.blackColor()
         bottomView.alpha = kAlpha
         view.addSubview(bottomView)
+        
+        var tips = UILabel(frame: CGRectMake(0, bottomView.frame.origin.y + 30, kDeviceWidth, 40))
+        tips.text = "请将二维码/条形码放入扫描框内,即可自行扫描"
+        tips.textColor = UIColor.whiteColor()
+        tips.font = UIFont.boldSystemFontOfSize(12)
+        tips.textAlignment = .Center
+        view.addSubview(tips)
+        
+        messageLabel = UILabel(frame: CGRectMake(0, CGRectGetMaxY(tips.frame) + 10,kDeviceWidth, 40))
+        messageLabel?.font = UIFont.boldSystemFontOfSize(12)
+        messageLabel?.text = "我的二维码"
+        messageLabel?.textAlignment = NSTextAlignment.Center
+        messageLabel?.textColor = UIColor.greenColor()
+        view.addSubview(messageLabel!)
+        
+        
+        var image = UIImage(named: "cover")
+        var imageView = UIImageView(image: image!)
+        imageView.frame = CGRectMake(0, 0, image!.size.width * 0.5, image!.size.height * 0.5)
+//        view.addSubview(imageView)
+        
+        
+        
     }
     
     
@@ -154,7 +184,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         
         if metadataObjects == nil || metadataObjects.count == 0
         {
-            //            qrCodeFrameView?.frame = CGRectZero
+     
             messageLabel?.text = "NO QR code is detected"
             return
         }
@@ -164,22 +194,30 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         if metadataObj.type == AVMetadataObjectTypeQRCode
         {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
-            //            qrCodeFrameView?.frame = barCodeObject.bounds
+       
             
             if metadataObj.stringValue != nil
             {
                 messageLabel?.text = metadataObj.stringValue
+                
+                if metadataObj.stringValue.hasPrefix("http")
+                {
+                    UIApplication.sharedApplication().openURL(NSURL(string: metadataObj.stringValue!)!)
+                }
+                
             }
-            
-            captureSession?.stopRunning()
+            stopRuning()
+          
             
             UIAlertView(title: "提示", message: messageLabel?.text, delegate: self, cancelButtonTitle: "确定").show()
             
         }else if metadataObj.type == AVMetadataObjectTypeEAN13Code
         {
-            
-            captureSession?.stopRunning()
+            messageLabel?.text = metadataObj.stringValue
+         
             UIAlertView(title: "提示", message: metadataObj.stringValue, delegate: self, cancelButtonTitle: "确定").show()
+            
+            stopRuning()
         }
         
         
@@ -192,22 +230,49 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         
         captureSession?.startRunning()
         
+        isStopScan = false
+        
+        isAnimation = isAnimation ?? false
+        
+        if isAnimation == false
+        {
+//            animationView(scanLabel!)
+//            isAnimation = true
+        }
+        
+    }
+    
+    func stopRuning()
+    {
+        captureSession!.stopRunning()
+        isStopScan = true
+        
     }
     
     
     func animationView(lable: UILabel)
     {
         
+        
         let animateSpeed = 5 / kReaderHeight
-        var duration = NSTimeInterval(animateSpeed * kReaderHeight)
+        var duration =  NSTimeInterval(animateSpeed * kReaderHeight)
         
         UIView.animateWithDuration(duration, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
             
-            lable.frame.origin.y = lable.superview!.frame.size.height-1
+            lable.frame.origin.y = CGRectGetHeight(lable.superview!.frame) - 1
+            
+            println(CGRectGetHeight(lable.superview!.frame))
             
             }, completion: { _ in
-                lable.frame.origin.y -= lable.superview!.frame.size.height-1
-                self.animationView(lable)
+                
+                lable.frame.origin.y = 0
+//               
+//                if self.isStopScan == false
+//                {
+//                    self.isAnimation = true
+                    self.animationView(lable)
+//                }
+        
         })
         
         

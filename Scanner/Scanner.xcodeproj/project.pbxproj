@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8387F75A1B034A9300443B5B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387F7591B034A9300443B5B /* WebViewController.swift */; };
 		83C48D811B033869000E7EBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48D801B033869000E7EBA /* AppDelegate.swift */; };
 		83C48D831B033869000E7EBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48D821B033869000E7EBA /* ViewController.swift */; };
 		83C48D861B033869000E7EBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C48D841B033869000E7EBA /* Main.storyboard */; };
@@ -14,6 +15,7 @@
 		83C48D8B1B033869000E7EBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C48D891B033869000E7EBA /* LaunchScreen.xib */; };
 		83C48D971B033869000E7EBA /* ScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48D961B033869000E7EBA /* ScannerTests.swift */; };
 		83C48DA11B033899000E7EBA /* CaptureVideoLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */; };
+		83C48DAB1B034303000E7EBA /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C48DAA1B034303000E7EBA /* cover.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8387F7591B034A9300443B5B /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		83C48D7B1B033869000E7EBA /* Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C48D7F1B033869000E7EBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C48D801B033869000E7EBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		83C48D951B033869000E7EBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C48D961B033869000E7EBA /* ScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerTests.swift; sourceTree = "<group>"; };
 		83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoLayer.swift; sourceTree = "<group>"; };
+		83C48DAA1B034303000E7EBA /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 				83C48D801B033869000E7EBA /* AppDelegate.swift */,
 				83C48D821B033869000E7EBA /* ViewController.swift */,
 				83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */,
+				8387F7591B034A9300443B5B /* WebViewController.swift */,
+				83C48DAA1B034303000E7EBA /* cover.png */,
 				83C48D841B033869000E7EBA /* Main.storyboard */,
 				83C48D871B033869000E7EBA /* Images.xcassets */,
 				83C48D891B033869000E7EBA /* LaunchScreen.xib */,
@@ -198,6 +204,7 @@
 				83C48D861B033869000E7EBA /* Main.storyboard in Resources */,
 				83C48D8B1B033869000E7EBA /* LaunchScreen.xib in Resources */,
 				83C48D881B033869000E7EBA /* Images.xcassets in Resources */,
+				83C48DAB1B034303000E7EBA /* cover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +225,7 @@
 				83C48D831B033869000E7EBA /* ViewController.swift in Sources */,
 				83C48DA11B033899000E7EBA /* CaptureVideoLayer.swift in Sources */,
 				83C48D811B033869000E7EBA /* AppDelegate.swift in Sources */,
+				8387F75A1B034A9300443B5B /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +421,7 @@
 				83C48D9C1B033869000E7EBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83C48D9D1B033869000E7EBA /* Build configuration list for PBXNativeTarget "ScannerTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +430,7 @@
 				83C48D9F1B033869000E7EBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
