@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  扫描二维码
+//  Scanner
 //
-//  Created by pfl on 15/5/12.
+//  Created by pfl on 15/5/13.
 //  Copyright (c) 2015年 pfl. All rights reserved.
 //
 
@@ -10,17 +10,17 @@ import UIKit
 import AVFoundation
 
 let square = [CGPoint(x: kLineMinX,y: kLineMinY),//0
-            CGPoint(x: kLineMinX,y: kLineMinY),//1
-            CGPoint(x: kLineMinX,y: 224),//2
-            CGPoint(x: kLineMinX,y: 364),//3
-            CGPoint(x: kLineMinX,y: 382),//4
-            CGPoint(x: 100,y: 382),//5
-            CGPoint(x: 220 + kSquareWidth,y: 382),//6
-            CGPoint(x: 258,y: 344  + kSquareWidth),//7
-            CGPoint(x: 220,y: 344),//8
-            CGPoint(x: 258,y: kLineMinY),//9
-            CGPoint(x: 220 + kSquareWidth,y: kLineMinY),//10
-            CGPoint(x: 220,y: kLineMinY),//11
+    CGPoint(x: kLineMinX,y: kLineMinY),//1
+    CGPoint(x: kLineMinX,y: 224),//2
+    CGPoint(x: kLineMinX,y: 364),//3
+    CGPoint(x: kLineMinX,y: 382),//4
+    CGPoint(x: 100,y: 382),//5
+    CGPoint(x: 220 + kSquareWidth,y: 382),//6
+    CGPoint(x: 258,y: 344  + kSquareWidth),//7
+    CGPoint(x: 220,y: 344),//8
+    CGPoint(x: 258,y: kLineMinY),//9
+    CGPoint(x: 220 + kSquareWidth,y: kLineMinY),//10
+    CGPoint(x: 220,y: kLineMinY),//11
 ]
 let kReaderWidth: CGFloat = 200
 let kReaderHeight: CGFloat = 200
@@ -33,7 +33,7 @@ let kLineMinY: CGFloat = 184
 
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate {
-
+    
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: CaptureVideoLayer?
     var qrCodeFrameView: UIView?
@@ -50,7 +50,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         
         messageLabel = UILabel(frame: CGRectMake(kLineMinX, kDeviceWidth - 2*kLineMinX, kReaderHeight, 40))
         messageLabel?.font = UIFont.boldSystemFontOfSize(15)
@@ -110,19 +110,19 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         qrCodeFrameView?.layer.borderWidth = 2.0
         qrCodeFrameView?.addSubview(scanLabel!)
         view.addSubview(qrCodeFrameView!)
-       
+        
         captureMetadataOutput.rectOfInterest = CGRectMake(kLineMinY / kDeviceHeigth, kLineMinX / kDeviceWidth, kReaderWidth/kDeviceHeigth, kReaderWidth/kDeviceWidth)
         
-       
+        
         
         loadUI()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         animationView(scanLabel!)
         configureSquare()
     }
-  
+    
     
     func loadUI()
     {
@@ -154,7 +154,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         
         if metadataObjects == nil || metadataObjects.count == 0
         {
-//            qrCodeFrameView?.frame = CGRectZero
+            //            qrCodeFrameView?.frame = CGRectZero
             messageLabel?.text = "NO QR code is detected"
             return
         }
@@ -164,7 +164,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         if metadataObj.type == AVMetadataObjectTypeQRCode
         {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
-//            qrCodeFrameView?.frame = barCodeObject.bounds
+            //            qrCodeFrameView?.frame = barCodeObject.bounds
             
             if metadataObj.stringValue != nil
             {
@@ -179,7 +179,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         {
             
             captureSession?.stopRunning()
-             UIAlertView(title: "提示", message: metadataObj.stringValue, delegate: self, cancelButtonTitle: "确定").show()
+            UIAlertView(title: "提示", message: metadataObj.stringValue, delegate: self, cancelButtonTitle: "确定").show()
         }
         
         
@@ -206,8 +206,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
             lable.frame.origin.y = lable.superview!.frame.size.height-1
             
             }, completion: { _ in
-            lable.frame.origin.y -= lable.superview!.frame.size.height-1
-            self.animationView(lable)
+                lable.frame.origin.y -= lable.superview!.frame.size.height-1
+                self.animationView(lable)
         })
         
         
@@ -216,7 +216,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     func configureSquare()
     {
         var path = UIBezierPath()
-
+        
         for index in 0..<square.count
         {
             var w: CGFloat = 20
@@ -225,12 +225,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
             var point: CGPoint = square[index]
             if index % 3 == 0
             {
-
+                
                 path.moveToPoint(point)
             }
             else if index % 3 == 1
             {
-                 path.addLineToPoint(point)
+                path.addLineToPoint(point)
             }else
             {
                 continue
@@ -241,63 +241,63 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
             
             switch (index)
             {
-                case 0:
+            case 0:
                 
-                        var label = UILabel(frame: CGRectMake(0, 0, w, h))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
+                var label = UILabel(frame: CGRectMake(0, 0, w, h))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
                 
-                case 1:
-                    
-                        var label = UILabel(frame: CGRectMake(0, 0, h, w))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
+            case 1:
                 
-                case 3:
-            
-                        var label = UILabel(frame: CGRectMake(0, 0, h, w))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
-            
-                case 4:
-        
-                        var label = UILabel(frame: CGRectMake(0, 0, w, h))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
-        
-                case 6:
-        
-                        var label = UILabel(frame: CGRectMake(0, 0, w, h))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
-        
-                case 7:
-        
-                        var label = UILabel(frame: CGRectMake(0, 0, h, w))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
-        
-                case 9:
-        
-                        var label = UILabel(frame: CGRectMake(0, 0, h, w))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
-        
-                case 10:
-        
-                        var label = UILabel(frame: CGRectMake(0, 0, w, h))
-                        label.frame.origin = point
-                        label.backgroundColor = UIColor.greenColor()
-                        view.addSubview(label)
-        
-                default: break
+                var label = UILabel(frame: CGRectMake(0, 0, h, w))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
+                
+            case 3:
+                
+                var label = UILabel(frame: CGRectMake(0, 0, h, w))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
+                
+            case 4:
+                
+                var label = UILabel(frame: CGRectMake(0, 0, w, h))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
+                
+            case 6:
+                
+                var label = UILabel(frame: CGRectMake(0, 0, w, h))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
+                
+            case 7:
+                
+                var label = UILabel(frame: CGRectMake(0, 0, h, w))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
+                
+            case 9:
+                
+                var label = UILabel(frame: CGRectMake(0, 0, h, w))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
+                
+            case 10:
+                
+                var label = UILabel(frame: CGRectMake(0, 0, w, h))
+                label.frame.origin = point
+                label.backgroundColor = UIColor.greenColor()
+                view.addSubview(label)
+                
+            default: break
                 
             }
             
@@ -306,16 +306,18 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         }
         
         
-       
+        
         
         
     }
     
     
     
-
-
+    
+    
 }
+
+
 
 
 

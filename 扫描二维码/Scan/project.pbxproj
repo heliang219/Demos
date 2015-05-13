@@ -413,6 +413,7 @@
 				83E590C01B018DBD00BAA6B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83E590C11B018DBD00BAA6B3 /* Build configuration list for PBXNativeTarget "扫描二维码Tests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +422,7 @@
 				83E590C31B018DBD00BAA6B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
