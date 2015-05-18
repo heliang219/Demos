@@ -17,6 +17,8 @@
 		83ECFA7F1B09E0CA00DB8D1F /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ECFA7E1B09E0CA00DB8D1F /* DropboxSDK.framework */; };
 		83ECFA811B09E15500DB8D1F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ECFA801B09E15500DB8D1F /* Security.framework */; };
 		83ECFA831B09E15F00DB8D1F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83ECFA821B09E15F00DB8D1F /* QuartzCore.framework */; };
+		C28A73481B0A240900AA2585 /* testText.txt in Resources */ = {isa = PBXBuildFile; fileRef = C28A73471B0A240900AA2585 /* testText.txt */; };
+		C28A734C1B0A2A7700AA2585 /* mm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C28A734B1B0A2A7700AA2585 /* mm.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		83ECFA7E1B09E0CA00DB8D1F /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		83ECFA801B09E15500DB8D1F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		83ECFA821B09E15F00DB8D1F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C28A73471B0A240900AA2585 /* testText.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testText.txt; sourceTree = "<group>"; };
+		C28A734B1B0A2A7700AA2585 /* mm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mm.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +100,9 @@
 				83ECFA5D1B09DF7A00DB8D1F /* AppDelegate.m */,
 				83ECFA5F1B09DF7A00DB8D1F /* ViewController.h */,
 				83ECFA601B09DF7A00DB8D1F /* ViewController.m */,
+				C28A73471B0A240900AA2585 /* testText.txt */,
 				83ECFA621B09DF7A00DB8D1F /* Main.storyboard */,
+				C28A734B1B0A2A7700AA2585 /* mm.jpg */,
 				83ECFA7E1B09E0CA00DB8D1F /* DropboxSDK.framework */,
 				83ECFA651B09DF7A00DB8D1F /* Images.xcassets */,
 				83ECFA671B09DF7A00DB8D1F /* LaunchScreen.xib */,
@@ -211,9 +217,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28A734C1B0A2A7700AA2585 /* mm.jpg in Resources */,
 				83ECFA641B09DF7A00DB8D1F /* Main.storyboard in Resources */,
 				83ECFA691B09DF7A00DB8D1F /* LaunchScreen.xib in Resources */,
 				83ECFA661B09DF7A00DB8D1F /* Images.xcassets in Resources */,
+				C28A73481B0A240900AA2585 /* testText.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +444,7 @@
 				83ECFA7A1B09DF7A00DB8D1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83ECFA7B1B09DF7A00DB8D1F /* Build configuration list for PBXNativeTarget "DropBoxDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +453,7 @@
 				83ECFA7D1B09DF7A00DB8D1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
