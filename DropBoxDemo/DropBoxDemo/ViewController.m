@@ -12,34 +12,36 @@
 #define tinkColor [UIColor colorWithRed:0.980f green:0.604f blue:0.000f alpha:1.00f]
 
 @interface ViewController ()<DBRestClientDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic, strong) UILabel *bbiConnect;
+@property (nonatomic, strong) UIBarButtonItem *bbiConnect;
 @property (nonatomic, strong) DBRestClient *dbRestClient;
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, assign) NSInteger uploadIndex;
 @property (nonatomic, strong) UIProgressView *progressBar;
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, strong) UIImage *theImage;
+@property (nonatomic, strong) DBMetadata *dropboxMetadata;
 @end
 
 @implementation ViewController
-@synthesize bbiConnect,dbRestClient,path,uploadIndex,progressBar,myTableView,theImage;
+@synthesize bbiConnect,dbRestClient,path,uploadIndex,progressBar,myTableView,theImage,dropboxMetadata;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:(UIBarButtonSystemItemAction) target:self action:@selector(performAction)];
     item1.tintColor = tinkColor;
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:(UIBarButtonSystemItemRefresh) target:self action:@selector(connectToDropBox)];
+    UIBarButtonItem *item2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:(UIBarButtonSystemItemRefresh) target:self action:@selector(reloadFiles)];
     item2.tintColor = tinkColor;
     self.navigationItem.rightBarButtonItems = @[item1,item2];;
     
     NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor colorWithRed:0.980f green:0.604f blue:0.000f alpha:1.00f]};
-    
-    bbiConnect = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
-    bbiConnect.textColor = tinkColor;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:bbiConnect];
+
+    bbiConnect = [[UIBarButtonItem alloc]initWithTitle:@"Disconnect" style:(UIBarButtonItemStylePlain) target:self action:@selector(reloadFiles)];
+    self.navigationItem.leftBarButtonItem = bbiConnect;
+   
     [item2 setTitleTextAttributes:dic forState:(UIControlStateNormal)];
     [item1 setTitleTextAttributes:dic forState:(UIControlStateNormal)];
+    [bbiConnect setTitleTextAttributes:dic forState:(UIControlStateNormal)];
     
     progressBar = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleBar];
     progressBar.frame = CGRectMake(10, 0, self.view.frame.size.width-20, 10);
@@ -58,13 +60,18 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handleDidLinkNotification:) name:@"didLinkToDropboxAccountNotification" object:nil];
     
     if ([[DBSession sharedSession]isLinked]) {
-        bbiConnect.text = @"Disconnect";
+        bbiConnect.title = @"Disconnect";
         [self initDropboxRestClient];
     }else
     {
-        bbiConnect.text = @"Connect";
+        bbiConnect.title = @"Connect";
     }
     
+}
+
+- (void)reloadFiles
+{
+    [dbRestClient loadMetadata:@"/"];
 }
 
 - (void)performAction
@@ -127,20 +134,25 @@
 {
     dbRestClient = [[DBRestClient alloc]initWithSession:[DBSession sharedSession]];
     dbRestClient.delegate = self;
+    [dbRestClient loadMetadata:@"/"];
     
 }
 
 - (void)handleDidLinkNotification:(NSNotification*)notification
 {
     [self initDropboxRestClient];
-    bbiConnect.text = @"Disconnect";
+    bbiConnect.title = @"Disconnect";
 }
 
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return uploadIndex;
+    if (dropboxMetadata) {
+        return dropboxMetadata.contents.count;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,13 +162,14 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:identifier];
     }
-    
-    if (!theImage) {
-        theImage = [UIImage imageNamed:@"mm.jpg"];
-    }
+   
+    DBMetadata *metadata = dropboxMetadata.contents[indexPath.row];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"upload%ld",uploadIndex];
-    cell.imageView.image = theImage;
+    cell.textLabel.text = metadata.filename;
+    if (theImage) {
+         cell.imageView.image = theImage;
+    }
+   
 
     return cell;
 }
@@ -165,7 +178,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return  50;
+    return  60.;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *fileName = [(DBMetadata*)dropboxMetadata.contents[indexPath.row] path];
+    NSString *toPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"file"];
+    [self showProgressBar];
+    [dbRestClient loadFile:fileName intoPath:toPath];
+    
 }
 
 
@@ -197,12 +219,40 @@
         }
     }
     
+    [dbRestClient loadMetadata:@"/"];
+    
 }
 
 - (void)restClient:(DBRestClient *)client uploadProgress:(CGFloat)progress forFile:(NSString *)destPath from:(NSString *)srcPath
 {
     progressBar.progress = progress;
 }
+
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
+{
+    dropboxMetadata = metadata;
+    [myTableView reloadData];
+}
+
+- (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
+{
+    NSLog(@"error:%@",error.localizedDescription);
+    progressBar.hidden = YES;
+}
+
+- (void)restClient:(DBRestClient *)client loadProgress:(CGFloat)progress forFile:(NSString *)destPath
+{
+    progressBar.progress = progress;
+    
+}
+
+- (void)restClient:(DBRestClient *)client loadedFile:(NSString *)destPath contentType:(NSString *)contentType metadata:(DBMetadata *)metadata
+{
+    NSLog(@"The file %@ was downloaded. Content type: %@",metadata.filename,contentType);
+    
+    progressBar.hidden = YES;
+}
+
 
 
 #pragma mark UIImagePickerControllerDelegate
@@ -233,7 +283,7 @@
     NSString *sourePath = path;
     NSString *fileName =[NSString stringWithFormat:@"img%ld.jpg",uploadIndex++];
     NSString *destinationPath = @"/";
-    [myTableView reloadData];
+    
     [self showProgressBar];
     
     [dbRestClient uploadFile:fileName toPath:destinationPath withParentRev:nil fromPath:sourePath];
