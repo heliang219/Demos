@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>B3D5AD77-8761-4663-A5E7-F0995A6E73BE</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>swiftDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8883F8E04EF02C730F39D1E5229D23D011D1C74D</key>
 		<string>https://github.com/SouthSnow/Demos.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>swiftDemo/swiftDemo.xcodeproj/project.xcworkspace</string>
+	<string>swiftDemo/swiftDemo.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8883F8E04EF02C730F39D1E5229D23D011D1C74D</key>

@@ -65,6 +65,13 @@ class A {
     init() {
     b = B()
     b.a = self }
+    
+    func method(a: ()->())
+    {
+        println(a)
+    }
+    
+    
     deinit {
     println("A deinit")
     } }
@@ -76,7 +83,7 @@ class B {
 
 
 var obj: A? = A()
-
+obj?.method{}
     obj = nil
 
 
