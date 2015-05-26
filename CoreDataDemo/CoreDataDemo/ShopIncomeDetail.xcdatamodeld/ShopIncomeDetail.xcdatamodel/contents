@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ShopIncomeItem" representedClassName="Entity" syncable="YES">
+        <attribute name="adcommision" optional="YES" attributeType="Double" syncable="YES"/>
+        <attribute name="adincome" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="allmember" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="allorder" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="allrebate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="allturnover" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="availablerebate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="availbleturnover" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="giverebate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="nacommision" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="naincome" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="newmember" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="orderrebate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="outrebatemover" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="outsidemover" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="sncommision" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="snincome" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="todayorder" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="todayoutsidemover" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="todayrebate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="todayturnover" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="ystdayrebate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="ystdayturnover" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ShopIncomeItem" positionX="-63" positionY="-18" width="128" height="390"/>
+    </elements>
+</model>
