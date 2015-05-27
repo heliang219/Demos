@@ -8,7 +8,7 @@
 
 #import "NextTableViewController.h"
 #import "ShopIncomeItem.h"
-@interface NextTableViewController ()
+@interface NextTableViewController ()<NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) ShopIncomeItem *shopIcomeItem;
 
 @property (nonatomic, strong) NSArray *arr;
@@ -31,20 +31,8 @@
 {
     [super viewDidLoad];
     
-//    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ShopIncomeItem"];
-//    fetchRequest.predicate = [NSPredicate predicateWithValue:YES];
-//    fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc]initWithKey:@"allrebate" ascending:YES]];
-//    
-//    self.fetchResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.shopIcomeItem.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    
-    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"ShopIncomeItem"];
-    request.predicate = [NSPredicate predicateWithValue:YES];
-    NSArray* objects = [self.shopIcomeItem.managedObjectContext executeFetchRequest:request error:NULL];
-    self.arr = objects;
-    
-//    self.fetchResultController = [_shopIcomeItem fetchResultsController];
-    
+    self.fetchResultController.delegate = self;
+    [self.fetchResultController performFetch:NULL];
     self.tableView.tableFooterView = [[UIView alloc]init];
 }
 
@@ -56,10 +44,10 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//
-//    return self.fetchResultController.sections.count;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return self.fetchResultController.sections.count;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
@@ -76,15 +64,44 @@
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"cell"];
     }
     
-    ShopIncomeItem *item = _arr[indexPath.row];
+    ShopIncomeItem *item = [self.fetchResultController objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%0.2f",item.outrebatemover.doubleValue];
+    cell.textLabel.text = [NSString stringWithFormat:@"%0.2f",item.availablerebate];
    
     return cell;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self.shopIcomeItem.managedObjectContext save:NULL];
+    
+    
+}
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

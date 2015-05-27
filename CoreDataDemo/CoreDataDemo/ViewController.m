@@ -56,7 +56,7 @@
 {
     [super viewWillAppear:animated];
    
-    NSString *password = [self transforToCCMD5:@"000009"];
+    NSString *password = [self transforToCCMD5:@"123456"];
     
     NSString *urlString = [NSString stringWithFormat:@"account=%@&password=%@&iostoken=%@&appversion=%@&systemversion=%@&apiversion=%@",@"18600000009",password,@"ios", IosAppVersion,[NSString stringWithFormat:@"%0.1f",IOS_VERSION],API_Version3];
     
@@ -69,7 +69,7 @@
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers) error:nil];
-        //        NSLog(@"dic%@",dic);
+                NSLog(@"dic%@",dic);
         
         NSDictionary *respones = [dic objectForKey:@"response"];
         self.token = [respones objectForKey:@"sessiontoken"];
@@ -105,29 +105,29 @@
 - (void)paresData:(NSDictionary*)dic
 {
     
-    self.shopIncomeItem.adcommision = @([dic[@"adcommision"] doubleValue]);
-    self.shopIncomeItem.adincome = @([[dic objectForKey:@"adincome"] doubleValue]);
-    self.shopIncomeItem.allmember = @([[dic objectForKey:@"allmember"] doubleValue]);
-    self.shopIncomeItem.allorder =@([[dic objectForKey:@"allorder"] doubleValue]);
-    self.shopIncomeItem.allrebate = @([[dic objectForKey:@"allrebate"] doubleValue]);
-    self.shopIncomeItem.allturnover = @([[dic objectForKey:@"allturnover"] doubleValue]);
-    self.shopIncomeItem.availablerebate = @([[dic objectForKey:@"availablerebate"] doubleValue]);
-    self.shopIncomeItem.availbleturnover = @([[dic objectForKey:@"availableturnover"] doubleValue]);
-    self.shopIncomeItem.sncommision = @([[dic objectForKey:@"sncommision"]doubleValue]);
-    self.shopIncomeItem.snincome = @([[dic objectForKey:@"snincome"]doubleValue]);
-    self.shopIncomeItem.todayorder = @([[dic objectForKey:@"todayorder"] doubleValue]);
-    self.shopIncomeItem.todayoutsidemover = @([[dic objectForKey:@"todayoutsidemover"] doubleValue]);
-    self.shopIncomeItem.todayrebate = @([[dic objectForKey:@"todayrebate"] doubleValue]);
-    self.shopIncomeItem.todayturnover = @([[dic objectForKey:@"todayturnover"]doubleValue]);
-    self.shopIncomeItem.nacommision = @([[dic objectForKey:@"nacommision"] doubleValue]);
-    self.shopIncomeItem.naincome = @([[dic objectForKey:@"naincome"] doubleValue]);
-    self.shopIncomeItem.newmember = @([[dic objectForKey:@"newmember"]doubleValue]);
-    self.shopIncomeItem.orderrebate = @([[dic objectForKey:@"orderrebate"] doubleValue]);
-    self.shopIncomeItem.outrebatemover = @([[dic objectForKey:@"outrebatemover"] doubleValue]);
-    self.shopIncomeItem.outsidemover = @([[dic objectForKey:@"outsidemover"] doubleValue]);
-    self.shopIncomeItem.ystdayrebate = @([[dic objectForKey:@"ystdayrebate"]doubleValue]);
-    self.shopIncomeItem.ystdayturnover = @([[dic objectForKey:@"ystdayturnover"] doubleValue]);
-    self.shopIncomeItem.giverebate = @([[dic objectForKey:@"giverebate"]doubleValue]);
+    self.shopIncomeItem.adcommision = [dic[@"adcommision"] doubleValue];
+    self.shopIncomeItem.adincome = [[dic objectForKey:@"adincome"] doubleValue];
+    self.shopIncomeItem.allmember = [[dic objectForKey:@"allmember"] doubleValue];
+    self.shopIncomeItem.allorder =[[dic objectForKey:@"allorder"] doubleValue];
+    self.shopIncomeItem.allrebate = [[dic objectForKey:@"allrebate"] doubleValue];
+    self.shopIncomeItem.allturnover = [[dic objectForKey:@"allturnover"] doubleValue];
+    self.shopIncomeItem.availablerebate = [[dic objectForKey:@"availablerebate"] doubleValue];
+    self.shopIncomeItem.availbleturnover = [[dic objectForKey:@"availableturnover"] doubleValue];
+    self.shopIncomeItem.sncommision = [[dic objectForKey:@"sncommision"]doubleValue];
+    self.shopIncomeItem.snincome = [[dic objectForKey:@"snincome"]doubleValue];
+    self.shopIncomeItem.todayorder = [[dic objectForKey:@"todayorder"] doubleValue];
+    self.shopIncomeItem.todayoutsidemover = [[dic objectForKey:@"todayoutsidemover"] doubleValue];
+    self.shopIncomeItem.todayrebate = [[dic objectForKey:@"todayrebate"] doubleValue];
+    self.shopIncomeItem.todayturnover = [[dic objectForKey:@"todayturnover"]doubleValue];
+    self.shopIncomeItem.nacommision = [[dic objectForKey:@"nacommision"] doubleValue];
+    self.shopIncomeItem.naincome = [[dic objectForKey:@"naincome"] doubleValue];
+    self.shopIncomeItem.newmember = [[dic objectForKey:@"newmember"]doubleValue];
+    self.shopIncomeItem.orderrebate = [[dic objectForKey:@"orderrebate"] doubleValue];
+    self.shopIncomeItem.outrebatemover = [[dic objectForKey:@"outrebatemover"] doubleValue];
+    self.shopIncomeItem.outsidemover = [[dic objectForKey:@"outsidemover"] doubleValue];
+    self.shopIncomeItem.ystdayrebate = [[dic objectForKey:@"ystdayrebate"]doubleValue];
+    self.shopIncomeItem.ystdayturnover = [[dic objectForKey:@"ystdayturnover"] doubleValue];
+    self.shopIncomeItem.giverebate = [[dic objectForKey:@"giverebate"]doubleValue];
     [ShopIncomeItem insertShopIncomeItem:self.shopIncomeItem inManagedObjectContext:self.shopIncomeItem.managedObjectContext];
 }
 
@@ -145,7 +145,14 @@
     return [hash lowercaseString];
 }
 
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self.shopIncomeItem.managedObjectContext save:NULL];
+    
+    
+}
 
 
 @end
