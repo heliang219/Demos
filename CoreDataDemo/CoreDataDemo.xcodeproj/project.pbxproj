@@ -19,6 +19,7 @@
 		83DDE0DE1B1442AA00686B44 /* ShopIncomeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DDE0DD1B1442AA00686B44 /* ShopIncomeItem.m */; };
 		83DDE0E41B144A3900686B44 /* PersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DDE0E31B144A3900686B44 /* PersistentStack.m */; };
 		83DDE0E71B146B2000686B44 /* NextTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DDE0E61B146B2000686B44 /* NextTableViewController.m */; };
+		C2FDE2BA1B14C44B005BB4E7 /* Items.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2FDE2B81B14C44B005BB4E7 /* Items.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		83DDE0E31B144A3900686B44 /* PersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStack.m; sourceTree = "<group>"; };
 		83DDE0E51B146B2000686B44 /* NextTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextTableViewController.h; sourceTree = "<group>"; };
 		83DDE0E61B146B2000686B44 /* NextTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextTableViewController.m; sourceTree = "<group>"; };
+		C2FDE2B91B14C44B005BB4E7 /* Items.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Items.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				83DDE0E21B144A3900686B44 /* PersistentStack.h */,
 				83DDE0E31B144A3900686B44 /* PersistentStack.m */,
 				83DDE0D61B143FB500686B44 /* ShopIncomeDetail.xcdatamodeld */,
+				C2FDE2B81B14C44B005BB4E7 /* Items.xcdatamodeld */,
 				83DDE0DC1B1442AA00686B44 /* ShopIncomeItem.h */,
 				83DDE0DD1B1442AA00686B44 /* ShopIncomeItem.m */,
 				83DDE0B61B143DF400686B44 /* Main.storyboard */,
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2FDE2BA1B14C44B005BB4E7 /* Items.xcdatamodeld in Sources */,
 				83DDE0DE1B1442AA00686B44 /* ShopIncomeItem.m in Sources */,
 				83DDE0B51B143DF400686B44 /* ViewController.m in Sources */,
 				83DDE0E71B146B2000686B44 /* NextTableViewController.m in Sources */,
@@ -446,6 +450,7 @@
 				83DDE0CE1B143DF500686B44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83DDE0CF1B143DF500686B44 /* Build configuration list for PBXNativeTarget "CoreDataDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +459,7 @@
 				83DDE0D11B143DF500686B44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -465,6 +471,16 @@
 			);
 			currentVersion = 83DDE0D71B143FB500686B44 /* ShopIncomeDetail.xcdatamodel */;
 			path = ShopIncomeDetail.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		C2FDE2B81B14C44B005BB4E7 /* Items.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C2FDE2B91B14C44B005BB4E7 /* Items.xcdatamodel */,
+			);
+			currentVersion = C2FDE2B91B14C44B005BB4E7 /* Items.xcdatamodel */;
+			path = Items.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

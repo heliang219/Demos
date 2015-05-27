@@ -47,8 +47,9 @@
 - (void)next
 {
     NextTableViewController *next = [[NextTableViewController alloc]initWithShopIncomeItem:_shopIncomeItem];
+    NSLog(@"_Viewcontroller:%p",self.shopIncomeItem);
     [self.navigationController pushViewController:next animated:YES];
-    next.fetchResultController = _shopIncomeItem.fetchResultsController;
+    next.fetchResultController = [self.shopIncomeItem getFetchResultsControllers];
     
 }
 

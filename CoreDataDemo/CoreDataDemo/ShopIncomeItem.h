@@ -35,6 +35,13 @@
 @property (nonatomic, retain) NSNumber * adcommision;
 @property (nonatomic, retain) NSNumber * sncommision;
 @property (nonatomic, retain) NSNumber * snincome;
+
 + (instancetype)insertShopIncomeItem:(ShopIncomeItem*)item inManagedObjectContext:(NSManagedObjectContext*)managedContext;
-- (NSFetchedResultsController*)fetchResultsController;
+- (NSFetchedResultsController*)getFetchResultsControllers;
+
 @end
+
+
+
+
+

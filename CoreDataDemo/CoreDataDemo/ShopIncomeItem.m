@@ -75,7 +75,7 @@
 }
 
 
-- (NSFetchedResultsController*)fetchResultsController
+- (NSFetchedResultsController*)getFetchResultsControllers
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[self.class entityName]];
     fetchRequest.predicate = [NSPredicate predicateWithValue:YES];
@@ -83,6 +83,7 @@
     
    return [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
 }
+
 
 @end
 
