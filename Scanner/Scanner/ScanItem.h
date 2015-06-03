@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+@class ScanItem;
 
 @interface ScanItem : NSManagedObject
 
 @property (nonatomic, retain) NSString * scanDate;
 @property (nonatomic, retain) NSString * scanDetail;
-
++ (instancetype)insertShopIncomeItem:(ScanItem*)item inManagedObjectContext:(NSManagedObjectContext*)managedContext;
+- (NSFetchedResultsController*)getFetchResultsControllers;
 @end

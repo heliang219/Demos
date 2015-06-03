@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-@class ShopIncomeItem;
+@class ScanItem;
 @class NSManagedObjectContext;
 @interface Store : NSObject
 @property (nonatomic, strong) NSManagedObjectContext *managedContext;
-- (ShopIncomeItem*)shopIcomeItem;
+- (ScanItem*)scanItem;
 
 @end

@@ -8,16 +8,38 @@
 
 import UIKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var persistentStack: PersistentStack?
+    var store: Store?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let nav = self.window?.rootViewController as! UINavigationController
+        let rootVC: ViewController = nav.topViewController as! ViewController
+        persistentStack = PersistentStack(storeURL: storeURL().0, modelURL: storeURL().1)
+        store = Store()
+        store?.managedContext = persistentStack?.managedContext
+        rootVC.scanItem = self.store!.scanItem()
+        
+        
         return true
     }
+    
+    func storeURL()->(NSURL,NSURL)
+    {
+        let documentDirectory = NSFileManager.defaultManager().URLForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true, error: nil)
+        
+        let modelURL = NSBundle.mainBundle().URLForResource("ScanItems", withExtension: "momd")
+        
+        return (documentDirectory!.URLByAppendingPathComponent("db.sqlite"),modelURL!)
+    }
+    
+    
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

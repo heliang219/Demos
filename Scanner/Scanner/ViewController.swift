@@ -41,7 +41,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     var scanLabel: UILabel? = UILabel()
     var isStopScan: Bool? = false
     var isAnimation: Bool? = false
-    
+    var scanItem: ScanItem?
     var coverView: UIView?{
         didSet
         {
@@ -131,6 +131,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     }
     
     
+    override func viewDidDisappear(animated: Bool) {
+        scanItem?.managedObjectContext?.save(nil)
+    }
+    
+    
     func loadUI()
     {
         
@@ -167,6 +172,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         messageLabel?.text = "我的二维码"
         messageLabel?.textAlignment = NSTextAlignment.Center
         messageLabel?.textColor = UIColor.greenColor()
+        messageLabel?.userInteractionEnabled = true
+        messageLabel?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "showDetail"))
+        
         view.addSubview(messageLabel!)
         
         
@@ -177,6 +185,15 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         
         
         
+    }
+    
+    
+    func showDetail()
+    {
+        let scanDetail = ScanDetailTableViewController()
+        scanDetail.fetchResultsController = self.scanItem?.getFetchResultsControllers()
+        
+        self.presentViewController(scanDetail, animated: true, completion: nil)
     }
     
     
@@ -199,6 +216,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
             if metadataObj.stringValue != nil
             {
                 messageLabel?.text = metadataObj.stringValue
+                
+                scanItem?.scanDate = NSDate().description
+                scanItem?.scanDetail = metadataObj.stringValue
+                
+                ScanItem.insertShopIncomeItem(scanItem, inManagedObjectContext: scanItem?.managedObjectContext)
+                
                 
                 if metadataObj.stringValue.hasPrefix("http") || metadataObj.stringValue.hasPrefix("www")
                 {
