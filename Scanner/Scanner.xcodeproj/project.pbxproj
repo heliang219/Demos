@@ -16,6 +16,12 @@
 		83C48D971B033869000E7EBA /* ScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48D961B033869000E7EBA /* ScannerTests.swift */; };
 		83C48DA11B033899000E7EBA /* CaptureVideoLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */; };
 		83C48DAB1B034303000E7EBA /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C48DAA1B034303000E7EBA /* cover.png */; };
+		83F1C5041B1EFBDC005CE3BD /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C5031B1EFBDC005CE3BD /* Store.m */; };
+		83F1C5071B1EFBEB005CE3BD /* PersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C5061B1EFBEB005CE3BD /* PersistentStack.m */; };
+		83F1C50A1B1EFCBC005CE3BD /* ScanItems.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C5081B1EFCBC005CE3BD /* ScanItems.xcdatamodeld */; };
+		83F1C50D1B1EFD28005CE3BD /* ScanItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C50C1B1EFD28005CE3BD /* ScanItem.m */; };
+		83F1C50F1B1F0040005CE3BD /* ScanDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C50E1B1F0040005CE3BD /* ScanDetailTableViewController.swift */; };
+		83F1C5121B1F00BB005CE3BD /* scan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F1C5101B1F00BB005CE3BD /* scan@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,16 @@
 		83C48D961B033869000E7EBA /* ScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerTests.swift; sourceTree = "<group>"; };
 		83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoLayer.swift; sourceTree = "<group>"; };
 		83C48DAA1B034303000E7EBA /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
+		83F1C5011B1EFBDA005CE3BD /* Scanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scanner-Bridging-Header.h"; sourceTree = "<group>"; };
+		83F1C5021B1EFBDC005CE3BD /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		83F1C5031B1EFBDC005CE3BD /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		83F1C5051B1EFBEB005CE3BD /* PersistentStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentStack.h; sourceTree = "<group>"; };
+		83F1C5061B1EFBEB005CE3BD /* PersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentStack.m; sourceTree = "<group>"; };
+		83F1C5091B1EFCBC005CE3BD /* ScanItems.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScanItems.xcdatamodel; sourceTree = "<group>"; };
+		83F1C50B1B1EFD28005CE3BD /* ScanItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanItem.h; sourceTree = "<group>"; };
+		83F1C50C1B1EFD28005CE3BD /* ScanItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanItem.m; sourceTree = "<group>"; };
+		83F1C50E1B1F0040005CE3BD /* ScanDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanDetailTableViewController.swift; sourceTree = "<group>"; };
+		83F1C5101B1F00BB005CE3BD /* scan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scan@2x.png"; path = "Images.xcassets/AppIcon.appiconset/scan@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +103,20 @@
 				83C48D821B033869000E7EBA /* ViewController.swift */,
 				83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */,
 				8387F7591B034A9300443B5B /* WebViewController.swift */,
-				83C48DAA1B034303000E7EBA /* cover.png */,
+				83F1C50E1B1F0040005CE3BD /* ScanDetailTableViewController.swift */,
+				83F1C5021B1EFBDC005CE3BD /* Store.h */,
+				83F1C5031B1EFBDC005CE3BD /* Store.m */,
+				83F1C50B1B1EFD28005CE3BD /* ScanItem.h */,
+				83F1C50C1B1EFD28005CE3BD /* ScanItem.m */,
+				83F1C5051B1EFBEB005CE3BD /* PersistentStack.h */,
+				83F1C5061B1EFBEB005CE3BD /* PersistentStack.m */,
+				83F1C5081B1EFCBC005CE3BD /* ScanItems.xcdatamodeld */,
 				83C48D841B033869000E7EBA /* Main.storyboard */,
+				83F1C5101B1F00BB005CE3BD /* scan@2x.png */,
 				83C48D871B033869000E7EBA /* Images.xcassets */,
 				83C48D891B033869000E7EBA /* LaunchScreen.xib */,
 				83C48D7E1B033869000E7EBA /* Supporting Files */,
+				83F1C5011B1EFBDA005CE3BD /* Scanner-Bridging-Header.h */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -99,6 +124,7 @@
 		83C48D7E1B033869000E7EBA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83C48DAA1B034303000E7EBA /* cover.png */,
 				83C48D7F1B033869000E7EBA /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -204,6 +230,7 @@
 				83C48D861B033869000E7EBA /* Main.storyboard in Resources */,
 				83C48D8B1B033869000E7EBA /* LaunchScreen.xib in Resources */,
 				83C48D881B033869000E7EBA /* Images.xcassets in Resources */,
+				83F1C5121B1F00BB005CE3BD /* scan@2x.png in Resources */,
 				83C48DAB1B034303000E7EBA /* cover.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,9 +250,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				83C48D831B033869000E7EBA /* ViewController.swift in Sources */,
+				83F1C50D1B1EFD28005CE3BD /* ScanItem.m in Sources */,
 				83C48DA11B033899000E7EBA /* CaptureVideoLayer.swift in Sources */,
 				83C48D811B033869000E7EBA /* AppDelegate.swift in Sources */,
+				83F1C50A1B1EFCBC005CE3BD /* ScanItems.xcdatamodeld in Sources */,
+				83F1C5071B1EFBEB005CE3BD /* PersistentStack.m in Sources */,
+				83F1C5041B1EFBDC005CE3BD /* Store.m in Sources */,
 				8387F75A1B034A9300443B5B /* WebViewController.swift in Sources */,
+				83F1C50F1B1F0040005CE3BD /* ScanDetailTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,9 +384,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Scanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Scanner/Scanner-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -362,9 +397,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Scanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Scanner/Scanner-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -433,6 +470,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		83F1C5081B1EFCBC005CE3BD /* ScanItems.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				83F1C5091B1EFCBC005CE3BD /* ScanItems.xcdatamodel */,
+			);
+			currentVersion = 83F1C5091B1EFCBC005CE3BD /* ScanItems.xcdatamodel */;
+			path = ScanItems.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 83C48D731B033869000E7EBA /* Project object */;
 }

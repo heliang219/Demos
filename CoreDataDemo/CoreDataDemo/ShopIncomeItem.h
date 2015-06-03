@@ -12,29 +12,31 @@
 
 @interface ShopIncomeItem : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * todayrebate;
-@property (nonatomic, retain) NSNumber * ystdayrebate;
-@property (nonatomic, retain) NSNumber * allrebate;
-@property (nonatomic, retain) NSNumber * availablerebate;
-@property (nonatomic, retain) NSNumber * todayturnover;
-@property (nonatomic, retain) NSNumber * ystdayturnover;
-@property (nonatomic, retain) NSNumber * allturnover;
-@property (nonatomic, retain) NSNumber * outsidemover;
-@property (nonatomic, retain) NSNumber * availbleturnover;
-@property (nonatomic, retain) NSNumber * newmember;
-@property (nonatomic, retain) NSNumber * allmember;
-@property (nonatomic, retain) NSNumber * todayorder;
-@property (nonatomic, retain) NSNumber * allorder;
-@property (nonatomic, retain) NSNumber * orderrebate;
-@property (nonatomic, retain) NSNumber * giverebate;
-@property (nonatomic, retain) NSNumber * todayoutsidemover;
-@property (nonatomic, retain) NSNumber * outrebatemover;
-@property (nonatomic, retain) NSNumber * naincome;
-@property (nonatomic, retain) NSNumber * nacommision;
-@property (nonatomic, retain) NSNumber * adincome;
-@property (nonatomic, retain) NSNumber * adcommision;
-@property (nonatomic, retain) NSNumber * sncommision;
-@property (nonatomic, retain) NSNumber * snincome;
+
+@property (nonatomic, assign) double_t todayrebate;
+@property (nonatomic, assign) double_t  ystdayrebate;
+@property (nonatomic, assign) double_t  allrebate;
+@property (nonatomic, assign) double_t  availablerebate;
+@property (nonatomic, assign) double_t  todayturnover;
+@property (nonatomic, assign) double_t  ystdayturnover;
+@property (nonatomic, assign) double_t  allturnover;
+@property (nonatomic, assign) double_t  outsidemover;
+@property (nonatomic, assign) double_t  availbleturnover;
+@property (nonatomic, assign) int64_t  newmember;
+@property (nonatomic, assign) int64_t  allmember;
+@property (nonatomic, assign) int64_t  todayorder;
+@property (nonatomic, assign) int64_t  allorder;
+@property (nonatomic, assign) double_t  orderrebate;
+@property (nonatomic, assign) double_t  giverebate;
+@property (nonatomic, assign) double_t  todayoutsidemover;
+@property (nonatomic, assign) double_t  outrebatemover;
+@property (nonatomic, assign) double_t  naincome;
+@property (nonatomic, assign) double_t  nacommision;
+@property (nonatomic, assign) double_t  adincome;
+@property (nonatomic, assign) double_t  adcommision;
+@property (nonatomic, assign) double_t  sncommision;
+@property (nonatomic, assign) double_t  snincome;
+
 
 + (instancetype)insertShopIncomeItem:(ShopIncomeItem*)item inManagedObjectContext:(NSManagedObjectContext*)managedContext;
 - (NSFetchedResultsController*)getFetchResultsControllers;
