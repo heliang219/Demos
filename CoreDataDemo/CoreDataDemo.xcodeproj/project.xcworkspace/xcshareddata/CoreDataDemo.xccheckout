@@ -7,21 +7,21 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>70C56261-34B9-4DB0-99B2-C644152B64A5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>CoreDataDemo</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8883F8E04EF02C730F39D1E5229D23D011D1C74D</key>
-		<string>https://github.com/SouthSnow/Demos.git</string>
+		<string>http://github.com/SouthSnow/Demos.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>CoreDataDemo/CoreDataDemo.xcodeproj</string>
+	<string>CoreDataDemo/CoreDataDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8883F8E04EF02C730F39D1E5229D23D011D1C74D</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/SouthSnow/Demos.git</string>
+	<string>http://github.com/SouthSnow/Demos.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
