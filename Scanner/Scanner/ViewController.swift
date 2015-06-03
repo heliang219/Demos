@@ -132,7 +132,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     
     
     override func viewDidDisappear(animated: Bool) {
-        scanItem?.managedObjectContext?.save(nil)
+//        scanItem!.managedObjectContext!.save(nil)
+
     }
     
     
@@ -193,7 +194,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         let scanDetail = ScanDetailTableViewController()
         scanDetail.fetchResultsController = self.scanItem?.getFetchResultsControllers()
         
-        self.presentViewController(scanDetail, animated: true, completion: nil)
+        self.navigationController?.pushViewController(scanDetail, animated: true)
     }
     
     
@@ -212,52 +213,31 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
         {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
        
-            
             if metadataObj.stringValue != nil
             {
-                messageLabel?.text = metadataObj.stringValue
-                
-                scanItem?.scanDate = NSDate().description
-                scanItem?.scanDetail = metadataObj.stringValue
-                
-                ScanItem.insertShopIncomeItem(scanItem, inManagedObjectContext: scanItem?.managedObjectContext)
-                
-                
-                if metadataObj.stringValue.hasPrefix("http") || metadataObj.stringValue.hasPrefix("www")
-                {
-                  if UIApplication.sharedApplication().openURL(NSURL(string: metadataObj.stringValue!)!) == true
-                    {
-                        UIAlertView(title: "提示", message: messageLabel?.text, delegate: self, cancelButtonTitle: "确定").show()
-                        
-                    }
-                    else
-                    {
-                        var web = WebViewController()
-                        web.url = metadataObj.stringValue
-                        self.navigationController?.pushViewController(web, animated: true)
-                    }
-                }
-                UIAlertView(title: "提示", message: messageLabel?.text, delegate: self, cancelButtonTitle: "确定").show()
+                insertItem(metadataObj.stringValue)
             }
-            stopRuning()
           
-          
-            
-            
         }else if metadataObj.type == AVMetadataObjectTypeEAN13Code
         {
-            messageLabel?.text = metadataObj.stringValue
-         
-            UIAlertView(title: "提示", message: metadataObj.stringValue, delegate: self, cancelButtonTitle: "确定").show()
+            if metadataObj.stringValue != nil
+            {
+                insertItem(metadataObj.stringValue)
+            }
             
-            stopRuning()
         }
-        
-        
-        
         
     }
     
+    
+    func insertItem(aString:String)
+    {
+        messageLabel?.text = aString
+        stopRuning()
+        scanItem?.scanDate = NSDate().description
+        scanItem?.scanDetail = aString
+        ScanItem.insertShopIncomeItem(scanItem, inManagedObjectContext: scanItem?.managedObjectContext)
+    }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         
