@@ -12,6 +12,7 @@
 
 @interface ShopIncomeItem : NSManagedObject
 
+
 @property (nonatomic, assign) double_t todayrebate;
 @property (nonatomic, assign) double_t  ystdayrebate;
 @property (nonatomic, assign) double_t  allrebate;
@@ -35,6 +36,14 @@
 @property (nonatomic, assign) double_t  adcommision;
 @property (nonatomic, assign) double_t  sncommision;
 @property (nonatomic, assign) double_t  snincome;
+
+
 + (instancetype)insertShopIncomeItem:(ShopIncomeItem*)item inManagedObjectContext:(NSManagedObjectContext*)managedContext;
-- (NSFetchedResultsController*)fetchResultsController;
+- (NSFetchedResultsController*)getFetchResultsControllers;
+
 @end
+
+
+
+
+

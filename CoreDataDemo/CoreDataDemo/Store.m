@@ -18,13 +18,14 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ShopIncomeItem"];
     request.predicate = [NSPredicate predicateWithValue:YES];
     NSArray *objects = [self.managedContext executeFetchRequest:request error:NULL];
-    ShopIncomeItem *item = [objects firstObject];
+    ShopIncomeItem *item = [objects lastObject];
     if (!item) {
         
         item = [ShopIncomeItem insertShopIncomeItem:nil inManagedObjectContext:self.managedContext];
         
     }
 
+    NSLog(@"item:%p",item);
     
     return item;
     

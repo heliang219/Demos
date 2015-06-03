@@ -53,7 +53,7 @@
 
     id<NSFetchedResultsSectionInfo> setionInfo = self.fetchResultController.sections[section];
     
-//    return _arr.count;
+    return _arr.count; 
     return  [setionInfo numberOfObjects];
 }
 

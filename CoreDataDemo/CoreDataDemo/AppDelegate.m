@@ -30,6 +30,7 @@
     self.store = [[Store alloc]init];
     self.store.managedContext = self.persistentStack.managedContext;
     rootViewController.shopIncomeItem = self.store.shopIcomeItem;
+    NSLog(@"application:%p",self.store.shopIcomeItem);
     
     
     return YES;
