@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 
 @UIApplicationMain
@@ -20,10 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = self.window?.rootViewController as! UINavigationController
         let rootVC: ViewController = nav.topViewController as! ViewController
         persistentStack = PersistentStack(storeURL: storeURL().0, modelURL: storeURL().1)
-        store = Store()
+//        store = Store()
         store?.managedContext = persistentStack?.managedContext
         rootVC.scanItem = self.store!.scanItem()
-        
+        Fabric.with([Crashlytics()])
         
         return true
     }

@@ -193,7 +193,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,U
     {
         let scanDetail = ScanDetailTableViewController()
         scanDetail.fetchResultsController = self.scanItem?.getFetchResultsControllers()
-        
+        scanDetail.managedObjectContext = self.scanItem?.managedObjectContext
         self.navigationController?.pushViewController(scanDetail, animated: true)
     }
     

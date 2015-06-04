@@ -16,6 +16,8 @@
 		83C48D971B033869000E7EBA /* ScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48D961B033869000E7EBA /* ScannerTests.swift */; };
 		83C48DA11B033899000E7EBA /* CaptureVideoLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */; };
 		83C48DAB1B034303000E7EBA /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C48DAA1B034303000E7EBA /* cover.png */; };
+		83E9CE0A1B203FA400717659 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E9CE081B203FA400717659 /* Fabric.framework */; };
+		83E9CE0B1B203FA400717659 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E9CE091B203FA400717659 /* Crashlytics.framework */; };
 		83F1C5041B1EFBDC005CE3BD /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C5031B1EFBDC005CE3BD /* Store.m */; };
 		83F1C5071B1EFBEB005CE3BD /* PersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C5061B1EFBEB005CE3BD /* PersistentStack.m */; };
 		83F1C50A1B1EFCBC005CE3BD /* ScanItems.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C5081B1EFCBC005CE3BD /* ScanItems.xcdatamodeld */; };
@@ -48,6 +50,8 @@
 		83C48D961B033869000E7EBA /* ScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerTests.swift; sourceTree = "<group>"; };
 		83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoLayer.swift; sourceTree = "<group>"; };
 		83C48DAA1B034303000E7EBA /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
+		83E9CE081B203FA400717659 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		83E9CE091B203FA400717659 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		83F1C5011B1EFBDA005CE3BD /* Scanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scanner-Bridging-Header.h"; sourceTree = "<group>"; };
 		83F1C5021B1EFBDC005CE3BD /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		83F1C5031B1EFBDC005CE3BD /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E9CE0B1B203FA400717659 /* Crashlytics.framework in Frameworks */,
+				83E9CE0A1B203FA400717659 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +87,8 @@
 		83C48D721B033869000E7EBA = {
 			isa = PBXGroup;
 			children = (
+				83E9CE081B203FA400717659 /* Fabric.framework */,
+				83E9CE091B203FA400717659 /* Crashlytics.framework */,
 				83C48D7D1B033869000E7EBA /* Scanner */,
 				83C48D931B033869000E7EBA /* ScannerTests */,
 				83C48D7C1B033869000E7EBA /* Products */,
@@ -157,6 +165,7 @@
 				83C48D771B033869000E7EBA /* Sources */,
 				83C48D781B033869000E7EBA /* Frameworks */,
 				83C48D791B033869000E7EBA /* Resources */,
+				83E9CE071B203F7300717659 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -243,6 +252,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83E9CE071B203F7300717659 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 95f2a05c03c3084fa3680290a97ab04a0c6929cd 3e9a49bcd1e4cf1fdcec277d2d81f392fc8cf9daf4910b882dc380b0c1736d8d";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		83C48D771B033869000E7EBA /* Sources */ = {
@@ -385,6 +410,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Scanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -398,6 +427,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Scanner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
