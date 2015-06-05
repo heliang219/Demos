@@ -5,3 +5,4 @@
 #import "Store.h"
 #import "PersistentStack.h"
 #import "ScanItem.h"
+#import "ZBarSDK.h"

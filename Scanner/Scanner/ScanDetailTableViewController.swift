@@ -16,10 +16,11 @@ class ScanDetailTableViewController: UITableViewController {
         super.viewDidLoad()
 
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        tableView.registerClass(ScanTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         fetchResultsController?.delegate = self
         var error: NSError?
         fetchResultsController?.performFetch(&error)
+        tableView.reloadData()
     }
 
  
@@ -49,12 +50,12 @@ class ScanDetailTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier") as! ScanTableViewCell
         var scanItem = fetchResultsController?.objectAtIndexPath(indexPath) as! ScanItem
         
-        cell.imageView?.image = UIImage(named:"scan")
-        cell.textLabel?.text = scanItem.scanDetail
-        cell.detailTextLabel?.text = scanItem.scanDate
+        cell.scanImageView.image = UIImage(named:"scan")
+        cell.scanDetailLabel.text = scanItem.scanDetail
+        cell.scanDateLabel.text = scanItem.scanDate
 
         return cell
     }
@@ -87,7 +88,10 @@ class ScanDetailTableViewController: UITableViewController {
     }
 
     
-    
+    deinit
+    {
+        fetchResultsController?.delegate = nil
+    }
     
     
 

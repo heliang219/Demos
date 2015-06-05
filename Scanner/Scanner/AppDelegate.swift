@@ -22,10 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = self.window?.rootViewController as! UINavigationController
         let rootVC: ViewController = nav.topViewController as! ViewController
         persistentStack = PersistentStack(storeURL: storeURL().0, modelURL: storeURL().1)
-//        store = Store()
+        store = Store()
         store?.managedContext = persistentStack?.managedContext
-        rootVC.scanItem = self.store!.scanItem()
+        rootVC.managedObjectContext = persistentStack?.managedContext
+        rootVC.fetchResultsController = store?.scanItem().getFetchResultsControllers()
         Fabric.with([Crashlytics()])
+        
+//        registerNotifications()
         
         return true
     }
@@ -41,7 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
+    func registerNotifications()
+    {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "contextDidSavePrivateQueueContext", name: NSManagedObjectContextDidSaveNotification, object: persistentStack?.managedContext)
+    }
     
+    func contextDidSavePrivateQueueContext(notification: NSNotification)
+    {
+        persistentStack?.managedContext.performBlock({ () -> Void in
+            
+            persistentStack?.managedContext.mergeChangesFromContextDidSaveNotification(notification)
+            
+        })
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
