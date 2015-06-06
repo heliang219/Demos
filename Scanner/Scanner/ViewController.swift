@@ -69,14 +69,15 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        super.viewWillAppear(animated)
 //            startRuning()
 
     }
     
     
     override func viewDidDisappear(animated: Bool) {
-
+        super.viewDidDisappear(animated)
+        stopRuning()
 
     }
     

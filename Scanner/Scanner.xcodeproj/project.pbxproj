@@ -27,7 +27,6 @@
 		83FD9DE51B21310F00AFEED4 /* ScanDetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD9DE41B21310F00AFEED4 /* ScanDetailCollectionViewController.swift */; };
 		83FD9DE71B21313A00AFEED4 /* ScanViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD9DE61B21313A00AFEED4 /* ScanViewLayout.swift */; };
 		83FD9DE91B213E5A00AFEED4 /* ScanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD9DE81B213E5A00AFEED4 /* ScanTableViewCell.swift */; };
-		83FD9E081B21830000AFEED4 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FD9E021B21830000AFEED4 /* libzbar.a */; };
 		83FD9E091B21830000AFEED4 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FD9E041B21830000AFEED4 /* zbar-back.png */; };
 		83FD9E0A1B21830000AFEED4 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 83FD9E051B21830000AFEED4 /* zbar-help.html */; };
 		83FD9E0B1B21830000AFEED4 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 83FD9E061B21830000AFEED4 /* zbar-helpicons.png */; };
@@ -38,6 +37,7 @@
 		83FD9E141B21836900AFEED4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FD9E131B21836900AFEED4 /* QuartzCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		83FD9E161B21837900AFEED4 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FD9E151B21837900AFEED4 /* libiconv.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C2ED39CD1B228B7E002119D5 /* ScanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED39CC1B228B7E002119D5 /* ScanCollectionViewCell.swift */; };
+		C2EFBE5E1B23523B00D654D9 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EFBE5D1B23523B00D654D9 /* libzbar.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,7 +99,6 @@
 		83FD9DFF1B21830000AFEED4 /* ZBarReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarReaderViewController.h; sourceTree = "<group>"; };
 		83FD9E001B21830000AFEED4 /* ZBarSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSDK.h; sourceTree = "<group>"; };
 		83FD9E011B21830000AFEED4 /* ZBarSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZBarSymbol.h; sourceTree = "<group>"; };
-		83FD9E021B21830000AFEED4 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
 		83FD9E041B21830000AFEED4 /* zbar-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-back.png"; sourceTree = "<group>"; };
 		83FD9E051B21830000AFEED4 /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
 		83FD9E061B21830000AFEED4 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		83FD9E131B21836900AFEED4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83FD9E151B21837900AFEED4 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		C2ED39CC1B228B7E002119D5 /* ScanCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanCollectionViewCell.swift; sourceTree = "<group>"; };
+		C2EFBE5D1B23523B00D654D9 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzbar.a; path = Headers/libzbar.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +123,8 @@
 				83FD9E101B21835300AFEED4 /* CoreMedia.framework in Frameworks */,
 				83FD9E0E1B21834600AFEED4 /* AVFoundation.framework in Frameworks */,
 				83E9CE0B1B203FA400717659 /* Crashlytics.framework in Frameworks */,
+				C2EFBE5E1B23523B00D654D9 /* libzbar.a in Frameworks */,
 				83E9CE0A1B203FA400717659 /* Fabric.framework in Frameworks */,
-				83FD9E081B21830000AFEED4 /* libzbar.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				83FD9DEB1B21830000AFEED4 /* Headers */,
-				83FD9E021B21830000AFEED4 /* libzbar.a */,
+				C2EFBE5D1B23523B00D654D9 /* libzbar.a */,
 				83FD9E031B21830000AFEED4 /* Resources */,
 			);
 			path = ZBarSDK;
@@ -527,10 +527,7 @@
 		83C48D9B1B033869000E7EBA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -542,22 +539,20 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Scanner/ZBarSDK",
+					"$(PROJECT_DIR)/Scanner/ZBarSDK/Headers",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Scanner/Scanner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
 		83C48D9C1B033869000E7EBA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -569,10 +564,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Scanner/ZBarSDK",
+					"$(PROJECT_DIR)/Scanner/ZBarSDK/Headers",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Scanner/Scanner-Bridging-Header.h";
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

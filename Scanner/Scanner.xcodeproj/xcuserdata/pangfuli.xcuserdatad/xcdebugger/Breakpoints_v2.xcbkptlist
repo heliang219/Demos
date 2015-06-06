@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Scanner/ViewController.swift"
-            timestampString = "455035261.88865"
+            timestampString = "455299837.407087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "loadUI()"
             landmarkType = "5">
          </BreakpointContent>
