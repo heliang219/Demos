@@ -68,7 +68,15 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
     }
     
  
-    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        var scanItem = fetchResultsController?.objectAtIndexPath(indexPath) as! ScanItem
+        if scanItem.scanDetail.hasPrefix("www") || scanItem.scanDetail.hasPrefix("http")
+        {
+            UIApplication.sharedApplication().openURL(NSURL(string: scanItem.scanDetail!)!)
+        }
+        
+    }
     
 
 }

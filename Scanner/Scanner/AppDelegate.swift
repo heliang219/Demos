@@ -7,8 +7,8 @@
 //
 
 import UIKit
-//import Fabric
-//import Crashlytics
+import Fabric
+import Crashlytics
 
 
 @UIApplicationMain
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         store?.managedContext = persistentStack?.managedContext
         rootVC.managedObjectContext = persistentStack?.managedContext
         rootVC.fetchResultsController = store?.scanItem().getFetchResultsControllers()
-//        Fabric.with([Crashlytics()])
+        Fabric.with([Crashlytics()])
         
 //        registerNotifications()
         
