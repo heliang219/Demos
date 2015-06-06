@@ -205,7 +205,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         messageLabel?.textAlignment = NSTextAlignment.Center
         messageLabel?.textColor = UIColor.greenColor()
         messageLabel?.userInteractionEnabled = true
-        messageLabel?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "showDetail"))
+        messageLabel?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "showDetail1"))
         view.addSubview(messageLabel!)
         
         let startScanButton = UIButton(frame: CGRectMake(0, 0, 120, 30))
@@ -216,7 +216,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         startScanButton.titleLabel?.font = UIFont.systemFontOfSize(15)
         startScanButton.addTarget(self, action: "startRuning", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(startScanButton)
-        
         
         scanLabel?.frame = CGRectMake(0, 0, kReaderWidth, 1)
         scanLabel?.backgroundColor = UIColor.greenColor()
@@ -235,7 +234,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         scanDetail.managedObjectContext = managedObjectContext
         self.navigationController?.pushViewController(scanDetail, animated: true)
     }
-    
+    func showDetail1()
+    {
+        let scanDetail = ScanDetailCollectionViewController(collectionViewLayout:ScanViewLayout())
+        scanDetail.fetchResultsController = fetchResultsController
+        scanDetail.managedObjectContext = managedObjectContext
+        self.navigationController?.pushViewController(scanDetail, animated: true)
+    }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
@@ -357,7 +362,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             var point: CGPoint = square[index]
             if index % 3 == 0
             {
-                
                 path.moveToPoint(point)
             }
             else if index % 3 == 1
@@ -367,8 +371,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             {
                 continue
             }
-            
-            
             
             
             switch (index)
@@ -432,20 +434,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             default: break
                 
             }
-            
-            
-            
+        
         }
         
-        
-        
-        
-        
     }
-    
-    
-    
-    
     
 }
 
@@ -467,8 +459,6 @@ extension ViewController: ZBarReaderDelegate,UIImagePickerControllerDelegate,UIN
     
         insertItem(symbol?.data)
         scanImageView.image = (info as NSDictionary)[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }

@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
             endingLineNumber = "216"
-            landmarkName = "captureOutput(_:didOutputMetadataObjects:fromConnection:)"
+            landmarkName = "loadUI()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -37,6 +37,7 @@
 		83FD9E121B21836100AFEED4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FD9E111B21836100AFEED4 /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		83FD9E141B21836900AFEED4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FD9E131B21836900AFEED4 /* QuartzCore.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		83FD9E161B21837900AFEED4 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 83FD9E151B21837900AFEED4 /* libiconv.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C2ED39CD1B228B7E002119D5 /* ScanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED39CC1B228B7E002119D5 /* ScanCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		83FD9E111B21836100AFEED4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		83FD9E131B21836900AFEED4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83FD9E151B21837900AFEED4 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		C2ED39CC1B228B7E002119D5 /* ScanCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				83FD9DE81B213E5A00AFEED4 /* ScanTableViewCell.swift */,
 				83FD9DE41B21310F00AFEED4 /* ScanDetailCollectionViewController.swift */,
 				83FD9DE61B21313A00AFEED4 /* ScanViewLayout.swift */,
+				C2ED39CC1B228B7E002119D5 /* ScanCollectionViewCell.swift */,
 				83F1C5021B1EFBDC005CE3BD /* Store.h */,
 				83F1C5031B1EFBDC005CE3BD /* Store.m */,
 				83F1C50B1B1EFD28005CE3BD /* ScanItem.h */,
@@ -290,7 +293,6 @@
 				83C48D771B033869000E7EBA /* Sources */,
 				83C48D781B033869000E7EBA /* Frameworks */,
 				83C48D791B033869000E7EBA /* Resources */,
-				83E9CE071B203F7300717659 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -382,27 +384,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		83E9CE071B203F7300717659 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 95f2a05c03c3084fa3680290a97ab04a0c6929cd 3e9a49bcd1e4cf1fdcec277d2d81f392fc8cf9daf4910b882dc380b0c1736d8d";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		83C48D771B033869000E7EBA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2ED39CD1B228B7E002119D5 /* ScanCollectionViewCell.swift in Sources */,
 				83C48D831B033869000E7EBA /* ViewController.swift in Sources */,
 				83F1C50D1B1EFD28005CE3BD /* ScanItem.m in Sources */,
 				83FD9DE71B21313A00AFEED4 /* ScanViewLayout.swift in Sources */,
