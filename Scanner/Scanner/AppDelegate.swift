@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         store = Store()
         store?.managedContext = persistentStack?.managedContext
         rootVC.managedObjectContext = persistentStack?.managedContext
-        rootVC.fetchResultsController = store?.scanItem().getFetchResultsControllers()
+        rootVC.fetchResultsController = store?.getFetchResultsControllers()
         Fabric.with([Crashlytics()])
         
 //        registerNotifications()

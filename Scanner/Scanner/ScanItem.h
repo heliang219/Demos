@@ -15,5 +15,5 @@
 @property (nonatomic, retain) NSString * scanDate;
 @property (nonatomic, retain) NSString * scanDetail;
 + (instancetype)insertShopIncomeItem:(ScanItem*)item inManagedObjectContext:(NSManagedObjectContext*)managedContext;
-- (NSFetchedResultsController*)getFetchResultsControllers;
+//- (NSFetchedResultsController*)getFetchResultsControllers;
 @end

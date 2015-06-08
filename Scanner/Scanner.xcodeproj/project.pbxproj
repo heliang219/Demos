@@ -64,8 +64,8 @@
 		83C48D961B033869000E7EBA /* ScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerTests.swift; sourceTree = "<group>"; };
 		83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureVideoLayer.swift; sourceTree = "<group>"; };
 		83C48DAA1B034303000E7EBA /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
-		83E9CE081B203FA400717659 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		83E9CE091B203FA400717659 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		83E9CE081B203FA400717659 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../Fabric.framework; sourceTree = "<group>"; };
+		83E9CE091B203FA400717659 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
 		83F1C5011B1EFBDA005CE3BD /* Scanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scanner-Bridging-Header.h"; sourceTree = "<group>"; };
 		83F1C5021B1EFBDC005CE3BD /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		83F1C5031B1EFBDC005CE3BD /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83C48D721B033869000E7EBA = {
+		830123BD1B2529C600E9CC10 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
 				83FD9E151B21837900AFEED4 /* libiconv.dylib */,
@@ -148,9 +148,18 @@
 				83FD9E0D1B21834600AFEED4 /* AVFoundation.framework */,
 				83E9CE081B203FA400717659 /* Fabric.framework */,
 				83E9CE091B203FA400717659 /* Crashlytics.framework */,
+			);
+			name = Framework;
+			path = Scanner.xcodeproj;
+			sourceTree = "<group>";
+		};
+		83C48D721B033869000E7EBA = {
+			isa = PBXGroup;
+			children = (
 				83C48D7D1B033869000E7EBA /* Scanner */,
 				83C48D931B033869000E7EBA /* ScannerTests */,
 				83C48D7C1B033869000E7EBA /* Products */,
+				830123BD1B2529C600E9CC10 /* Framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -552,9 +561,10 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9fd02ae-1371-40c4-a7cd-97afb2483225";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Scanner/Scanner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -581,8 +591,9 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e9fd02ae-1371-40c4-a7cd-97afb2483225";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Scanner/Scanner-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;

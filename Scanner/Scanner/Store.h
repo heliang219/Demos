@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 @class ScanItem;
 @class NSManagedObjectContext;
+@class NSFetchedResultsController;
 @interface Store : NSObject
 @property (nonatomic, strong) NSManagedObjectContext *managedContext;
-- (ScanItem*)scanItem;
-
+//- (ScanItem*)scanItem;
+- (NSFetchedResultsController*)getFetchResultsControllers;
 @end
