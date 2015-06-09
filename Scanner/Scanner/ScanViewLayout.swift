@@ -15,8 +15,8 @@ protocol MKMasonryViewLayoutDelegate
 
 class ScanViewLayout: UICollectionViewLayout {
    
-    private var lastYValueForColumn: NSMutableDictionary? = NSMutableDictionary()
-    private var layoutInfo: NSMutableDictionary? = NSMutableDictionary()
+    private var lastYValueForColumn: NSMutableDictionary?
+    private var layoutInfo: NSMutableDictionary?
     private var indexPath: NSIndexPath?
     private var animator: UIDynamicAnimator?
     private var behavior: UIAttachmentBehavior?
@@ -31,11 +31,16 @@ class ScanViewLayout: UICollectionViewLayout {
     
     override func prepareLayout() {
         
-
+        super.prepareLayout()
+        
+        layoutInfo = NSMutableDictionary()
+        lastYValueForColumn = NSMutableDictionary()
+        
         for indexPath in lastYValueForColumn!.allKeys as! [NSNumber]
         {
             lastYValueForColumn?.setObject(NSNumber(double: 0), forKey: indexPath)
         }
+        
         
         numberOfColumn = 1
         interItemSpacing = 0
@@ -112,7 +117,7 @@ class ScanViewLayout: UICollectionViewLayout {
         
      
             var allAttributes = NSMutableArray(capacity: self.layoutInfo!.count)
-            
+
             self.layoutInfo?.enumerateKeysAndObjectsUsingBlock({(indexPath, attributes, stop) -> Void in
                 
                 if CGRectIntersectsRect(rect, (attributes as! UICollectionViewLayoutAttributes).frame)
@@ -172,7 +177,7 @@ class ScanViewLayout: UICollectionViewLayout {
                 
             }else
             {
-                attributes = self.layoutAttributesForItemAtIndexPath(itemIndexPath)
+                attributes = self.layoutInfo?.objectForKey(itemIndexPath) as? UICollectionViewLayoutAttributes
             }
         }
         return attributes
@@ -188,7 +193,7 @@ class ScanViewLayout: UICollectionViewLayout {
                 
             }else
             {
-                attributes = self.layoutAttributesForItemAtIndexPath(itemIndexPath)
+                attributes = self.layoutInfo?.objectForKey(itemIndexPath) as? UICollectionViewLayoutAttributes
             }
         }
         return attributes

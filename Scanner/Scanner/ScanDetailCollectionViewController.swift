@@ -14,7 +14,7 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
 
     var fetchResultsController: NSFetchedResultsController?
     var managedObjectContext: NSManagedObjectContext?
-    
+    var cellCount:Int = 10
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,10 +31,12 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         self.collectionView?.addGestureRecognizer(panGesture)
         panGesture.delegate = self
         
+    
     }
 
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+     
         
         if let sections = fetchResultsController?.sections
         {
@@ -46,6 +48,8 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
+
+        
         if let sections = fetchResultsController?.sections
         {
             let sectionInfo: AnyObject =  sections[section]
@@ -83,11 +87,7 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         }
         
     }
-    
- 
-    
-    
-    
+
     
     // MARK: UIGestrueRecognizerDelegate
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -111,21 +111,17 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         if point.x < 0
         {
            
-            
-            
-            collectionView?.performBatchUpdates({ () -> Void in
+            if panGesture.state == UIGestureRecognizerState.Ended
+            {
                 
-                self.collectionView!.deleteItemsAtIndexPaths([indexpath!])
-               
                 let item: ScanItem = self.fetchResultsController?.objectAtIndexPath(indexpath!) as! ScanItem
                 self.managedObjectContext!.deleteObject(item)
                 self.managedObjectContext?.save(nil)
-                }, completion: nil)
+                
+            }
             
             
-             self.collectionView?.reloadData()
             
-           
           
         }
         
@@ -162,32 +158,46 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         
     }
     
-    
-    
 
+    deinit
+    {
+        fetchResultsController?.delegate = nil
+    }
+    
 }
 
 
 extension ScanDetailCollectionViewController: NSFetchedResultsControllerDelegate
 {
     
-  
-//    
-//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-//        collectionView?.performBatchUpdates({[weak collectionView] () -> Void in
-//            if let strongSelf = collectionView
-//            {
-//                strongSelf.deleteItemsAtIndexPaths([indexPath!])
-//            }
-//            }, completion: {[weak collectionView] _ in
-//                
-//                if let strongSelf = collectionView
-//                {
-//                    strongSelf.reloadData()
-//                }
-//        })
-//    }
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+       
+        
+        if type == NSFetchedResultsChangeType.Delete
+        {
+            collectionView?.performBatchUpdates({[weak collectionView] () -> Void in
+                if let strongSelf = collectionView
+                {
+                    strongSelf.deleteItemsAtIndexPaths([indexPath!])
+                }
+            }, completion: nil)
+        }
+        if type == NSFetchedResultsChangeType.Insert
+        {
+            collectionView?.performBatchUpdates({ () -> Void in
+                
+                self.collectionView?.insertItemsAtIndexPaths([indexPath!])
+                
+            }, completion: nil)
+        }
+       
+        
+        
+        
+    }
     
+    
+
     
     
 }
