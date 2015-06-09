@@ -76,6 +76,7 @@
 		83F1C50C1B1EFD28005CE3BD /* ScanItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanItem.m; sourceTree = "<group>"; };
 		83F1C50E1B1F0040005CE3BD /* ScanDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanDetailTableViewController.swift; sourceTree = "<group>"; };
 		83F1C5101B1F00BB005CE3BD /* scan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scan@2x.png"; path = "Images.xcassets/AppIcon.appiconset/scan@2x.png"; sourceTree = "<group>"; };
+		83F655F01B26A86C00BD7DDA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		83FD9DE41B21310F00AFEED4 /* ScanDetailCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanDetailCollectionViewController.swift; sourceTree = "<group>"; };
 		83FD9DE61B21313A00AFEED4 /* ScanViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewLayout.swift; sourceTree = "<group>"; };
 		83FD9DE81B213E5A00AFEED4 /* ScanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanTableViewCell.swift; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		83C48D721B033869000E7EBA = {
 			isa = PBXGroup;
 			children = (
+				83F655F01B26A86C00BD7DDA /* MyPlayground.playground */,
 				83C48D7D1B033869000E7EBA /* Scanner */,
 				83C48D931B033869000E7EBA /* ScannerTests */,
 				83C48D7C1B033869000E7EBA /* Products */,

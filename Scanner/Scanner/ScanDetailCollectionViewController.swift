@@ -14,9 +14,9 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
 
     var fetchResultsController: NSFetchedResultsController?
     var managedObjectContext: NSManagedObjectContext?
-    var changeArr: NSMutableArray = NSMutableArray()
-    var sectionChangeDic: NSMutableArray = NSMutableArray()
-    
+
+    var cellCount:Int = 10
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,10 +33,12 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         self.collectionView?.addGestureRecognizer(panGesture)
         panGesture.delegate = self
         
+    
     }
 
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+     
         
         if let sections = fetchResultsController?.sections
         {
@@ -48,6 +50,8 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
+
+        
         if let sections = fetchResultsController?.sections
         {
             let sectionInfo: AnyObject =  sections[section]
@@ -85,11 +89,7 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         }
         
     }
-    
- 
-    
-    
-    
+
     
     // MARK: UIGestrueRecognizerDelegate
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -113,16 +113,17 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         if point.x < 0
         {
            
-            
-//            collectionView?.performBatchUpdates({ () -> Void in
-            
+
+            if panGesture.state == UIGestureRecognizerState.Ended
+            {
+                
                 let item: ScanItem = self.fetchResultsController?.objectAtIndexPath(indexpath!) as! ScanItem
                 self.managedObjectContext!.deleteObject(item)
                 self.managedObjectContext?.save(nil)
-//                self.collectionView!.deleteItemsAtIndexPaths([indexpath!])
-//            }, completion: nil)
+                
+            }
             
-   
+
         }
         
         
@@ -157,6 +158,14 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         
     }
     
+
+
+    deinit
+    {
+        fetchResultsController?.delegate = nil
+    }
+    
+
 }
 
 
@@ -165,77 +174,30 @@ extension ScanDetailCollectionViewController: NSFetchedResultsControllerDelegate
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 
-        var change = NSMutableDictionary()
+       
         if type == NSFetchedResultsChangeType.Delete
         {
-           change.setObject(NSNumber(integer: Int(type.hashValue)), forKey: indexPath!)
-        }
-        
-        sectionChangeDic.addObject(change)
-    }
-    
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        
-        if changeArr.count > 0
-        {
-            self.collectionView?.performBatchUpdates({ () -> Void in
-                
-                let sectionChage = NSArray(array: self.changeArr)
-                
-                for change in sectionChage as! [NSMutableDictionary]
+            collectionView?.performBatchUpdates({[weak collectionView] () -> Void in
+                if let strongSelf = collectionView
                 {
-                    change.enumerateKeysAndObjectsUsingBlock({ (key, obj, stop) -> Void in
-                        
-                        let type = (key as! NSNumber).integerValue
-                        if type == Int(NSFetchedResultsChangeType.Delete.hashValue)
-                        {
-                            self.collectionView?.deleteSections(NSIndexSet(index: (obj as! NSNumber).integerValue))
-                        }
-                        
-                    })
+                    strongSelf.deleteItemsAtIndexPaths([indexPath!])
                 }
             }, completion: nil)
         }
-        
-        if sectionChangeDic.count > 0 && changeArr.count == 0
+        if type == NSFetchedResultsChangeType.Insert
         {
-            self.collectionView?.performBatchUpdates({ () -> Void in
+            collectionView?.performBatchUpdates({ () -> Void in
                 
-                let sectionChage = NSArray(array: self.sectionChangeDic)
+                self.collectionView?.insertItemsAtIndexPaths([indexPath!])
                 
-                for change in sectionChage as! [NSMutableDictionary]
-                {
-                    change.enumerateKeysAndObjectsUsingBlock({ (key, obj, stop) -> Void in
-                        
-                        let type = (key as! NSNumber).integerValue
-                        if type == Int(NSFetchedResultsChangeType.Delete.hashValue)
-                        {
-                            self.collectionView?.deleteItemsAtIndexPaths([obj as! NSIndexPath])
-                        }
-                        
-                    })
-                }
-                }, completion: nil)
+            }, completion: nil)
         }
-
+       
         
-        changeArr.removeAllObjects()
-        sectionChangeDic.removeAllObjects()
+        
         
     }
     
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        
-        var change = NSMutableDictionary()
-        
-        if type == NSFetchedResultsChangeType.Delete
-        {
-            change.setObject(NSNumber(integer: Int(type.hashValue)), forKey: NSNumber(integer: sectionIndex))
-        }
-        
-        changeArr.addObject(change)
-    }
     
    
     

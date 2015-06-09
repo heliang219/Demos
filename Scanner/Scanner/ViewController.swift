@@ -289,10 +289,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         scanItem?.scanDetail = aString
         
         
-        if scanItem!.managedObjectContext!.hasChanges
-        {
-            scanItem?.managedObjectContext?.save(nil)
-        }
+//        if managedObjectContext!.hasChanges
+//        {
+//            managedObjectContext!.save(nil)
+//        }
     }
     
     lazy var dateFormatter: NSDateFormatter? = {
