@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        registerNotifications()
         
+        initCloud()
+        
         return true
     }
     
@@ -42,6 +44,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return (documentDirectory!.URLByAppendingPathComponent("db.sqlite"),modelURL!)
     }
     
+    
+    func initCloud()->Bool
+    {
+        let fm = NSFileManager.defaultManager()
+        if fm.URLForUbiquityContainerIdentifier(nil) == nil
+        {
+            let alertView = UIAlertView(title: "提示", message: "iCloud不可用", delegate: self, cancelButtonTitle: "好的")
+            
+            return false
+        }
+        
+        
+        return true
+    }
     
     
     func registerNotifications()

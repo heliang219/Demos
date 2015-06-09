@@ -158,8 +158,6 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         
     }
     
-
-
     deinit
     {
         fetchResultsController?.delegate = nil
