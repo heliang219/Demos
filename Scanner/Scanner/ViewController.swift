@@ -32,6 +32,7 @@ let kDeviceHeigth: CGFloat = UIScreen.mainScreen().bounds.height
 let kLineMinX: CGFloat = kDeviceWidth/2 - kReaderWidth/2
 let kLineMinY: CGFloat = kDeviceHeigth/2 - kReaderHeight/2 - 50
 
+let filenameExtension = "txt"
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -44,7 +45,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var isAnimation: Bool? = false
     var managedObjectContext: NSManagedObjectContext?
     var fetchResultsController: NSFetchedResultsController?
-    
+    var metadataQuery: NSMetadataQuery?
+    var documents: NSMutableArray?
     
     var coverView: UIView?{
         didSet
@@ -81,6 +83,51 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         super.viewDidDisappear(animated)
         stopRuning()
 
+    }
+    
+    
+    func setupAndStartQuery()
+    {
+        if let metadataQuery = metadataQuery
+        {
+            
+        }
+        else
+        {
+            metadataQuery = NSMetadataQuery()
+            metadataQuery?.searchScopes = [NSMetadataQueryUbiquitousDocumentsScope]
+            let filePattern = String(format: "*.%@", filenameExtension)
+            metadataQuery?.predicate = NSPredicate(format: "%K LIKE %@", filePattern)
+            metadataQuery?.startQuery()
+            
+            // MARK: register notification
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "processFile:", name: NSMetadataQueryDidFinishGatheringNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "processFile:", name: NSMetadataQueryDidUpdateNotification, object: nil)
+        }
+        
+    }
+    
+    func processFile(notifition: NSNotification)
+    {
+        
+        metadataQuery?.disableUpdates()
+        
+        documents = NSMutableArray()
+        let results = metadataQuery?.results
+        var fileItemArr: NSMutableArray = NSMutableArray()
+        for metadataItem in results as! [NSMetadataItem]
+        {
+            let fileURL = metadataItem.valueForAttribute(NSMetadataItemURLKey) as! NSURL
+            var aBool: Bool? = false
+            fileURL.getResourceValue(nil, forKey: NSURLIsHiddenKey, error: nil)
+            fileItemArr.addObject(fileURL)
+        }
+        
+        documents?.removeAllObjects()
+        documents?.addObjectsFromArray(fileItemArr as [AnyObject])
+        
+        metadataQuery?.enableUpdates()
+        
     }
     
     
@@ -291,11 +338,62 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         scanItem?.scanDetail = aString
         
         
-//        if managedObjectContext!.hasChanges
-//        {
-//            managedObjectContext!.save(nil)
-//        }
+        addDocument()
+
+        
     }
+    
+    func addDocument()->NSURL?
+    {
+        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            var newFileURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
+            newFileURL = newFileURL?.URLByAppendingPathComponent("documents", isDirectory: true)
+            newFileURL = newFileURL?.URLByAppendingPathComponent(self.newUntitledDocumentName(), isDirectory: false)
+            
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            
+                return newFileURL
+
+//            })
+//        })
+      
+        
+    }
+    
+    
+    func newUntitledDocumentName()->String
+    {
+        var txtCount: Int = 1
+        var newTxtName: String?
+        var done = false
+        
+        let documentArr = NSArray(array: documents!)
+        
+        while !done
+        {
+            newTxtName = String(format: "scan %d.%@", txtCount, filenameExtension)
+            var nameExists = false
+            
+            for fileURL in documentArr as! [NSURL]
+            {
+                if fileURL.lastPathComponent == newTxtName
+                {
+                    txtCount++
+                    nameExists = true
+                    break
+                }
+            }
+            
+            if !nameExists
+            {
+                done = true
+            }
+        }
+        return newTxtName!
+        
+    }
+    
     
     lazy var dateFormatter: NSDateFormatter? = {
       

@@ -27,7 +27,6 @@ class ScanViewLayout: UICollectionViewLayout {
     var interItemSpacing: CGFloat!
     var delegate: MKMasonryViewLayoutDelegate?
     var isDrag: Bool = false
-    var maxHeight: CGFloat = 0
     
     override func prepareLayout() {
         
@@ -109,7 +108,6 @@ class ScanViewLayout: UICollectionViewLayout {
         
         }while(currentColumn < numberOfColumn)
         
-        self.maxHeight = maxHeight
         return CGSizeMake(self.collectionView!.bounds.width, maxHeight)
     }
     
@@ -148,65 +146,65 @@ class ScanViewLayout: UICollectionViewLayout {
     
     }
     
-    override func prepareForCollectionViewUpdates(updateItems: [AnyObject]!) {
-        
-        super.prepareForCollectionViewUpdates(updateItems)
-        deleteIndexPaths = NSMutableArray()
-
-        for updateItem in updateItems
-        {
-            let update: UICollectionViewUpdateItem = updateItem as! UICollectionViewUpdateItem
-            
-            if update.updateAction == UICollectionUpdateAction.Delete
-            {
-                self.deleteIndexPaths?.addObject(update)
-            }
-            
-        }
-        
-    }
-    
-    
-    override func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        
-        var attributes = super.initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath)
-        if deleteIndexPaths!.containsObject(itemIndexPath)
-        {
-            if let attribute = attributes
-            {
-                
-            }else
-            {
-                attributes = self.layoutInfo?.objectForKey(itemIndexPath) as? UICollectionViewLayoutAttributes
-            }
-        }
-        return attributes
-    }
-    
-    override func finalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        
-        var attributes = super.initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath)
-        if deleteIndexPaths!.containsObject(itemIndexPath)
-        {
-            if let attribute = attributes
-            {
-                
-            }else
-            {
-                attributes = self.layoutInfo?.objectForKey(itemIndexPath) as? UICollectionViewLayoutAttributes
-            }
-        }
-        return attributes
-        
-        
-    }
-    
-    
-    override func finalizeCollectionViewUpdates() {
-        
-        super.finalizeCollectionViewUpdates()
-        deleteIndexPaths = nil
-    }
+//    override func prepareForCollectionViewUpdates(updateItems: [AnyObject]!) {
+//        
+//        super.prepareForCollectionViewUpdates(updateItems)
+//        deleteIndexPaths = NSMutableArray()
+//
+//        for updateItem in updateItems
+//        {
+//            let update: UICollectionViewUpdateItem = updateItem as! UICollectionViewUpdateItem
+//            
+//            if update.updateAction == UICollectionUpdateAction.Delete
+//            {
+//                self.deleteIndexPaths?.addObject(update)
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    
+//    override func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+//        
+//        var attributes = super.initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath)
+//        if deleteIndexPaths!.containsObject(itemIndexPath)
+//        {
+//            if let attribute = attributes
+//            {
+//                
+//            }else
+//            {
+//                attributes = self.layoutInfo?.objectForKey(itemIndexPath) as? UICollectionViewLayoutAttributes
+//            }
+//        }
+//        return attributes
+//    }
+//    
+//    override func finalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+//        
+//        var attributes = super.initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath)
+//        if deleteIndexPaths!.containsObject(itemIndexPath)
+//        {
+//            if let attribute = attributes
+//            {
+//                
+//            }else
+//            {
+//                attributes = self.layoutInfo?.objectForKey(itemIndexPath) as? UICollectionViewLayoutAttributes
+//            }
+//        }
+//        return attributes
+//        
+//        
+//    }
+//    
+//    
+//    override func finalizeCollectionViewUpdates() {
+//        
+//        super.finalizeCollectionViewUpdates()
+//        deleteIndexPaths = nil
+//    }
     
     func updateDragLocation(location: CGPoint)
     {

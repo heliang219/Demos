@@ -14,7 +14,9 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
 
     var fetchResultsController: NSFetchedResultsController?
     var managedObjectContext: NSManagedObjectContext?
+
     var cellCount:Int = 10
+
     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -30,8 +32,8 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         var error: NSError?
         fetchResultsController?.performFetch(&error)
        
-        var longGesture = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
-        self.collectionView?.addGestureRecognizer(longGesture)
+//        var longGesture = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+//        self.collectionView?.addGestureRecognizer(longGesture)
         var panGesture = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
         self.collectionView?.addGestureRecognizer(panGesture)
         panGesture.delegate = self
@@ -116,6 +118,7 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         if point.x < 0
         {
            
+
             if panGesture.state == UIGestureRecognizerState.Ended
             {
                 
@@ -125,9 +128,7 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
                 
             }
             
-            
-            
-          
+
         }
         
         
@@ -136,7 +137,6 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
     
     func handleLongPress(longPress:UILongPressGestureRecognizer)
     {
-        
         let dragLayout = self.collectionView?.collectionViewLayout as! ScanViewLayout
         var point = longPress.locationInView(self.collectionView)
         var indexpath = self.collectionView?.indexPathForItemAtPoint(point)
@@ -163,12 +163,12 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
         
     }
     
-
     deinit
     {
         fetchResultsController?.delegate = nil
     }
     
+
 }
 
 
@@ -176,8 +176,8 @@ extension ScanDetailCollectionViewController: NSFetchedResultsControllerDelegate
 {
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+
        
-        
         if type == NSFetchedResultsChangeType.Delete
         {
             collectionView?.performBatchUpdates({[weak collectionView] () -> Void in
@@ -202,8 +202,7 @@ extension ScanDetailCollectionViewController: NSFetchedResultsControllerDelegate
     }
     
     
-
-    
+   
     
 }
 
