@@ -12,9 +12,13 @@ class ScanDetailTableViewController: UITableViewController {
 
     var fetchResultsController: NSFetchedResultsController?
     var managedObjectContext: NSManagedObjectContext?
+     var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
+        fetchResultsController = appDelegate.fetchResultsController
+        managedObjectContext = appDelegate.managedObjectContext
         
         tableView.registerClass(ScanTableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         fetchResultsController?.delegate = self

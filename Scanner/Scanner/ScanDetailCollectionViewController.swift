@@ -15,9 +15,14 @@ class ScanDetailCollectionViewController: UICollectionViewController, MKMasonryV
     var fetchResultsController: NSFetchedResultsController?
     var managedObjectContext: NSManagedObjectContext?
     var cellCount:Int = 10
+    var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.fetchResultsController = appDelegate.fetchResultsController
+        self.managedObjectContext = appDelegate.managedObjectContext
+        
         self.collectionView!.registerClass(ScanCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
       
         self.collectionView?.backgroundColor = UIColor.whiteColor()
