@@ -280,15 +280,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     func showDetail()
     {
         let scanDetail = ScanDetailTableViewController()
-//        scanDetail.fetchResultsController = fetchResultsController
-//        scanDetail.managedObjectContext = managedObjectContext
+
         self.navigationController?.pushViewController(scanDetail, animated: true)
     }
     func showDetail1()
     {
         let scanDetail = ScanDetailCollectionViewController(collectionViewLayout:ScanViewLayout())
-//        scanDetail.fetchResultsController = fetchResultsController
-//        scanDetail.managedObjectContext = managedObjectContext
+
         self.navigationController?.pushViewController(scanDetail, animated: true)
     }
     

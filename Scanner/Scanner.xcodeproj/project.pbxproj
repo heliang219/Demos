@@ -25,6 +25,7 @@
 		83F1C50F1B1F0040005CE3BD /* ScanDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F1C50E1B1F0040005CE3BD /* ScanDetailTableViewController.swift */; };
 		83F1C5121B1F00BB005CE3BD /* scan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83F1C5101B1F00BB005CE3BD /* scan@2x.png */; };
 		83F656241B26E0B700BD7DDA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F656231B26E0B700BD7DDA /* CloudKit.framework */; };
+		83FA5F291B27C8FD00C9FB0D /* ScanDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5F281B27C8FD00C9FB0D /* ScanDocument.swift */; };
 		83FD9DE51B21310F00AFEED4 /* ScanDetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD9DE41B21310F00AFEED4 /* ScanDetailCollectionViewController.swift */; };
 		83FD9DE71B21313A00AFEED4 /* ScanViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD9DE61B21313A00AFEED4 /* ScanViewLayout.swift */; };
 		83FD9DE91B213E5A00AFEED4 /* ScanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD9DE81B213E5A00AFEED4 /* ScanTableViewCell.swift */; };
@@ -80,6 +81,7 @@
 		83F655F01B26A86C00BD7DDA /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		83F656221B26E08300BD7DDA /* Scanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Scanner.entitlements; sourceTree = "<group>"; };
 		83F656231B26E0B700BD7DDA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		83FA5F281B27C8FD00C9FB0D /* ScanDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanDocument.swift; sourceTree = "<group>"; };
 		83FD9DE41B21310F00AFEED4 /* ScanDetailCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanDetailCollectionViewController.swift; sourceTree = "<group>"; };
 		83FD9DE61B21313A00AFEED4 /* ScanViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewLayout.swift; sourceTree = "<group>"; };
 		83FD9DE81B213E5A00AFEED4 /* ScanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				83C48D821B033869000E7EBA /* ViewController.swift */,
 				83C48DA01B033899000E7EBA /* CaptureVideoLayer.swift */,
 				8387F7591B034A9300443B5B /* WebViewController.swift */,
+				83FA5F281B27C8FD00C9FB0D /* ScanDocument.swift */,
 				83F1C50E1B1F0040005CE3BD /* ScanDetailTableViewController.swift */,
 				83FD9DE81B213E5A00AFEED4 /* ScanTableViewCell.swift */,
 				83FD9DE41B21310F00AFEED4 /* ScanDetailCollectionViewController.swift */,
@@ -414,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2ED39CD1B228B7E002119D5 /* ScanCollectionViewCell.swift in Sources */,
+				83FA5F291B27C8FD00C9FB0D /* ScanDocument.swift in Sources */,
 				83C48D831B033869000E7EBA /* ViewController.swift in Sources */,
 				83F1C50D1B1EFD28005CE3BD /* ScanItem.m in Sources */,
 				83FD9DE71B21313A00AFEED4 /* ScanViewLayout.swift in Sources */,
