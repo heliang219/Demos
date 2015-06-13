@@ -29,14 +29,17 @@ class PasswordView: UIView {
     var delegate: verifyPwdProtocol?
     var pwdCount = 1
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    var errorcodeCount = 0
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
         loadUI()
         
-        
-        UIAlertView(title: "提示", message: "请设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+        if !userDefaults.boolForKey("isFirst")
+        {
+            UIAlertView(title: "提示", message: "请设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+        }
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -141,7 +144,6 @@ class PasswordView: UIView {
                 {
                     userDefaults.setObject("", forKey: "pwd")
                     userDefaults.setBool(false, forKey: status)
-                    delegate?.callbackpwd(false)
                     UIAlertView(title: "提示", message: "两次输入不一致,请重新设置密码", delegate: self, cancelButtonTitle: "好的!").show()
                 }
                 
@@ -165,9 +167,18 @@ class PasswordView: UIView {
         }
         else
         {
-           
-            delegate?.callbackpwd(false)
-            UIAlertView(title: "提示", message: "密码不正确,请重新输入!", delegate: self, cancelButtonTitle: "好的!").show()
+           if errorcodeCount < 4
+           {
+            UIAlertView(title: "提示", message: "密码不正确,还可以输入\(4 - errorcodeCount)次!", delegate: self, cancelButtonTitle: "好的!").show()
+            }
+            if errorcodeCount++ >= 4
+            {
+                userDefaults.setBool(false, forKey: "status")
+                userDefaults.setObject("", forKey: "pwd")
+                userDefaults.setBool(false, forKey: "isFirst")
+                userDefaults.synchronize()
+                UIAlertView(title: "提示", message: "请重新设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+            }
            
         }
         

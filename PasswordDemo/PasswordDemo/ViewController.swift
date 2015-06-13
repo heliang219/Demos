@@ -15,6 +15,7 @@ class ViewController: UIViewController, verifyPwdProtocol{
         super.viewDidLoad()
         
         let  passwordView = PasswordView(frame: UIScreen.mainScreen().bounds)
+            passwordView.delegate = self
         passwordView.backgroundColor = UIColor.whiteColor()
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(passwordView)
@@ -25,9 +26,8 @@ class ViewController: UIViewController, verifyPwdProtocol{
     }
 
     func callbackpwd(status: Bool) {
-        
-//        
-//        presentViewController(NextViewController(), animated: true, completion: nil)
+               
+        presentViewController(NextViewController(), animated: true, completion: nil)
     }
 
 }
