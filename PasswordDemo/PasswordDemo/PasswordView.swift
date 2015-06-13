@@ -137,6 +137,7 @@ class PasswordView: UIView {
                     userDefaults.setObject(pwd, forKey: "pwd")
                     userDefaults.setBool(true, forKey: status)
                     userDefaults.setBool(true, forKey: "isFirst")
+                    errorcodeCount = 0
                     delegate?.callbackpwd(true)
                     UIAlertView(title: "提示", message: "设置密码成功", delegate: self, cancelButtonTitle: "好的!").show()
                 }

@@ -26,8 +26,9 @@ class ViewController: UIViewController, verifyPwdProtocol{
     }
 
     func callbackpwd(status: Bool) {
-               
-        presentViewController(NextViewController(), animated: true, completion: nil)
+        
+        let nav = UINavigationController(rootViewController: NextViewController())
+        presentViewController(nav, animated: true, completion: nil)
     }
 
 }

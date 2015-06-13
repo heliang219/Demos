@@ -14,11 +14,14 @@ class NextViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.whiteColor()
-        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.Plain, target: self, action: "back")
         
     }
 
-    
+    func back()
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
 
 }
