@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, verifyPwdProtocol{
 
     override func viewDidLoad() {
@@ -20,10 +21,10 @@ class ViewController: UIViewController, verifyPwdProtocol{
         
     }
 
-    func callbackpwd(btnArr: NSArray) {
+    func callbackpwd(status: Bool) {
         
         
-        
+        presentViewController(NextViewController(), animated: true, completion: nil)
     }
 
 }

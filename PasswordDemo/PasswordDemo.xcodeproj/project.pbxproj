@@ -417,6 +417,7 @@
 				83E703D41B2A7B78002C5DF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83E703D51B2A7B78002C5DF2 /* Build configuration list for PBXNativeTarget "PasswordDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +426,7 @@
 				83E703D71B2A7B78002C5DF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

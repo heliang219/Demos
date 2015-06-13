@@ -17,7 +17,7 @@ let status:String = "status"
 
 protocol verifyPwdProtocol
 {
-    func callbackpwd(btnArr:NSArray)
+    func callbackpwd(status:Bool)
 }
 
 class PasswordView: UIView {
@@ -34,9 +34,8 @@ class PasswordView: UIView {
         super.init(frame: frame)
         loadUI()
         
-        userDefaults.setBool(false, forKey: status)
-        userDefaults.synchronize()
         
+        UIAlertView(title: "提示", message: "请设置密码", delegate: self, cancelButtonTitle: "好的!").show()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -109,14 +108,44 @@ class PasswordView: UIView {
         if !userDefaults.boolForKey(status)
         {
             
+            UIAlertView(title: "提示", message: "请再输入一次,设置密码", delegate: self, cancelButtonTitle: "好的!").show()
             
+            var pwd: String = ""
+            for btn in pwdBtnArr as! [UIButton]
+            {
+                pwd += "\(btn.tag)"
+            }
             
-            UIAlertView(title: "提示", message: "没有设置密码,请再输入一次,设置密码", delegate: self, cancelButtonTitle: "好的!").show()
-
+            userDefaults.setObject(pwd, forKey: "pwd")
+            userDefaults.setBool(true, forKey: status)
+            userDefaults.synchronize()
         }
         else
         {
-             delegate?.callbackpwd(pwdBtnArr)
+            var pwd: String = ""
+            for btn in pwdBtnArr as! [UIButton]
+            {
+                pwd += "\(btn.tag)"
+            }
+            
+            if (userDefaults.objectForKey("pwd") as! String) == pwd
+            {
+                userDefaults.setObject(pwd, forKey: "pwd")
+                userDefaults.setBool(true, forKey: status)
+                delegate?.callbackpwd(true)
+                UIAlertView(title: "提示", message: "设置密码成功", delegate: self, cancelButtonTitle: "好的!").show()
+            }
+            else
+            {
+                userDefaults.setObject("", forKey: "pwd")
+                userDefaults.setBool(false, forKey: status)
+                 delegate?.callbackpwd(false)
+                UIAlertView(title: "提示", message: "两次输入不一致,请重新设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+            }
+            
+            
+            
+            userDefaults.synchronize()
         }
     
        
