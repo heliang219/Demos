@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, verifyPwdProtocol{
 
     override func viewDidLoad() {
@@ -18,12 +19,15 @@ class ViewController: UIViewController, verifyPwdProtocol{
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(passwordView)
         
+        
+        
+        
     }
 
-    func callbackpwd(btnArr: NSArray) {
+    func callbackpwd(status: Bool) {
         
-        
-        
+//        
+//        presentViewController(NextViewController(), animated: true, completion: nil)
     }
 
 }

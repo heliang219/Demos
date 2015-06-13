@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../NextViewController.swift">
+   </FileRef>
+   <FileRef
       location = "self:PasswordDemo.xcodeproj">
    </FileRef>
 </Workspace>

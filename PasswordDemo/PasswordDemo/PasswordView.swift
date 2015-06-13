@@ -17,7 +17,7 @@ let status:String = "status"
 
 protocol verifyPwdProtocol
 {
-    func callbackpwd(btnArr:NSArray)
+    func callbackpwd(status:Bool)
 }
 
 class PasswordView: UIView {
@@ -29,14 +29,14 @@ class PasswordView: UIView {
     var delegate: verifyPwdProtocol?
     var pwdCount = 1
     let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     override init(frame: CGRect) {
         
         super.init(frame: frame)
         loadUI()
         
-        userDefaults.setBool(false, forKey: status)
-        userDefaults.synchronize()
         
+        UIAlertView(title: "提示", message: "请设置密码", delegate: self, cancelButtonTitle: "好的!").show()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -104,21 +104,76 @@ class PasswordView: UIView {
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
        
-       
+       if !userDefaults.boolForKey("isFirst")
+       {
+            if !userDefaults.boolForKey(status)
+            {
+                
+                UIAlertView(title: "提示", message: "请再输入一次,设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+                
+                var pwd: String = ""
+                for btn in pwdBtnArr as! [UIButton]
+                {
+                    pwd += "\(btn.tag)"
+                }
+                
+                userDefaults.setObject(pwd, forKey: "pwd")
+                userDefaults.setBool(true, forKey: status)
+                userDefaults.synchronize()
+            }
+            else
+            {
+                var pwd: String = ""
+                for btn in pwdBtnArr as! [UIButton]
+                {
+                    pwd += "\(btn.tag)"
+                }
+                
+                if (userDefaults.objectForKey("pwd") as! String) == pwd
+                {
+                    userDefaults.setObject(pwd, forKey: "pwd")
+                    userDefaults.setBool(true, forKey: status)
+                    userDefaults.setBool(true, forKey: "isFirst")
+                    delegate?.callbackpwd(true)
+                    UIAlertView(title: "提示", message: "设置密码成功", delegate: self, cancelButtonTitle: "好的!").show()
+                }
+                else
+                {
+                    userDefaults.setObject("", forKey: "pwd")
+                    userDefaults.setBool(false, forKey: status)
+                    delegate?.callbackpwd(false)
+                    UIAlertView(title: "提示", message: "两次输入不一致,请重新设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+                }
+                
+                userDefaults.synchronize()
+            }
+
+       }
+       else
+       {
+        var pwd: String = ""
+        for btn in pwdBtnArr as! [UIButton]
+        {
+            pwd += "\(btn.tag)"
+        }
         
-        if !userDefaults.boolForKey(status)
+        if (userDefaults.objectForKey("pwd") as! String) == pwd
         {
             
+            delegate?.callbackpwd(true)
             
-            
-            UIAlertView(title: "提示", message: "没有设置密码,请再输入一次,设置密码", delegate: self, cancelButtonTitle: "好的!").show()
-
         }
         else
         {
-             delegate?.callbackpwd(pwdBtnArr)
+           
+            delegate?.callbackpwd(false)
+            UIAlertView(title: "提示", message: "密码不正确,请重新输入!", delegate: self, cancelButtonTitle: "好的!").show()
+           
         }
-    
+        
+        
+        }
+        
        
         
         let btnArr = NSArray(array: pwdBtnArr)
