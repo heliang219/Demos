@@ -8,9 +8,9 @@
 
 import UIKit
 
-let gapY : CGFloat = 100
+let gapY : CGFloat = 180
 let gapItem: CGFloat = 20
-let width: CGFloat = (UIScreen.mainScreen().bounds.width - 2 * 20 - 2 * 40)/3
+let width: CGFloat = (UIScreen.mainScreen().bounds.width - 2 * gapItem - 2 * 40)/3
 let height: CGFloat = (UIScreen.mainScreen().bounds.width - 2 * 20 - 2 * 40)/3
 let gapx : CGFloat = (UIScreen.mainScreen().bounds.width - 3 * width - 2 * gapItem)/2
 let status:String = "status"
@@ -53,9 +53,12 @@ class PasswordView: UIView {
             let row = index / 3
             let column = index % 3
             var btn = UIButton(frame: CGRectMake(gapx + (gapItem + width) * CGFloat(column), gapY + (gapItem + height) * CGFloat(row), width, height))
-            btn.backgroundColor = UIColor.brownColor()
+            btn.setImage(UIImage(named: "8"), forState: UIControlState.Selected)
+            btn.backgroundColor = UIColor.whiteColor()
             btn.userInteractionEnabled = false
             btn.layer.cornerRadius = width * 0.5
+            btn.layer.borderColor = UIColor.brownColor().CGColor
+            btn.layer.borderWidth = 1
             btn.tag = index
             btn.layer.masksToBounds = true
             self.addSubview(btn)
@@ -84,7 +87,7 @@ class PasswordView: UIView {
             if btn.selected == false
             {
                 btn.selected = true
-                btn.highlighted = true
+                btn.setImage(UIImage(named: "8"), forState: UIControlState.Selected)
                 pwdBtnArr.append(btn)
             }
             else
@@ -107,12 +110,21 @@ class PasswordView: UIView {
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
        
+        if pwdBtnArr.count == 0{return}
+        
+        
        if !userDefaults.boolForKey("isFirst")
        {
             if !userDefaults.boolForKey(status)
             {
+                if pwdBtnArr.count < 3
+                {
+                    UIAlertView(title: "提示", message: "密码长度不能少于3位,请重新输入!", delegate: self, cancelButtonTitle: "好的").show()
+                    clearPath()
+                    return
+                }
                 
-                UIAlertView(title: "提示", message: "请再输入一次,设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+                UIAlertView(title: "提示", message: "请再输入一次,设置密码", delegate: self, cancelButtonTitle: "好的").show()
                 
                 var pwd: String = ""
                 for btn in pwdBtnArr as! [UIButton]
@@ -120,9 +132,17 @@ class PasswordView: UIView {
                     pwd += "\(btn.tag)"
                 }
                 
-                userDefaults.setObject(pwd, forKey: "pwd")
-                userDefaults.setBool(true, forKey: status)
-                userDefaults.synchronize()
+                if pwdBtnArr.count < 3
+                {
+                    UIAlertView(title: "提示", message: "密码长度不能少于3位,请重新输入!", delegate: self, cancelButtonTitle: "好的").show()
+                }
+                else
+                {
+                    userDefaults.setObject(pwd, forKey: "pwd")
+                    userDefaults.setBool(true, forKey: status)
+                    userDefaults.synchronize()
+                }
+               
             }
             else
             {
@@ -139,13 +159,13 @@ class PasswordView: UIView {
                     userDefaults.setBool(true, forKey: "isFirst")
                     errorcodeCount = 0
                     delegate?.callbackpwd(true)
-                    UIAlertView(title: "提示", message: "设置密码成功", delegate: self, cancelButtonTitle: "好的!").show()
+                    UIAlertView(title: "提示", message: "设置密码成功", delegate: self, cancelButtonTitle: "好的").show()
                 }
                 else
                 {
                     userDefaults.setObject("", forKey: "pwd")
                     userDefaults.setBool(false, forKey: status)
-                    UIAlertView(title: "提示", message: "两次输入不一致,请重新设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+                    UIAlertView(title: "提示", message: "两次输入不一致,请重新设置密码", delegate: self, cancelButtonTitle: "好的").show()
                 }
                 
                 userDefaults.synchronize()
@@ -170,7 +190,7 @@ class PasswordView: UIView {
         {
            if errorcodeCount < 4
            {
-            UIAlertView(title: "提示", message: "密码不正确,还可以输入\(4 - errorcodeCount)次!", delegate: self, cancelButtonTitle: "好的!").show()
+            UIAlertView(title: "提示", message: "密码不正确,还可以输入\(4 - errorcodeCount)次!", delegate: self, cancelButtonTitle: "好的").show()
             }
             if errorcodeCount++ >= 4
             {
@@ -178,7 +198,7 @@ class PasswordView: UIView {
                 userDefaults.setObject("", forKey: "pwd")
                 userDefaults.setBool(false, forKey: "isFirst")
                 userDefaults.synchronize()
-                UIAlertView(title: "提示", message: "请重新设置密码", delegate: self, cancelButtonTitle: "好的!").show()
+                UIAlertView(title: "提示", message: "请重新设置密码", delegate: self, cancelButtonTitle: "好的").show()
             }
            
         }
@@ -187,19 +207,22 @@ class PasswordView: UIView {
         }
         
        
+        clearPath()
         
+        
+        
+    }
+    
+    func clearPath()
+    {
         let btnArr = NSArray(array: pwdBtnArr)
         for btn in btnArr as! [UIButton]
         {
             btn.selected = false
         }
         pwdBtnArr.removeAll(keepCapacity: true)
-         setNeedsDisplay()
-        
-        
+        setNeedsDisplay()
     }
-    
-    
    
     override func drawRect(rect: CGRect) {
         

@@ -16,6 +16,9 @@
 		83E703C31B2A7B78002C5DF2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83E703C11B2A7B78002C5DF2 /* LaunchScreen.xib */; };
 		83E703CF1B2A7B78002C5DF2 /* PasswordDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E703CE1B2A7B78002C5DF2 /* PasswordDemoTests.swift */; };
 		83E703D91B2A7B99002C5DF2 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E703D81B2A7B99002C5DF2 /* PasswordView.swift */; };
+		C2F409F81B2C7DAD0050B024 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F409F71B2C7DAD0050B024 /* 8.png */; };
+		C2F409FE1B2C8D1D0050B024 /* pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F409FD1B2C8D1D0050B024 /* pwd.png */; };
+		C2F40A001B2C93490050B024 /* 5C.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F409FF1B2C93490050B024 /* 5C.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		83E703CD1B2A7B78002C5DF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83E703CE1B2A7B78002C5DF2 /* PasswordDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordDemoTests.swift; sourceTree = "<group>"; };
 		83E703D81B2A7B99002C5DF2 /* PasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		C2F409F71B2C7DAD0050B024 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		C2F409FD1B2C8D1D0050B024 /* pwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pwd.png; sourceTree = "<group>"; };
+		C2F409FF1B2C93490050B024 /* 5C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5C.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +92,11 @@
 				83E703B51B2A7B78002C5DF2 /* AppDelegate.swift */,
 				83E703BA1B2A7B78002C5DF2 /* ViewController.swift */,
 				83E703D81B2A7B99002C5DF2 /* PasswordView.swift */,
+				C2F409F71B2C7DAD0050B024 /* 8.png */,
+				C2F409FF1B2C93490050B024 /* 5C.png */,
 				1E9E23561B2BB4B6006C9D7B /* NextViewController.swift */,
 				83E703BC1B2A7B78002C5DF2 /* Main.storyboard */,
+				C2F409FD1B2C8D1D0050B024 /* pwd.png */,
 				83E703BF1B2A7B78002C5DF2 /* Images.xcassets */,
 				83E703C11B2A7B78002C5DF2 /* LaunchScreen.xib */,
 				83E703B71B2A7B78002C5DF2 /* PasswordDemo.xcdatamodeld */,
@@ -204,7 +213,10 @@
 			files = (
 				83E703BE1B2A7B78002C5DF2 /* Main.storyboard in Resources */,
 				83E703C31B2A7B78002C5DF2 /* LaunchScreen.xib in Resources */,
+				C2F40A001B2C93490050B024 /* 5C.png in Resources */,
+				C2F409FE1B2C8D1D0050B024 /* pwd.png in Resources */,
 				83E703C01B2A7B78002C5DF2 /* Images.xcassets in Resources */,
+				C2F409F81B2C7DAD0050B024 /* 8.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

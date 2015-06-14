@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		83E9D99C1B0C580900F3ED02 /* swiftDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E9D99F1B0C580900F3ED02 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C2F40A021B2D4A6E0050B024 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				83E9D99F1B0C580900F3ED02 /* main.swift */,
+				C2F40A021B2D4A6E0050B024 /* MyPlayground.playground */,
 			);
 			path = swiftDemo;
 			sourceTree = "<group>";
@@ -236,6 +238,7 @@
 				83E9D9A51B0C580900F3ED02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

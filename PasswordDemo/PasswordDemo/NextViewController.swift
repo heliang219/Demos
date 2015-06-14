@@ -12,7 +12,7 @@ class NextViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(UIImageView(image: UIImage(named: "5C")))
         self.view.backgroundColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.Plain, target: self, action: "back")
         
