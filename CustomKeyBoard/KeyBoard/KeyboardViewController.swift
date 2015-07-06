@@ -16,7 +16,7 @@ class KeyboardViewController: UIInputViewController {
     
     let gapH = UIScreen.mainScreen().bounds.width/3.0
     let gapV = CGFloat(216)/4.0
-    
+    var insertContent = [String]()
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -37,8 +37,8 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         
 //        self.view.addSubview(self.nextKeyboardButton)
-        
-        println(self.view.bounds)
+//        let proxy = self.textDocumentProxy as! UITextDocumentProxy
+//       insertContent.append( proxy.documentContextBeforeInput)
         
         for index in 0..<3
         {
@@ -70,9 +70,10 @@ class KeyboardViewController: UIInputViewController {
             }
             else if indexs == 11
             {
-                keyBtn.setImage(UIImage(named: "delete"), forState: UIControlState.Normal)
+                keyBtn.setImage(UIImage(named: insertContent.isEmpty ? "keyboard" : "delete"), forState: UIControlState.Normal)
+                keyBtn.addTarget(self, action:"advanceToNextInputMode", forControlEvents: UIControlEvents.TouchUpInside)
                 let longPress = UILongPressGestureRecognizer(target: self, action: Selector("longPress:"))
-                longPress.minimumPressDuration = 1
+                longPress.minimumPressDuration = 1.0
                 keyBtn.addGestureRecognizer(longPress)
             }
             else
@@ -89,21 +90,23 @@ class KeyboardViewController: UIInputViewController {
         
         
         
-        let keyBoardHeight: CGFloat = 100
-        let constraint =  NSLayoutConstraint(item: self.view,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: nil,
-            attribute: NSLayoutAttribute.NotAnAttribute,
-            multiplier: 0.0,
-            constant: keyBoardHeight)
-        self.view.addConstraint(constraint)
+//        let keyBoardHeight: CGFloat = 100
+//        let constraint =  NSLayoutConstraint(item: self.view,
+//            attribute: NSLayoutAttribute.Height,
+//            relatedBy: NSLayoutRelation.Equal,
+//            toItem: nil,
+//            attribute: NSLayoutAttribute.NotAnAttribute,
+//            multiplier: 0.0,
+//            constant: keyBoardHeight)
+//        self.view.addConstraint(constraint)
     
         
     }
     
     func insertText(btn: UIButton)
     {
+        
+        
         var proxy = self.textDocumentProxy as! UITextDocumentProxy
         
         if btn.tag != 12
@@ -111,23 +114,51 @@ class KeyboardViewController: UIInputViewController {
             if btn.tag == 10
             {
                 proxy.insertText(".")
+                insertContent.append(".")
                
             }
             else if btn.tag == 11
             {
                 proxy.insertText("0")
-               
+                insertContent.append("0")
             }
             else
             {
                proxy.insertText("\(btn.tag)")
+               insertContent.append("\(btn.tag)")
             }
+
+            let btn12 = self.view.viewWithTag(12) as! KeyButton
+//            if btn12.respondsToSelector("advanceToNextInputMode")
+//            {
+                btn12.removeTarget(self, action: "advanceToNextInputMode", forControlEvents: UIControlEvents.TouchUpInside)
+                btn12.addTarget(self, action: Selector("insertText:"), forControlEvents: .TouchUpInside)
+                btn12.setImage(UIImage(named: "delete"), forState: UIControlState.Normal)
+//            }
+            
             
         }
         else
         {
             
             proxy.deleteBackward()
+            
+            if !insertContent.isEmpty
+            {
+                insertContent.removeAtIndex(insertContent.count-1)
+            }
+            
+            if insertContent.isEmpty
+            {
+//                if btn.respondsToSelector(Selector("insertText:"))
+//                {
+                    btn.removeTarget(self, action: Selector("insertText:"), forControlEvents: .TouchUpInside)
+                    btn.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+                    btn.setImage(UIImage(named: "keyboard"), forState: UIControlState.Normal)
+//                }
+                
+            }
+            
         }
         
     }
@@ -138,8 +169,27 @@ class KeyboardViewController: UIInputViewController {
         if longBtn.state != UIGestureRecognizerState.Ended || longBtn.state != UIGestureRecognizerState.Cancelled
         {
             var proxy = self.textDocumentProxy as! UITextDocumentProxy
-            proxy.deleteBackward()
-            self.longPress(longBtn)
+            
+            for str in insertContent as [String]
+            {
+               
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5)), dispatch_get_main_queue())
+                {
+                    proxy.deleteBackward()
+                    self.insertContent.removeAtIndex(self.insertContent.count-1)
+                }
+                
+            }
+            
+            if insertContent.isEmpty
+            {
+                let btn = longBtn.view as! KeyButton
+                btn.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+                btn.setImage(UIImage(named: "keyboard"), forState: UIControlState.Normal)
+            }
+            
+
+            
         }
         
     }

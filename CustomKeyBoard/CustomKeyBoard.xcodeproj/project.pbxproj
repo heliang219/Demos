@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8301F9821B4A8B1100694DDD /* keyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8301F9801B4A8B1100694DDD /* keyboard.png */; };
+		8301F9831B4A8B1100694DDD /* keyboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8301F9811B4A8B1100694DDD /* keyboard@2x.png */; };
 		83EDA9521B45096C00EC6E57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EDA9511B45096C00EC6E57 /* AppDelegate.swift */; };
 		83EDA9551B45096C00EC6E57 /* CustomKeyBoard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83EDA9531B45096C00EC6E57 /* CustomKeyBoard.xcdatamodeld */; };
 		83EDA9571B45096C00EC6E57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EDA9561B45096C00EC6E57 /* ViewController.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8301F9801B4A8B1100694DDD /* keyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard.png; sourceTree = "<group>"; };
+		8301F9811B4A8B1100694DDD /* keyboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keyboard@2x.png"; sourceTree = "<group>"; };
 		83EDA94C1B45096C00EC6E57 /* CustomKeyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomKeyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EDA9501B45096C00EC6E57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83EDA9511B45096C00EC6E57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				83EDA9871B4534C400EC6E57 /* delete.png */,
+				8301F9801B4A8B1100694DDD /* keyboard.png */,
+				8301F9811B4A8B1100694DDD /* keyboard@2x.png */,
 				83EDA9881B4534C400EC6E57 /* delete@2x.png */,
 				83EDA97B1B45098A00EC6E57 /* Info.plist */,
 			);
@@ -298,6 +304,8 @@
 			files = (
 				83EDA9891B4534C400EC6E57 /* delete.png in Resources */,
 				83EDA98A1B4534C400EC6E57 /* delete@2x.png in Resources */,
+				8301F9831B4A8B1100694DDD /* keyboard@2x.png in Resources */,
+				8301F9821B4A8B1100694DDD /* keyboard.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +552,7 @@
 				83EDA9701B45096D00EC6E57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83EDA9711B45096D00EC6E57 /* Build configuration list for PBXNativeTarget "CustomKeyBoardTests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +561,7 @@
 				83EDA9731B45096D00EC6E57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83EDA9811B45098A00EC6E57 /* Build configuration list for PBXNativeTarget "KeyBoard" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +570,7 @@
 				83EDA9831B45098A00EC6E57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
