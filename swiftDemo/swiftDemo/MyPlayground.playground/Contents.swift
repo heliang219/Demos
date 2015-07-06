@@ -126,6 +126,79 @@ b1.firstName
 b1.name
 
 
+protocol TargetAction
+{
+    func performAction()
+}
+
+struct TargetActionWrapper<T: AnyObject>: TargetAction
+{
+    weak var target: T?
+    var action: (T) -> () -> ()
+
+    func performAction() {
+        
+        if let t = target
+        {
+          action(t)()
+            print("dddddddddd")
+        }
+         print("dddddddddd")
+    }
+    
+}
+
+enum ControlEvent
+{
+    case TouchUpInside
+    case ValueChanged
+}
+
+class Control {
+    
+    var actions = [ControlEvent : TargetAction]()
+    
+    func setTarget<T: AnyObject>(target: T, action: (T)->()->(), controlEvent:ControlEvent)
+    {
+        actions[controlEvent] = TargetActionWrapper(target: target, action: action)
+    }
+    
+    func removeTargetForControlEvent(controlevent: ControlEvent)
+    {
+        actions[controlevent] = nil
+    }
+    
+    func performActionForControlEvent(controlEvent: ControlEvent)
+    {
+        actions[controlEvent]?.performAction()
+    }
+    
+    
+}
+
+class MyClass: Control {
+    
+}
+
+func afunc(any: AnyObject)()->()
+{
+    print("hahhaha")
+}
+
+let myClass = MyClass()
+let target = TargetActionWrapper(target: "ss", action: afunc)
+let event = ControlEvent.TouchUpInside
+myClass.actions = [event:target]
+myClass.performActionForControlEvent(ControlEvent.TouchUpInside)
+myClass.setTarget("a3434", action: afunc, controlEvent: ControlEvent.TouchUpInside)
+
+func hahad()
+{
+    
+}
+
+
+
 
 
 

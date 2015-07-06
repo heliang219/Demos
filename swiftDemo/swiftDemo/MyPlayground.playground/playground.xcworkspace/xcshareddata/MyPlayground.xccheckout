@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>7C0C1F3C-567E-44E3-885A-A0C078E46D27</string>
+	<string>AFE4B162-684A-44F5-8E02-252E8169B063</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>MyPlayground</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8883F8E04EF02C730F39D1E5229D23D011D1C74D</key>
 		<string>https://github.com/SouthSnow/Demos.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Scanner/Scanner.xcodeproj/project.xcworkspace</string>
+	<string>swiftDemo/swiftDemo/MyPlayground.playground</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8883F8E04EF02C730F39D1E5229D23D011D1C74D</key>
