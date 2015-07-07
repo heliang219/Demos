@@ -62,7 +62,10 @@ class KeyboardViewController: UIInputViewController {
             let keyBtn = KeyButton(frame: CGRectMake(CGFloat(c) * gapH, CGFloat(r) * gapV, gapH, gapV))
             self.view.addSubview(keyBtn)
             keyBtn.tag = indexs+1;
-            keyBtn.addTarget(self, action:Selector("insertText:"), forControlEvents: UIControlEvents.TouchUpInside)
+            if indexs != 11
+            {
+                keyBtn.addTarget(self, action:Selector("insertText:"), forControlEvents: UIControlEvents.TouchUpInside)
+            }
             
             if indexs == 9 || indexs == 10
             {
@@ -129,36 +132,27 @@ class KeyboardViewController: UIInputViewController {
             }
 
             let btn12 = self.view.viewWithTag(12) as! KeyButton
-//            if btn12.respondsToSelector("advanceToNextInputMode")
-//            {
-                btn12.removeTarget(self, action: "advanceToNextInputMode", forControlEvents: UIControlEvents.TouchUpInside)
-                btn12.addTarget(self, action: Selector("insertText:"), forControlEvents: .TouchUpInside)
-                btn12.setImage(UIImage(named: "delete"), forState: UIControlState.Normal)
-//            }
-            
-            
+            btn12.removeTarget(self, action: "advanceToNextInputMode", forControlEvents: UIControlEvents.TouchUpInside)
+            btn12.addTarget(self, action: Selector("insertText:"), forControlEvents: .TouchUpInside)
+            btn12.setImage(UIImage(named: "delete"), forState: UIControlState.Normal)
+
         }
         else
         {
-            
-            proxy.deleteBackward()
-            
             if !insertContent.isEmpty
             {
+                 proxy.deleteBackward()
                 insertContent.removeAtIndex(insertContent.count-1)
+                
             }
             
             if insertContent.isEmpty
             {
-//                if btn.respondsToSelector(Selector("insertText:"))
-//                {
-                    btn.removeTarget(self, action: Selector("insertText:"), forControlEvents: .TouchUpInside)
-                    btn.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-                    btn.setImage(UIImage(named: "keyboard"), forState: UIControlState.Normal)
-//                }
-                
+                btn.removeTarget(self, action: Selector("insertText:"), forControlEvents: .TouchUpInside)
+                btn.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+                btn.setImage(UIImage(named: "keyboard"), forState: UIControlState.Normal)
             }
-            
+           
         }
         
     }
@@ -184,6 +178,7 @@ class KeyboardViewController: UIInputViewController {
             if insertContent.isEmpty
             {
                 let btn = longBtn.view as! KeyButton
+                btn.removeTarget(self, action: Selector("insertText:"), forControlEvents: .TouchUpInside)
                 btn.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
                 btn.setImage(UIImage(named: "keyboard"), forState: UIControlState.Normal)
             }

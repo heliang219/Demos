@@ -16,9 +16,11 @@ class ViewController: UIViewController {
         
         let textView = UITextView(frame: CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height-20))
         textView.font = UIFont.systemFontOfSize(16)
-      
+//        textView.keyboardType = UIKeyboardType.NumberPad
+        
         view.addSubview(textView)
         
+        let textField = UITextField(frame: self.view.bounds)
         
         
     }
