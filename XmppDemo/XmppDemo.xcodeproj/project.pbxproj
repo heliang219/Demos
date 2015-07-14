@@ -547,6 +547,11 @@
 				CLASSPREFIX = KK;
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "无锡恩梯梯数据有限公司";
+				TargetAttributes = {
+					35D9A37615AEA054000D314D = {
+						DevelopmentTeam = S4YWE7KR47;
+					};
+				};
 			};
 			buildConfigurationList = 35D9A37115AEA054000D314D /* Build configuration list for PBXProject "XmppDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -711,6 +716,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XmppDemo/XmppDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -731,6 +737,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XmppDemo/XmppDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;

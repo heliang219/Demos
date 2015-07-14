@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
         rootVC.managedObjectContext = self.managedObjectContext
         rootVC.fetchResultsController = self.fetchResultsController
         
-        registerForiCloudNotifications()
+//        registerForiCloudNotifications()
 //        registerNotifications()
         
         initCloud()
@@ -184,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
 
             NSMigratePersistentStoresAutomaticallyOption:true,
             NSInferMappingModelAutomaticallyOption: true,
-            NSPersistentStoreUbiquitousContentNameKey : "ScanItem",
+            NSPersistentStoreUbiquitousContentNameKey : "ScanItems",
             NSPersistentStoreUbiquitousPeerTokenOption: "c405d8e8a24s11e3bbec425861s862bs"]
         
     }()
@@ -212,8 +212,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
     
     func registerForiCloudNotifications() {
         var notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "storesWillChange:", name: NSPersistentStoreCoordinatorStoresWillChangeNotification, object: persistentStoreCoordinator)
-        notificationCenter.addObserver(self, selector: "storesDidChange:", name: NSPersistentStoreCoordinatorStoresDidChangeNotification, object: persistentStoreCoordinator)
+//        notificationCenter.addObserver(self, selector: "storesWillChange:", name: NSPersistentStoreCoordinatorStoresWillChangeNotification, object: persistentStoreCoordinator)
+//        notificationCenter.addObserver(self, selector: "storesDidChange:", name: NSPersistentStoreCoordinatorStoresDidChangeNotification, object: persistentStoreCoordinator)
         notificationCenter.addObserver(self, selector: "persistentStoreDidImportUbiquitousContentChanges:", name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: persistentStoreCoordinator)
     }
     

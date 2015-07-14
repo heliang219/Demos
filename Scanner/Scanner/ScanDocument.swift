@@ -18,7 +18,7 @@ class ScanDocument: UIDocument {
                 var oldString = scanDetail
                 self.scanDetail = newValue
                 self.undoManager.setActionName("scan change")
-                self.undoManager.registerUndoWithTarget(self, selector: "scanDetail", object: oldString)
+                self.undoManager.registerUndoWithTarget(self, selector: "setScanDetail", object: oldString)
             }
             get {
                 
@@ -49,7 +49,7 @@ class ScanDocument: UIDocument {
         
         if contents.length() > 0
         {
-            self.scanDetail = String().string
+            self.scanDetail = contents as? String
         }
         
         return true
