@@ -7,7 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "WeChatSDK_1.5_OnlyIphone/WXApi.h"
+#import "WXApi.h"
+
+static  NSString *const appSecret = @"112d520c5b5dcf8117e1270ccb3b5989";
+static  NSString *const appID = @"wx619d0bd0ae733bea";
+
 @interface AppDelegate ()<WXApiDelegate>
 
 @end
@@ -18,8 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [WXApi registerApp:@"wx619d0bd0ae733bea"];
-    
+    [WXApi registerApp:appID];
+    [self sendMsg];
     return YES;
 }
 
@@ -48,8 +52,41 @@
     
 }
 
+- (void)sendMsg {
+
+    SendAuthReq *req = [[SendAuthReq alloc]init];
+    req.scope = @"snsapi_userinfo";
+    req.state = @"haha2";
+    [WXApi sendReq:req];
+    
+}
 
 
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

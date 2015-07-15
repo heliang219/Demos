@@ -14,8 +14,11 @@
 		830B06441B54DC1E00A9AFAD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830B06431B54DC1E00A9AFAD /* Images.xcassets */; };
 		830B06471B54DC1E00A9AFAD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830B06451B54DC1E00A9AFAD /* LaunchScreen.xib */; };
 		830B06531B54DC1E00A9AFAD /* AccessModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 830B06521B54DC1E00A9AFAD /* AccessModelTests.m */; };
-		830B06611B54DCFB00A9AFAD /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 830B065D1B54DCFB00A9AFAD /* libWeChatSDK.a */; };
-		830B06621B54DCFB00A9AFAD /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 830B065E1B54DCFB00A9AFAD /* read_me.txt */; };
+		830C25E81B55ED7000957653 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C25E71B55ED7000957653 /* SystemConfiguration.framework */; };
+		830C25EA1B55ED7C00957653 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C25E91B55ED7C00957653 /* libz.dylib */; };
+		830C25EC1B55ED8E00957653 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C25EB1B55ED8E00957653 /* libsqlite3.0.dylib */; };
+		830C25F51B55F09500957653 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C25E51B55EC5D00957653 /* libc++.dylib */; };
+		83F298D81B55F95000E1FDD4 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F298D51B55F95000E1FDD4 /* libWeChatSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,10 +45,17 @@
 		830B064C1B54DC1E00A9AFAD /* AccessModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccessModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		830B06511B54DC1E00A9AFAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		830B06521B54DC1E00A9AFAD /* AccessModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccessModelTests.m; sourceTree = "<group>"; };
-		830B065D1B54DCFB00A9AFAD /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		830B065E1B54DCFB00A9AFAD /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
-		830B065F1B54DCFB00A9AFAD /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		830B06601B54DCFB00A9AFAD /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		830C25E51B55EC5D00957653 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		830C25E71B55ED7000957653 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		830C25E91B55ED7C00957653 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		830C25EB1B55ED8E00957653 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		830C25ED1B55EE6B00957653 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		830C25EF1B55EE7300957653 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		83F298D11B55F89700E1FDD4 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		83F298D31B55F8BC00E1FDD4 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		83F298D51B55F95000E1FDD4 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		83F298D61B55F95000E1FDD4 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		83F298D71B55F95000E1FDD4 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +63,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830B06611B54DCFB00A9AFAD /* libWeChatSDK.a in Frameworks */,
+				83F298D81B55F95000E1FDD4 /* libWeChatSDK.a in Frameworks */,
+				830C25F51B55F09500957653 /* libc++.dylib in Frameworks */,
+				830C25EC1B55ED8E00957653 /* libsqlite3.0.dylib in Frameworks */,
+				830C25EA1B55ED7C00957653 /* libz.dylib in Frameworks */,
+				830C25E81B55ED7000957653 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,14 @@
 		830B062A1B54DC1E00A9AFAD = {
 			isa = PBXGroup;
 			children = (
+				83F298D31B55F8BC00E1FDD4 /* libz.1.1.3.dylib */,
+				83F298D11B55F89700E1FDD4 /* libz.1.2.5.dylib */,
+				830C25EF1B55EE7300957653 /* UIKit.framework */,
+				830C25ED1B55EE6B00957653 /* Foundation.framework */,
+				830C25EB1B55ED8E00957653 /* libsqlite3.0.dylib */,
+				830C25E91B55ED7C00957653 /* libz.dylib */,
+				830C25E71B55ED7000957653 /* SystemConfiguration.framework */,
+				830C25E51B55EC5D00957653 /* libc++.dylib */,
 				830B06351B54DC1E00A9AFAD /* AccessModel */,
 				830B064F1B54DC1E00A9AFAD /* AccessModelTests */,
 				830B06341B54DC1E00A9AFAD /* Products */,
@@ -88,12 +110,14 @@
 		830B06351B54DC1E00A9AFAD /* AccessModel */ = {
 			isa = PBXGroup;
 			children = (
+				83F298D51B55F95000E1FDD4 /* libWeChatSDK.a */,
+				83F298D61B55F95000E1FDD4 /* WXApi.h */,
+				83F298D71B55F95000E1FDD4 /* WXApiObject.h */,
 				830B063A1B54DC1E00A9AFAD /* AppDelegate.h */,
 				830B063B1B54DC1E00A9AFAD /* AppDelegate.m */,
 				830B063D1B54DC1E00A9AFAD /* ViewController.h */,
 				830B063E1B54DC1E00A9AFAD /* ViewController.m */,
 				830B06401B54DC1E00A9AFAD /* Main.storyboard */,
-				830B065C1B54DCFB00A9AFAD /* WeChatSDK_1.5_OnlyIphone */,
 				830B06431B54DC1E00A9AFAD /* Images.xcassets */,
 				830B06451B54DC1E00A9AFAD /* LaunchScreen.xib */,
 				830B06361B54DC1E00A9AFAD /* Supporting Files */,
@@ -125,17 +149,6 @@
 				830B06511B54DC1E00A9AFAD /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		830B065C1B54DCFB00A9AFAD /* WeChatSDK_1.5_OnlyIphone */ = {
-			isa = PBXGroup;
-			children = (
-				830B065D1B54DCFB00A9AFAD /* libWeChatSDK.a */,
-				830B065E1B54DCFB00A9AFAD /* read_me.txt */,
-				830B065F1B54DCFB00A9AFAD /* WXApi.h */,
-				830B06601B54DCFB00A9AFAD /* WXApiObject.h */,
-			);
-			path = WeChatSDK_1.5_OnlyIphone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +233,6 @@
 			files = (
 				830B06421B54DC1E00A9AFAD /* Main.storyboard in Resources */,
 				830B06471B54DC1E00A9AFAD /* LaunchScreen.xib in Resources */,
-				830B06621B54DCFB00A9AFAD /* read_me.txt in Resources */,
 				830B06441B54DC1E00A9AFAD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -356,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -366,30 +378,32 @@
 		830B06571B54DC1E00A9AFAD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AccessModel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AccessModel/WeChatSDK_1.5_OnlyIphone",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/AccessModel";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 x86_64 i386 arm64 armv7s";
 			};
 			name = Debug;
 		};
 		830B06581B54DC1E00A9AFAD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AccessModel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AccessModel/WeChatSDK_1.5_OnlyIphone",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/AccessModel";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 x86_64 i386 arm64 armv7s";
 			};
 			name = Release;
 		};
@@ -446,6 +460,7 @@
 				830B06581B54DC1E00A9AFAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		830B06591B54DC1E00A9AFAD /* Build configuration list for PBXNativeTarget "AccessModelTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +469,7 @@
 				830B065B1B54DC1E00A9AFAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
