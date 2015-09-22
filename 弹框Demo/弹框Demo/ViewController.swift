@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     
     func showAlertView() {
+        
         let keyWindow = UIApplication.sharedApplication().keyWindow
         let coverView = UIView(frame: UIScreen.mainScreen().bounds)
         coverView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -52,10 +53,10 @@ class ViewController: UIViewController {
         
         
     }
-    
+   
     func remove() {
-        let keyWindow = UIApplication.sharedApplication().keyWindow
         
+        let keyWindow = UIApplication.sharedApplication().keyWindow
         let alertView = keyWindow!.viewWithTag(3)!
         let coverView = keyWindow!.viewWithTag(2)!
         UIView.animateWithDuration(0.3, animations: { () -> Void in

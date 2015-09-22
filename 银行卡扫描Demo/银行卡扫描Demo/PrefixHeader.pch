@@ -1,0 +1,27 @@
+//
+//  PrefixHeader.pch
+//  银行卡扫描Demo
+//
+//  Created by pfl on 15/9/16.
+//  Copyright (c) 2015年 pfl. All rights reserved.
+//
+
+
+
+
+#ifndef _____Demo_PrefixHeader_pch
+#define _____Demo_PrefixHeader_pch
+
+
+#import <Availability.h>
+
+#ifdef __cplusplus
+#import <opencv2/opencv.hpp>
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
+#endif
