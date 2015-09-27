@@ -107,3 +107,17 @@
     [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"%@('%@');", callback, data]];
 }
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
