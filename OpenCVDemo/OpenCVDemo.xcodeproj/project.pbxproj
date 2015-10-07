@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		836A45811BA9C33C00ED793B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 836A45801BA9C33C00ED793B /* main.m */; };
+		836A45811BA9C33C00ED793B /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 836A45801BA9C33C00ED793B /* main.mm */; };
 		836A45841BA9C33C00ED793B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 836A45831BA9C33C00ED793B /* AppDelegate.m */; };
 		836A45871BA9C33C00ED793B /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 836A45861BA9C33C00ED793B /* ViewController.mm */; };
 		836A458A1BA9C33C00ED793B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836A45881BA9C33C00ED793B /* Main.storyboard */; };
@@ -16,6 +16,30 @@
 		836A459B1BA9C33C00ED793B /* OpenCVDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 836A459A1BA9C33C00ED793B /* OpenCVDemoTests.m */; };
 		836A45A81BA9D4AD00ED793B /* testimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 836A45A51BA9D4AD00ED793B /* testimage.jpg */; };
 		836A45A91BA9D4AE00ED793B /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 836A45A71BA9D4AD00ED793B /* UIImage+OpenCV.mm */; };
+		838D122D1BC2753400078122 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 838D120D1BC2753400078122 /* CMakeLists.txt */; settings = {ASSET_TAGS = (); }; };
+		838D122E1BC2753400078122 /* DetectRegions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 838D120E1BC2753400078122 /* DetectRegions.cpp */; settings = {ASSET_TAGS = (); }; };
+		838D12311BC2753400078122 /* OCR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 838D12121BC2753400078122 /* OCR.cpp */; settings = {ASSET_TAGS = (); }; };
+		838D12321BC2753400078122 /* OCR.xml in Resources */ = {isa = PBXBuildFile; fileRef = 838D12141BC2753400078122 /* OCR.xml */; settings = {ASSET_TAGS = (); }; };
+		838D12331BC2753400078122 /* Plate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 838D12151BC2753400078122 /* Plate.cpp */; settings = {ASSET_TAGS = (); }; };
+		838D12341BC2753400078122 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 838D12171BC2753400078122 /* README.txt */; settings = {ASSET_TAGS = (); }; };
+		838D12351BC2753400078122 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D12181BC2753400078122 /* screenshot.png */; settings = {ASSET_TAGS = (); }; };
+		838D12361BC2753400078122 /* SVM.xml in Resources */ = {isa = PBXBuildFile; fileRef = 838D12191BC2753400078122 /* SVM.xml */; settings = {ASSET_TAGS = (); }; };
+		838D12381BC2753400078122 /* 3028BYS.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 838D121C1BC2753400078122 /* 3028BYS.JPG */; settings = {ASSET_TAGS = (); }; };
+		838D12391BC2753400078122 /* 3154FFY.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 838D121D1BC2753400078122 /* 3154FFY.JPG */; settings = {ASSET_TAGS = (); }; };
+		838D123A1BC2753400078122 /* 3266CNT.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 838D121E1BC2753400078122 /* 3266CNT.JPG */; settings = {ASSET_TAGS = (); }; };
+		838D123B1BC2753400078122 /* 3732FWW.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 838D121F1BC2753400078122 /* 3732FWW.JPG */; settings = {ASSET_TAGS = (); }; };
+		838D123C1BC2753400078122 /* 5445BSX.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 838D12201BC2753400078122 /* 5445BSX.JPG */; settings = {ASSET_TAGS = (); }; };
+		838D123D1BC2753400078122 /* 7215BGN.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 838D12211BC2753400078122 /* 7215BGN.JPG */; settings = {ASSET_TAGS = (); }; };
+		838D123E1BC2753400078122 /* 8995CCN.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 838D12221BC2753400078122 /* 8995CCN.JPG */; settings = {ASSET_TAGS = (); }; };
+		838D123F1BC2753400078122 /* 9588DWV.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 838D12231BC2753400078122 /* 9588DWV.jpg */; settings = {ASSET_TAGS = (); }; };
+		838D12401BC2753400078122 /* 9773BNB.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 838D12241BC2753400078122 /* 9773BNB.jpg */; settings = {ASSET_TAGS = (); }; };
+		838D12411BC2753400078122 /* DSC_0562.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 838D12251BC2753400078122 /* DSC_0562.jpg */; settings = {ASSET_TAGS = (); }; };
+		838D12421BC2753400078122 /* DSC_0566.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 838D12261BC2753400078122 /* DSC_0566.jpg */; settings = {ASSET_TAGS = (); }; };
+		838D12451BC2753400078122 /* eval.sh in Resources */ = {isa = PBXBuildFile; fileRef = 838D122A1BC2753400078122 /* eval.sh */; settings = {ASSET_TAGS = (); }; };
+		838D12461BC2753400078122 /* renameFilesIt.sh in Resources */ = {isa = PBXBuildFile; fileRef = 838D122B1BC2753400078122 /* renameFilesIt.sh */; settings = {ASSET_TAGS = (); }; };
+		838D12471BC2753400078122 /* segmentAllFiles.sh in Resources */ = {isa = PBXBuildFile; fileRef = 838D122C1BC2753400078122 /* segmentAllFiles.sh */; settings = {ASSET_TAGS = (); }; };
+		838D124A1BC2A7C900078122 /* 2715DTZ.png in Resources */ = {isa = PBXBuildFile; fileRef = 838D12481BC2A7C900078122 /* 2715DTZ.png */; settings = {ASSET_TAGS = (); }; };
+		838D124B1BC2A7C900078122 /* 2715DTZ_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 838D12491BC2A7C900078122 /* 2715DTZ_1.jpg */; settings = {ASSET_TAGS = (); }; };
 		8C697A64C10511E6690AB2CE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD199A2BCD6F7643D4CD7887 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +58,7 @@
 		7F14BC979CDC3952812F740D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		836A457B1BA9C33C00ED793B /* OpenCVDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenCVDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836A457F1BA9C33C00ED793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		836A45801BA9C33C00ED793B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		836A45801BA9C33C00ED793B /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		836A45821BA9C33C00ED793B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		836A45831BA9C33C00ED793B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		836A45851BA9C33C00ED793B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -49,6 +73,33 @@
 		836A45A51BA9D4AD00ED793B /* testimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testimage.jpg; sourceTree = "<group>"; };
 		836A45A61BA9D4AD00ED793B /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		836A45A71BA9D4AD00ED793B /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
+		838D120D1BC2753400078122 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		838D120E1BC2753400078122 /* DetectRegions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DetectRegions.cpp; sourceTree = "<group>"; };
+		838D120F1BC2753400078122 /* DetectRegions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectRegions.h; sourceTree = "<group>"; };
+		838D12121BC2753400078122 /* OCR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OCR.cpp; sourceTree = "<group>"; };
+		838D12131BC2753400078122 /* OCR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCR.h; sourceTree = "<group>"; };
+		838D12141BC2753400078122 /* OCR.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OCR.xml; sourceTree = "<group>"; };
+		838D12151BC2753400078122 /* Plate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plate.cpp; sourceTree = "<group>"; };
+		838D12161BC2753400078122 /* Plate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plate.h; sourceTree = "<group>"; };
+		838D12171BC2753400078122 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		838D12181BC2753400078122 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		838D12191BC2753400078122 /* SVM.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SVM.xml; sourceTree = "<group>"; };
+		838D121C1BC2753400078122 /* 3028BYS.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3028BYS.JPG; sourceTree = "<group>"; };
+		838D121D1BC2753400078122 /* 3154FFY.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3154FFY.JPG; sourceTree = "<group>"; };
+		838D121E1BC2753400078122 /* 3266CNT.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3266CNT.JPG; sourceTree = "<group>"; };
+		838D121F1BC2753400078122 /* 3732FWW.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3732FWW.JPG; sourceTree = "<group>"; };
+		838D12201BC2753400078122 /* 5445BSX.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5445BSX.JPG; sourceTree = "<group>"; };
+		838D12211BC2753400078122 /* 7215BGN.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7215BGN.JPG; sourceTree = "<group>"; };
+		838D12221BC2753400078122 /* 8995CCN.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8995CCN.JPG; sourceTree = "<group>"; };
+		838D12231BC2753400078122 /* 9588DWV.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9588DWV.jpg; sourceTree = "<group>"; };
+		838D12241BC2753400078122 /* 9773BNB.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9773BNB.jpg; sourceTree = "<group>"; };
+		838D12251BC2753400078122 /* DSC_0562.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DSC_0562.jpg; sourceTree = "<group>"; };
+		838D12261BC2753400078122 /* DSC_0566.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DSC_0566.jpg; sourceTree = "<group>"; };
+		838D122A1BC2753400078122 /* eval.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = eval.sh; sourceTree = "<group>"; };
+		838D122B1BC2753400078122 /* renameFilesIt.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = renameFilesIt.sh; sourceTree = "<group>"; };
+		838D122C1BC2753400078122 /* segmentAllFiles.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = segmentAllFiles.sh; sourceTree = "<group>"; };
+		838D12481BC2A7C900078122 /* 2715DTZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2715DTZ.png; sourceTree = "<group>"; };
+		838D12491BC2A7C900078122 /* 2715DTZ_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2715DTZ_1.jpg; sourceTree = "<group>"; };
 		BD199A2BCD6F7643D4CD7887 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,6 +159,7 @@
 				836A45851BA9C33C00ED793B /* ViewController.h */,
 				836A45861BA9C33C00ED793B /* ViewController.mm */,
 				836A45881BA9C33C00ED793B /* Main.storyboard */,
+				838D120C1BC2753400078122 /* Chapter5_NumberPlateRecognition */,
 				836A458B1BA9C33C00ED793B /* Images.xcassets */,
 				836A458D1BA9C33C00ED793B /* LaunchScreen.xib */,
 				836A457E1BA9C33C00ED793B /* Supporting Files */,
@@ -122,7 +174,7 @@
 				836A45A61BA9D4AD00ED793B /* UIImage+OpenCV.h */,
 				836A45A71BA9D4AD00ED793B /* UIImage+OpenCV.mm */,
 				836A457F1BA9C33C00ED793B /* Info.plist */,
-				836A45801BA9C33C00ED793B /* main.m */,
+				836A45801BA9C33C00ED793B /* main.mm */,
 				836A45A41BA9C65700ED793B /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
@@ -143,6 +195,56 @@
 				836A45991BA9C33C00ED793B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		838D120C1BC2753400078122 /* Chapter5_NumberPlateRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				838D120D1BC2753400078122 /* CMakeLists.txt */,
+				838D120E1BC2753400078122 /* DetectRegions.cpp */,
+				838D120F1BC2753400078122 /* DetectRegions.h */,
+				838D12121BC2753400078122 /* OCR.cpp */,
+				838D12131BC2753400078122 /* OCR.h */,
+				838D12141BC2753400078122 /* OCR.xml */,
+				838D12151BC2753400078122 /* Plate.cpp */,
+				838D12161BC2753400078122 /* Plate.h */,
+				838D12171BC2753400078122 /* README.txt */,
+				838D12181BC2753400078122 /* screenshot.png */,
+				838D12191BC2753400078122 /* SVM.xml */,
+				838D121A1BC2753400078122 /* test */,
+				838D12291BC2753400078122 /* utils */,
+			);
+			path = Chapter5_NumberPlateRecognition;
+			sourceTree = "<group>";
+		};
+		838D121A1BC2753400078122 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				838D12481BC2A7C900078122 /* 2715DTZ.png */,
+				838D12491BC2A7C900078122 /* 2715DTZ_1.jpg */,
+				838D121C1BC2753400078122 /* 3028BYS.JPG */,
+				838D121D1BC2753400078122 /* 3154FFY.JPG */,
+				838D121E1BC2753400078122 /* 3266CNT.JPG */,
+				838D121F1BC2753400078122 /* 3732FWW.JPG */,
+				838D12201BC2753400078122 /* 5445BSX.JPG */,
+				838D12211BC2753400078122 /* 7215BGN.JPG */,
+				838D12221BC2753400078122 /* 8995CCN.JPG */,
+				838D12231BC2753400078122 /* 9588DWV.jpg */,
+				838D12241BC2753400078122 /* 9773BNB.jpg */,
+				838D12251BC2753400078122 /* DSC_0562.jpg */,
+				838D12261BC2753400078122 /* DSC_0566.jpg */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		838D12291BC2753400078122 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				838D122A1BC2753400078122 /* eval.sh */,
+				838D122B1BC2753400078122 /* renameFilesIt.sh */,
+				838D122C1BC2753400078122 /* segmentAllFiles.sh */,
+			);
+			path = utils;
 			sourceTree = "<group>";
 		};
 		ABFC5F7113AD1560FE5940EE /* Frameworks */ = {
@@ -235,10 +337,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				838D123D1BC2753400078122 /* 7215BGN.JPG in Resources */,
+				838D12361BC2753400078122 /* SVM.xml in Resources */,
+				838D12321BC2753400078122 /* OCR.xml in Resources */,
 				836A458A1BA9C33C00ED793B /* Main.storyboard in Resources */,
 				836A458F1BA9C33C00ED793B /* LaunchScreen.xib in Resources */,
+				838D12401BC2753400078122 /* 9773BNB.jpg in Resources */,
+				838D123B1BC2753400078122 /* 3732FWW.JPG in Resources */,
+				838D124A1BC2A7C900078122 /* 2715DTZ.png in Resources */,
+				838D12461BC2753400078122 /* renameFilesIt.sh in Resources */,
 				836A458C1BA9C33C00ED793B /* Images.xcassets in Resources */,
+				838D12471BC2753400078122 /* segmentAllFiles.sh in Resources */,
+				838D124B1BC2A7C900078122 /* 2715DTZ_1.jpg in Resources */,
 				836A45A81BA9D4AD00ED793B /* testimage.jpg in Resources */,
+				838D12341BC2753400078122 /* README.txt in Resources */,
+				838D123A1BC2753400078122 /* 3266CNT.JPG in Resources */,
+				838D12391BC2753400078122 /* 3154FFY.JPG in Resources */,
+				838D123C1BC2753400078122 /* 5445BSX.JPG in Resources */,
+				838D123F1BC2753400078122 /* 9588DWV.jpg in Resources */,
+				838D122D1BC2753400078122 /* CMakeLists.txt in Resources */,
+				838D123E1BC2753400078122 /* 8995CCN.JPG in Resources */,
+				838D12411BC2753400078122 /* DSC_0562.jpg in Resources */,
+				838D12351BC2753400078122 /* screenshot.png in Resources */,
+				838D12421BC2753400078122 /* DSC_0566.jpg in Resources */,
+				838D12451BC2753400078122 /* eval.sh in Resources */,
+				838D12381BC2753400078122 /* 3028BYS.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,9 +413,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				836A45A91BA9D4AE00ED793B /* UIImage+OpenCV.mm in Sources */,
+				838D122E1BC2753400078122 /* DetectRegions.cpp in Sources */,
+				838D12331BC2753400078122 /* Plate.cpp in Sources */,
 				836A45871BA9C33C00ED793B /* ViewController.mm in Sources */,
+				838D12311BC2753400078122 /* OCR.cpp in Sources */,
 				836A45841BA9C33C00ED793B /* AppDelegate.m in Sources */,
-				836A45811BA9C33C00ED793B /* main.m in Sources */,
+				836A45811BA9C33C00ED793B /* main.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +547,7 @@
 			baseConfigurationReference = 7F14BC979CDC3952812F740D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OpenCVDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = OpenCVDemo/Info.plist;
@@ -434,6 +561,7 @@
 			baseConfigurationReference = 7E8E83356CD2AB40F47FD824 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = OpenCVDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = OpenCVDemo/Info.plist;

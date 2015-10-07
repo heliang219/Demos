@@ -1,9 +1,9 @@
 //
 //  main.m
-//  OpenCVDemo
+//  RACDemo
 //
-//  Created by pfl on 15/9/16.
-//  Copyright (c) 2015年 pfl. All rights reserved.
+//  Created by pfl on 15/10/4.
+//  Copyright © 2015年 pfl. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
