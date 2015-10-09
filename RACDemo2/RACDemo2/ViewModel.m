@@ -43,6 +43,13 @@
                 Book *book = [Book bookWithDictionary:value];
                 return book;
             }] array];
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+//            [realm addObjects:arr];
+            for (Book *book in arr) {
+                [Book createInDefaultRealmWithValue:book];
+            }
+            [realm commitWriteTransaction];
             return arr;
         }
         if ([value isKindOfClass:[NSError class]]) {

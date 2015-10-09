@@ -1,39 +1,44 @@
 //
-//  Book.h
+//  Books.h
 //  RACDemo2
 //
-//  Created by pfl on 15/10/7.
+//  Created by pfl on 15/10/9.
 //  Copyright © 2015年 pfl. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
+#import "Images.h"
+#import "Rating.h"
+#import "Tags.h"
 
-@interface Book : NSObject
-
+@interface Book : RLMObject
 + (instancetype)bookWithDictionary:(NSDictionary*)dictionary;
 
-@property (nonatomic, readwrite, copy) NSString *isbn13;
-@property (nonatomic, readwrite, copy) NSString *author_intro;
-@property (nonatomic, readwrite, copy) NSString *publisher;
-@property (nonatomic, readwrite, copy) NSString *pages;
-@property (nonatomic, readwrite, copy) NSString *title;
-@property (nonatomic, readwrite, copy) NSString *tags;
-@property (nonatomic, readwrite, copy) NSString *image;
-@property (nonatomic, readwrite, copy) NSString *catalog;
-@property (nonatomic, readwrite, copy) NSString *alt;
-@property (nonatomic, readwrite, copy) NSString *isbn10;
-@property (nonatomic, readwrite, copy) NSString *url;
-@property (nonatomic, readwrite, copy) NSString *alt_title;
-@property (nonatomic, readwrite, copy) NSString *images;
-@property (nonatomic, readwrite, copy) NSString *summary;
-@property (nonatomic, readwrite, copy) NSString *pubdate;
-@property (nonatomic, readwrite, copy) NSString *origin_title;
-@property (nonatomic, readwrite, copy) NSString *ID;
-@property (nonatomic, readwrite, copy) NSString *subtitle;
-@property (nonatomic, readwrite, copy) NSString *translator;
-@property (nonatomic, readwrite, copy) NSString *price;
-@property (nonatomic, readwrite, copy) NSString *rating;
-@property (nonatomic, readwrite, copy) NSString *author;
-@property (nonatomic, readwrite, copy) NSString *binding;
-
+@property NSString *isbn13;
+@property NSString *author_intro;
+@property NSString *publisher;
+@property NSString *pages;
+@property NSString *title;
+@property NSString *tags;
+@property NSString *image;
+@property NSString *catalog;
+@property NSString *alt;
+@property NSString *isbn10;
+@property NSString *url;
+@property NSString *alt_title;
+@property Images *images;
+@property NSString *summary;
+@property NSString *pubdate;
+@property NSString *origin_title;
+@property NSString *ID;
+@property NSString *subtitle;
+@property NSString *translator;
+@property NSString *price;
+@property Rating *rating;
+@property NSString *author;
+@property NSString *binding;
 @end
+
+// This protocol enables typed collections. i.e.:
+// RLMArray<Books>
+RLM_ARRAY_TYPE(Book)

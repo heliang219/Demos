@@ -19,20 +19,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2F2693522709BFA051A15D5E4FDFB9C2</key>
+		<key>862F37258B8CB6BD53B97E10BFC8BFD3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>39FC20A5955917C5CE793077B33603BF</key>
+		<key>AB6816CD282AB95043AC4ED1E6383B21</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>BC8923913D4CEE9471212638D2FDA38C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF742EE3368064954136B471F6C2C741</key>
 		<dict>
 			<key>primary</key>
 			<true/>

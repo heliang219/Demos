@@ -7,7 +7,7 @@
 //
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Foundation/Foundation.h>
-
+#import <Realm/Realm.h>
 @interface ViewModel : NSObject
 @property (nonatomic, readonly, strong) NSArray *models;
 
