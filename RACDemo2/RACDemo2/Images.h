@@ -7,8 +7,8 @@
 //
 
 #import <Realm/Realm.h>
-
-@interface Images : RLMObject
+#import "BaseModel.h"
+@interface Images : BaseModel
 @property NSString *small;
 @property NSString *medium;
 @property NSString *large;

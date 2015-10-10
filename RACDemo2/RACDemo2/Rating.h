@@ -7,8 +7,8 @@
 //
 
 #import <Realm/Realm.h>
-
-@interface Rating : RLMObject
+#import "BaseModel.h"
+@interface Rating : BaseModel
 @property int min;
 @property NSString *average;
 @property int max;

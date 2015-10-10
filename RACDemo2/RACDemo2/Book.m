@@ -38,14 +38,18 @@
 
 - (void)setValue:(id)value forKey:(NSString *)key {
     if ([key isEqualToString:@"images"]) {
+        self.images = [[Images alloc]init];
         [self.images setValuesForKeysWithDictionary:value];
     }
     else if ([key isEqualToString:@"tags"]) {
-        self.tags = @"tags";
-//        [[[Tags alloc]init] setValuesForKeysWithDictionary:<#(nonnull NSDictionary<NSString *,id> *)#>];
-//        RLMArray *arr = [[RLMArray alloc]initWithObjectClassName:NSStringFromClass([Tags class])];
-//        arr add
-//        self.tags a
+//        self.tags = @"tags";
+        RLMArray<Tags> *arr = [[RLMArray<Tags> alloc]initWithObjectClassName:NSStringFromClass([Tags class])];
+        for (NSDictionary *dic in value) {
+            Tags *tag = [[Tags alloc]init];
+            [tag setValuesForKeysWithDictionary:dic];
+            [arr addObject:tag];
+        }
+        self.tags = arr;
     }
     else if ([key isEqualToString:@"translator"]) {
             if ([value isKindOfClass:[NSArray class]]) {
@@ -61,6 +65,7 @@
             self.translator = key;
     }
     else if ([key isEqualToString:@"rating"]) {
+        self.rating = [[Rating alloc]init];
         [self.rating setValuesForKeysWithDictionary:value];
     }
     else if ([key isEqualToString:@"author"]) {

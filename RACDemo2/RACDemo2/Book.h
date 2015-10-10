@@ -7,11 +7,12 @@
 //
 
 #import <Realm/Realm.h>
+#import "BaseModel.h"
 #import "Images.h"
 #import "Rating.h"
 #import "Tags.h"
 
-@interface Book : RLMObject
+@interface Book : BaseModel
 + (instancetype)bookWithDictionary:(NSDictionary*)dictionary;
 
 @property NSString *isbn13;
@@ -19,7 +20,7 @@
 @property NSString *publisher;
 @property NSString *pages;
 @property NSString *title;
-@property NSString *tags;
+@property RLMArray<Tags> *tags;
 @property NSString *image;
 @property NSString *catalog;
 @property NSString *alt;

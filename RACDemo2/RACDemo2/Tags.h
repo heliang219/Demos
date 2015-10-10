@@ -7,8 +7,9 @@
 //
 
 #import <Realm/Realm.h>
+#import "BaseModel.h"
 
-@interface Tags : RLMObject
+@interface Tags : BaseModel
 @property int count;
 @property NSString *name;
 @property NSString *title;

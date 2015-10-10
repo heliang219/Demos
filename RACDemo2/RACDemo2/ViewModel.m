@@ -45,7 +45,9 @@
             }] array];
             RLMRealm *realm = [RLMRealm defaultRealm];
             [realm beginWriteTransaction];
-//            [realm addObjects:arr];
+            NSLog(@"startTime1:%f",CFAbsoluteTimeGetCurrent());
+            [realm deleteAllObjects];
+            NSLog(@"endTime1:%f",CFAbsoluteTimeGetCurrent());
             for (Book *book in arr) {
                 [Book createInDefaultRealmWithValue:book];
             }

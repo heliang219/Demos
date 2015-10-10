@@ -1,22 +1,18 @@
 //
-//  Rating.m
+//  BaseModel.m
 //  RACDemo2
 //
-//  Created by pfl on 15/10/9.
+//  Created by pfl on 15/10/10.
 //  Copyright © 2015年 pfl. All rights reserved.
 //
 
-#import "Rating.h"
+#import "BaseModel.h"
 
-@implementation Rating
+@implementation BaseModel
 
-- (instancetype)init {
-    if (self = [super init]) {
-
-    }
-    return self;
+- (void)setValuesForKeysWithDic:(NSDictionary *)dic {
+    [self setValuesForKeysWithDictionary:dic];
 }
-
 // Specify default values for properties
 
 //+ (NSDictionary *)defaultPropertyValues
