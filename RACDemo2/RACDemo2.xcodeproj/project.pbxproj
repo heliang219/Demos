@@ -21,6 +21,7 @@
 		83FD14541BC8A7F9002B4286 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD14531BC8A7F9002B4286 /* BaseModel.m */; settings = {ASSET_TAGS = (); }; };
 		83FD14571BC8AD97002B4286 /* UIImageView+PFL.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD14561BC8AD97002B4286 /* UIImageView+PFL.m */; settings = {ASSET_TAGS = (); }; };
 		83FD14591BC8AFD1002B4286 /* big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83FD14581BC8AFD1002B4286 /* big.jpg */; settings = {ASSET_TAGS = (); }; };
+		83FD145C1BC8DCB3002B4286 /* CacheSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD145B1BC8DCB3002B4286 /* CacheSingleton.m */; settings = {ASSET_TAGS = (); }; };
 		D87F76A69F04AEA82FE0DC09 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F067AB6EC63AD92FD33FBA71 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,8 @@
 		83FD14551BC8AD97002B4286 /* UIImageView+PFL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+PFL.h"; sourceTree = "<group>"; };
 		83FD14561BC8AD97002B4286 /* UIImageView+PFL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+PFL.m"; sourceTree = "<group>"; };
 		83FD14581BC8AFD1002B4286 /* big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = big.jpg; sourceTree = "<group>"; };
+		83FD145A1BC8DCB3002B4286 /* CacheSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheSingleton.h; sourceTree = "<group>"; };
+		83FD145B1BC8DCB3002B4286 /* CacheSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheSingleton.m; sourceTree = "<group>"; };
 		F067AB6EC63AD92FD33FBA71 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -115,8 +118,9 @@
 				83FD14531BC8A7F9002B4286 /* BaseModel.m */,
 				83FD14551BC8AD97002B4286 /* UIImageView+PFL.h */,
 				83FD14561BC8AD97002B4286 /* UIImageView+PFL.m */,
+				83FD145A1BC8DCB3002B4286 /* CacheSingleton.h */,
+				83FD145B1BC8DCB3002B4286 /* CacheSingleton.m */,
 				83FD14581BC8AFD1002B4286 /* big.jpg */,
-				8386E92D1BC53AE200CAC78F /* Main.storyboard */,
 				8386E9301BC53AE200CAC78F /* Assets.xcassets */,
 				8386E9321BC53AE200CAC78F /* LaunchScreen.storyboard */,
 				8386E9351BC53AE200CAC78F /* Info.plist */,
@@ -128,6 +132,7 @@
 		8386E9241BC53AE100CAC78F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8386E92D1BC53AE200CAC78F /* Main.storyboard */,
 				8386E9251BC53AE100CAC78F /* main.m */,
 			);
 			name = "Supporting Files";
@@ -268,6 +273,7 @@
 				83F94FBF1BC8103600B2B4FB /* Tags.m in Sources */,
 				8398B0321BC7BFFA003E438A /* Book.m in Sources */,
 				8386E92C1BC53AE200CAC78F /* ViewController.m in Sources */,
+				83FD145C1BC8DCB3002B4286 /* CacheSingleton.m in Sources */,
 				8386E9291BC53AE200CAC78F /* AppDelegate.m in Sources */,
 				83F94FB91BC80E8E00B2B4FB /* Images.m in Sources */,
 				8386E93D1BC53B3B00CAC78F /* ViewModel.m in Sources */,
