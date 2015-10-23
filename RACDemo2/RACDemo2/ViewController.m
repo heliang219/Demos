@@ -66,14 +66,6 @@
     Book *book = self.arr[indexPath.row];
     cell.textLabel.text = book.title;
     cell.detailTextLabel.text = book.price;
-//    cell.imageView.image = [UIImage imageNamed:@"big.jpg"];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:book.image]]];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            cell.imageView.image = image;
-//            cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//        });
-//    });
     [cell.imageView pfl_image:book.image placeholderImage:@"big.jpg"];
     return cell;
 }

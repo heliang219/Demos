@@ -38,8 +38,8 @@
    return [requestSignal map:^id(NSDictionary *value) {
     @strongify(self)
         if ([value isKindOfClass:[NSDictionary class]]) {
-            self->_models = [value objectForKey:@"books"];
-            NSArray *arr = [[self->_models.rac_sequence map:^id(NSDictionary *value) {
+            self.models = [value objectForKey:@"books"];
+            NSArray *arr = [[self.models.rac_sequence map:^id(NSDictionary *value) {
                 Book *book = [Book bookWithDictionary:value];
                 return book;
             }] array];
@@ -61,6 +61,10 @@
         return nil;
     }];
     
+}
+
+- (void)setModels:(NSArray *)models {
+    _models = models;
 }
 
 

@@ -11,11 +11,11 @@
 
 #include "OCR.h"
 
-const char OCR::strCharacters[] = {'0','1','2','3','4','5','6','7','8','9'};
-const int OCR::numCharacters=10;
+//const char OCR::strCharacters[] = {'0','1','2','3','4','5','6','7','8','9'};
+//const int OCR::numCharacters=10;
 
-//const char OCR::strCharacters[] = {'0','1','2','3','4','5','6','7','8','9','B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
-//const int OCR::numCharacters=30;
+const char OCR::strCharacters[] = {'0','1','2','3','4','5','6','7','8','9','B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
+const int OCR::numCharacters=30;
 
 
 CharSegment::CharSegment(){}
@@ -326,7 +326,7 @@ void OCR::train(Mat TrainData, Mat classes, int nlayers){
         }
     }
     Mat weights( 1, TrainData.rows, CV_32FC1, Scalar::all(1) );
-    
+
     //Learn classifier
     ann.train( TrainData, trainClasses, weights );
     trained=true;

@@ -73,19 +73,23 @@ string getFilename(string s) {
 
     [self.photoCamera start];
 
+    Mat img = Mat();
+    
+    [self identifyImageForPath:nil img:img];
+
 
 }
 
 - (void)identifyImageForPath:(NSString*)path img:(cv::Mat &)img {
 #if 1
     cout << "OpenCV Automatic Number Plate Recognition\n";
-    NSString *filenames = path;//[[NSBundle mainBundle]pathForResource:@"3028BYS.JPG" ofType:nil];
+    NSString *filenames = [[NSBundle mainBundle]pathForResource:@"3028BYS.JPG" ofType:nil];
     const char *filename = [filenames cStringUsingEncoding:NSUTF8StringEncoding];
     Mat input_image;
-    input_image = img;
-    if (path) {
+//    input_image = img;
+//    if (path) {
         input_image=imread(filename,1);
-    }
+//    }
     
     //Check if user specify image to process
     string filename_whithoutExt = getFilename(filename);

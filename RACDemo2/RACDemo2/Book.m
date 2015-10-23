@@ -42,7 +42,6 @@
         [self.images setValuesForKeysWithDictionary:value];
     }
     else if ([key isEqualToString:@"tags"]) {
-//        self.tags = @"tags";
         RLMArray<Tags> *arr = [[RLMArray<Tags> alloc]initWithObjectClassName:NSStringFromClass([Tags class])];
         for (NSDictionary *dic in value) {
             Tags *tag = [[Tags alloc]init];

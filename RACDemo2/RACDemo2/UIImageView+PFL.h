@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @interface UIImageView (PFL)
 - (void)pfl_image:(NSString*)imageStr placeholderImage:(NSString*)placeholder;
