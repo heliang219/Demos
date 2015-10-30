@@ -19,6 +19,7 @@
 
 
 @implementation CircleLayer
+// 此次是实现自定义属性动画的关键所在,否则实现不了动画
 @dynamic itemArr,radius,startAngle,endAngle;
 
 - (instancetype)init
@@ -40,7 +41,7 @@
 
 - (void)startAnimation
 {
-    [self animationStartAngleFrom:0 toStart:0 endAngleFrom:0 toEnd:self.endAngle];
+    [self animationStartAngleFrom:self.startAngle toStart:self.startAngle endAngleFrom:self.startAngle toEnd:self.endAngle];
 }
 
 - (void)drawInContext:(CGContextRef)ctx
@@ -58,7 +59,8 @@
         [self.tempAngleArr removeAllObjects];
     }
     
-    
+    UIGraphicsPushContext(ctx);
+
     CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2-5);
     
     __block CGFloat sum = 0;
@@ -67,6 +69,8 @@
     }];
     
     __block  CGFloat start_angle = self.startAngle;
+    
+    // 此处(self.endAngle - self.startAngle)不能用360代替,否则实现不了动画
     __block CGFloat interval = (self.endAngle - self.startAngle)*M_PI/180.0;
     
     [self.itemArr enumerateObjectsUsingBlock:^(CircleItem *item, NSUInteger idx, BOOL *stop) {
@@ -81,9 +85,6 @@
         CGFloat y = (sin(start_angle + temAngle/2)*self.radius/2 + center.y);
         CGPoint xy = CGPointMake(x, y);
         
-
-        
-        
         
         [self.piontArr addObject:[NSValue valueWithCGPoint:xy]];
         [self.colorArr addObject:item.itemColor];
@@ -97,7 +98,8 @@
         start_angle = end_angle;
         
     }];
-    
+    UIGraphicsPopContext();
+
 }
 
 
@@ -219,11 +221,10 @@ static void MyShaderProcedure(void *info, const CGFloat *in, CGFloat *out)
 
 - (void)addDrawpieChart:(CGContextRef)ctx center:(CGPoint)center startAngle:(CGFloat)start_angle endAngle:(CGFloat)end_angle color:(UIColor*)color
 {
-    UIGraphicsPushContext(ctx);
-    CGContextSaveGState(ctx);
     
     [color set];
-    
+    CGContextSaveGState(ctx);
+
     CGContextMoveToPoint(ctx, center.x, center.y);
     
     const CGFunctionCallbacks callbacks = {
@@ -250,11 +251,11 @@ static void MyShaderProcedure(void *info, const CGFloat *in, CGFloat *out)
     
 //    CGContextDrawShading(ctx, shading);
     CGContextAddArc(ctx, center.x, center.y, self.radius, end_angle, start_angle, 1);
-    CGContextAddArc(ctx, center.x, center.y, self.radius * .1, start_angle, end_angle, 0);
+    CGContextAddArc(ctx, center.x, center.y, self.radius * .4, start_angle, end_angle, 0);
     CGContextClip(ctx);
     
     CGContextFillRect(ctx, self.bounds);
-    
+
     CGColorSpaceRelease(space);
     CGFunctionRelease(funcRef);
     CGShadingRelease(shading);
@@ -264,13 +265,14 @@ static void MyShaderProcedure(void *info, const CGFloat *in, CGFloat *out)
 
 - (void)animationStartAngleFrom:(CGFloat)startFrom toStart:(CGFloat)toStartAngle endAngleFrom:(CGFloat)endFrom toEnd:(CGFloat)toEndAngle
 {
-    
+    // 此处的startAngle不能随意写,必须是startAngle,否则实现不了动画
     CABasicAnimation *startAnimation = [CABasicAnimation animationWithKeyPath:@"startAngle"];
     startAnimation.fromValue = @(startFrom);
     startAnimation.toValue = @(toStartAngle);
     startAnimation.duration = .6;
     startAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     
+    // 此处的endAngle不能随意写,必须是endAngle, 否则实现不了动画
     CABasicAnimation *endAnimation = [CABasicAnimation animationWithKeyPath:@"endAngle"];
     endAnimation.fromValue = @(endFrom);
     endAnimation.toValue = @(toEndAngle);
@@ -290,6 +292,7 @@ static void MyShaderProcedure(void *info, const CGFloat *in, CGFloat *out)
 
 + (BOOL)needsDisplayForKey:(NSString *)key
 {
+    // 对应 @dynamic itemArr,radius,startAngle,endAngle;
     if([key isEqualToString:@"radius"] || [key isEqualToString:@"startAngle"] || [key isEqualToString:@"endAngle"])
     {
         return YES;
@@ -300,6 +303,7 @@ static void MyShaderProcedure(void *info, const CGFloat *in, CGFloat *out)
 
 - (id<CAAction>)actionForKey:(NSString *)event
 {
+    // 对应 @dynamic itemArr,radius,startAngle,endAngle;
     if ([event isEqualToString:@"radius"]) {
         
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:event];
