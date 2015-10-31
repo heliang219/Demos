@@ -23,27 +23,26 @@
 
 - (RACSignal*)getDatasFromWeb {
         RACSignal *requestSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        
+           
+            NSString *url = @"https://api.douban.com/v2/book/search";
+            AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]init];
+            NSURLSessionDataTask *task = [manager GET:url parameters:@{@"q":@"基础"/*高级*/} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                [subscriber sendNext:responseObject];
+                [subscriber sendCompleted];
+            } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+                
+                // 请求失败,获取数据库中的数据
+                RLMRealm *realm = [RLMRealm shareDataBase];
+                self.models = (NSArray*)[Book allObjectsInRealm:realm];
+                NSLog(@"models:%@",self.models);
+                
+                [subscriber sendError:error];
+     
+            }];
             
-        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]init];
-        NSString *url = @"https://api.douban.com/v2/book/search";
-        NSURLSessionDataTask *task = [manager GET:url parameters:@{@"q":@"基础"/*高级*/} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            [subscriber sendNext:responseObject];
-            [subscriber sendCompleted];
-        } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-            
-            // 请求失败,获取数据库中的数据
-            RLMRealm *realm = [RLMRealm shareDataBase];
-            self.models = (NSArray*)[Book allObjectsInRealm:realm];
-            NSLog(@"models:%@",self.models);
-            
-            [subscriber sendError:error];
- 
-        }];
-        
-        return [RACDisposable disposableWithBlock:^{
-            [task cancel];
-        }];
+            return [RACDisposable disposableWithBlock:^{
+                [task cancel];
+            }];
     }];
     
     @weakify(self);
