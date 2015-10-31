@@ -46,7 +46,7 @@
     }];
     
     @weakify(self);
-   return [requestSignal map:^id(NSDictionary *value) {
+    return [requestSignal map:^id(NSDictionary *value) {
     @strongify(self)
         if ([value isKindOfClass:[NSDictionary class]]) {
             NSArray *books = [value objectForKey:@"books"];

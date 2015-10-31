@@ -91,6 +91,42 @@
 			name = DataBase;
 			sourceTree = "<group>";
 		};
+		833B33EF1BE4B7BE00B80153 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				83FD14551BC8AD97002B4286 /* UIImageView+PFL.h */,
+				83FD14561BC8AD97002B4286 /* UIImageView+PFL.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		833B33F01BE4B7DB00B80153 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				83FD145A1BC8DCB3002B4286 /* CacheSingleton.h */,
+				83FD145B1BC8DCB3002B4286 /* CacheSingleton.m */,
+			);
+			name = Singleton;
+			sourceTree = "<group>";
+		};
+		833B33F11BE4B82B00B80153 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8386E93B1BC53B3B00CAC78F /* ViewModel.h */,
+				8386E93C1BC53B3B00CAC78F /* ViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		833B33F21BE4B83800B80153 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8386E92A1BC53AE200CAC78F /* ViewController.h */,
+				8386E92B1BC53AE200CAC78F /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		8386E9181BC53AE100CAC78F = {
 			isa = PBXGroup;
 			children = (
@@ -112,18 +148,14 @@
 		8386E9231BC53AE100CAC78F /* RACDemo2 */ = {
 			isa = PBXGroup;
 			children = (
-				833B33EB1BE4A76300B80153 /* DataBase */,
 				8386E9271BC53AE200CAC78F /* AppDelegate.h */,
 				8386E9281BC53AE200CAC78F /* AppDelegate.m */,
-				8386E92A1BC53AE200CAC78F /* ViewController.h */,
-				8386E92B1BC53AE200CAC78F /* ViewController.m */,
-				8386E93B1BC53B3B00CAC78F /* ViewModel.h */,
-				8386E93C1BC53B3B00CAC78F /* ViewModel.m */,
+				833B33EB1BE4A76300B80153 /* DataBase */,
+				833B33F21BE4B83800B80153 /* Controller */,
+				833B33F11BE4B82B00B80153 /* ViewModel */,
 				83FC08901BE44F8D00D73C90 /* Model */,
-				83FD14551BC8AD97002B4286 /* UIImageView+PFL.h */,
-				83FD14561BC8AD97002B4286 /* UIImageView+PFL.m */,
-				83FD145A1BC8DCB3002B4286 /* CacheSingleton.h */,
-				83FD145B1BC8DCB3002B4286 /* CacheSingleton.m */,
+				833B33EF1BE4B7BE00B80153 /* Category */,
+				833B33F01BE4B7DB00B80153 /* Singleton */,
 				8386E9301BC53AE200CAC78F /* Assets.xcassets */,
 				8386E9321BC53AE200CAC78F /* LaunchScreen.storyboard */,
 				8386E9351BC53AE200CAC78F /* Info.plist */,
