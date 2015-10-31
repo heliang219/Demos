@@ -24,7 +24,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary {
     if (self = [super init]) {
-        [[self class]createDataBase];
+//        [[self class]createDataBase];
         [self setValuesForKeysWithDictionary:dictionary];
     }
     return self;

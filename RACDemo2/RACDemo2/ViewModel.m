@@ -9,6 +9,7 @@
 #import "ViewModel.h"
 #import <AFNetworking/AFNetworking.h>
 #import "Book.h"
+#import "DataBase.h"
 
 @implementation ViewModel
 @synthesize models = _models;
@@ -32,10 +33,7 @@
         } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
             
             // 请求失败,获取数据库中的数据
-            RLMRealm *realm = [RLMRealm defaultRealm];
-            NSString *path = [realm path];
-            path = [[path stringByDeletingLastPathComponent]stringByAppendingPathComponent:@"book.realm"];
-            realm = [RLMRealm realmWithPath:path];
+            RLMRealm *realm = [RLMRealm shareDataBase];
             self.models = (NSArray*)[Book allObjectsInRealm:realm];
             NSLog(@"models:%@",self.models);
             
@@ -59,7 +57,7 @@
             }] array];
             self.models = arr;
             // 获取数据库
-            RLMRealm *realm = [RLMRealm defaultRealm];
+            RLMRealm *realm = [RLMRealm shareDataBase];
             // 开始写入数据库事务
             [realm beginWriteTransaction];
             NSLog(@"startTime1:%f",CFAbsoluteTimeGetCurrent());
