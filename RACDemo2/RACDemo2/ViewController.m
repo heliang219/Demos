@@ -30,6 +30,13 @@
         self.arr = models;
         [self.tabelView reloadData];
     }];
+    
+    [requestSignal subscribeError:^(NSError *error) {
+        @strongify(self);
+        self.arr = self.viewModel.models;
+        [self.tabelView reloadData];
+
+    }];
 }
 
 - (ViewModel*)viewModel {

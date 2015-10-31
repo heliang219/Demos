@@ -23,16 +23,24 @@
             }
             else if ([self pfl_getImageForKey:imageStr]){
                 NSLog(@"image:%@",[self pfl_getImageForKey:imageStr]);
-                self.image = [self pfl_getImageForKey:imageStr];
+//                self.image = [self pfl_getImageForKey:imageStr];
             }
             else {
                 if ([imageStr hasPrefix:@"http"]) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            cacheImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageStr]]];
-                            self.image = cacheImage;
+                        
+                        cacheImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageStr]]];
+                        if (cacheImage) {
                             [[CacheSingleton defaultCache]setObject:cacheImage forKey:imageStr];
                             [self saveImage:cacheImage toFilePathForKey:imageStr];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (cacheImage) {
+                                self.image = cacheImage;
+                            }
+                            else {
+                                self.image = image;
+                            }
                         });
                     });
                 }
@@ -49,13 +57,21 @@
 - (void)saveImage:(UIImage*)image toFilePathForKey:(NSString*)key {
     NSString *path = imagePath;
     path = [path stringByAppendingPathComponent:@"images"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if (![fm fileExistsAtPath:path]) {
+        BOOL isFm = [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        if (!isFm) {
+            NSLog(@"can't createDirectoryAtPath");
+        }
+    }
+    
     NSString *lastComponent = [key componentsSeparatedByString:@"/"].lastObject;
     if (!lastComponent) {
         return;
     }
     path = [path stringByAppendingPathComponent:lastComponent];
-    NSData *imageData = UIImageJPEGRepresentation(image, 1);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *imageData = UIImageJPEGRepresentation(image, 1);
         [imageData writeToFile:path atomically:YES];
     });
 }
@@ -70,7 +86,18 @@
         return nil;
     }
     path = [path stringByAppendingPathComponent:lastComponent];
-    return  [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
+    
+    __block UIImage *iamge;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        iamge = [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (iamge) {
+                self.image = iamge;
+            }
+        });
+    });
+
+    return  iamge;//[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
 
 @end

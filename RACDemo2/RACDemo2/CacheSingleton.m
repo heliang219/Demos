@@ -14,6 +14,7 @@ static CacheSingleton *defaultCache = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         defaultCache = [[self alloc]init];
+        defaultCache.countLimit = 50;
     });
     return defaultCache;
 }

@@ -23,34 +23,54 @@
 - (RACSignal*)getDatasFromWeb {
         RACSignal *requestSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]init];
+            
+        AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc]init];
         NSString *url = @"https://api.douban.com/v2/book/search";
-        [manager GET:url parameters:@{@"q":@"基础"} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSURLSessionDataTask *task = [manager GET:url parameters:@{@"q":@"基础"/*高级*/} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             [subscriber sendNext:responseObject];
             [subscriber sendCompleted];
-        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+            
+            // 请求失败,获取数据库中的数据
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            NSString *path = [realm path];
+            path = [[path stringByDeletingLastPathComponent]stringByAppendingPathComponent:@"book.realm"];
+            realm = [RLMRealm realmWithPath:path];
+            self.models = (NSArray*)[Book allObjectsInRealm:realm];
+            NSLog(@"models:%@",self.models);
+            
             [subscriber sendError:error];
+ 
         }];
         
-        return nil;
+        return [RACDisposable disposableWithBlock:^{
+            [task cancel];
+        }];
     }];
+    
     @weakify(self);
    return [requestSignal map:^id(NSDictionary *value) {
     @strongify(self)
         if ([value isKindOfClass:[NSDictionary class]]) {
-            self.models = [value objectForKey:@"books"];
-            NSArray *arr = [[self.models.rac_sequence map:^id(NSDictionary *value) {
+            NSArray *books = [value objectForKey:@"books"];
+            NSArray *arr = [[books.rac_sequence map:^id(NSDictionary *value) {
                 Book *book = [Book bookWithDictionary:value];
                 return book;
             }] array];
+            self.models = arr;
+            // 获取数据库
             RLMRealm *realm = [RLMRealm defaultRealm];
+            // 开始写入数据库事务
             [realm beginWriteTransaction];
             NSLog(@"startTime1:%f",CFAbsoluteTimeGetCurrent());
+            // 删除所有数据
             [realm deleteAllObjects];
             NSLog(@"endTime1:%f",CFAbsoluteTimeGetCurrent());
             for (Book *book in arr) {
+                // 写入数据库
                 [Book createInDefaultRealmWithValue:book];
             }
+            // 提交写入事务
             [realm commitWriteTransaction];
             return arr;
         }
