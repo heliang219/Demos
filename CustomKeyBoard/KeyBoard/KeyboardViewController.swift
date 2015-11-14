@@ -28,11 +28,11 @@ class KeyboardViewController: UIInputViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         // Perform custom UI setup here
-        self.nextKeyboardButton = KeyButton.buttonWithType(.System) as! KeyButton
+        self.nextKeyboardButton = UIButton(type: .System) as! KeyButton
         
         self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), forState: .Normal)
         self.nextKeyboardButton.sizeToFit()
-        self.nextKeyboardButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
     
         self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         
@@ -110,7 +110,7 @@ class KeyboardViewController: UIInputViewController {
     {
         
         
-        var proxy = self.textDocumentProxy as! UITextDocumentProxy
+        let proxy = self.textDocumentProxy 
         
         if btn.tag != 12
         {
@@ -162,7 +162,7 @@ class KeyboardViewController: UIInputViewController {
     {
         if longBtn.state != UIGestureRecognizerState.Ended || longBtn.state != UIGestureRecognizerState.Cancelled
         {
-            var proxy = self.textDocumentProxy as! UITextDocumentProxy
+            let proxy = self.textDocumentProxy 
             
             for str in insertContent as [String]
             {
@@ -196,15 +196,15 @@ class KeyboardViewController: UIInputViewController {
         // Dispose of any resources that can be recreated
     }
 
-    override func textWillChange(textInput: UITextInput) {
+    override func textWillChange(textInput: UITextInput?) {
         // The app is about to change the document's contents. Perform any preparation here.
     }
 
-    override func textDidChange(textInput: UITextInput) {
+    override func textDidChange(textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
     
         var textColor: UIColor
-        var proxy = self.textDocumentProxy as! UITextDocumentProxy
+        let proxy = self.textDocumentProxy 
         if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
             textColor = UIColor.whiteColor()
         } else {

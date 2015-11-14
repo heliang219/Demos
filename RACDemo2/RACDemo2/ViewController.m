@@ -27,13 +27,13 @@
     @weakify(self);
     [requestSignal subscribeNext:^(NSArray *models) {
         @strongify(self);
-        self.arr = models;
+//        self.arr = models;
         [self.tabelView reloadData];
     }];
     
     [requestSignal subscribeError:^(NSError *error) {
         @strongify(self);
-        self.arr = self.viewModel.models;
+//        self.arr = self.viewModel.models;
         [self.tabelView reloadData];
 
     }];
@@ -60,7 +60,7 @@
 }
 #pragma mark UITableViewDataSource 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.arr.count;
+//    return self.arr.count;
     return self.viewModel.models.count;
 }
 
@@ -70,7 +70,9 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
-    Book *book = self.arr[indexPath.row];
+//    Book *book = self.arr[indexPath.row];
+    Book *book = self.viewModel.models[indexPath.row];
+
     cell.textLabel.text = book.title;
     cell.detailTextLabel.text = book.price;
     [cell.imageView pfl_image:book.image placeholderImage:@"big.jpg"];

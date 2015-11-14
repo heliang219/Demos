@@ -70,10 +70,10 @@
         return;
     }
     path = [path stringByAppendingPathComponent:lastComponent];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *imageData = UIImageJPEGRepresentation(image, 1);
-        [imageData writeToFile:path atomically:YES];
-    });
+    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+    [imageData writeToFile:path atomically:YES];
+    NSLog(@"save :%ld",imageData.length);
+    
 }
 
 
@@ -88,15 +88,16 @@
     path = [path stringByAppendingPathComponent:lastComponent];
     
     __block UIImage *iamge;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         iamge = [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (iamge) {
                 self.image = iamge;
             }
         });
-    });
+//    });
 
+    NSLog(@"======image=======%@",iamge);
     return  iamge;//[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
 }
 

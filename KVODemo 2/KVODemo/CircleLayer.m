@@ -224,7 +224,6 @@ static void MyShaderProcedure(void *info, const CGFloat *in, CGFloat *out)
     
     [color set];
     CGContextSaveGState(ctx);
-
     CGContextMoveToPoint(ctx, center.x, center.y);
     
     const CGFunctionCallbacks callbacks = {

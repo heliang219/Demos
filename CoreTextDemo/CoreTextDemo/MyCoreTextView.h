@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreText/CoreText.h>
 
 @interface MyCoreTextView : UIView
 
@@ -15,5 +16,5 @@
 @property (nonatomic, assign) CGFloat character;
 @property (nonatomic, assign) CGFloat paragraph;
 @property (nonatomic, assign) CGFloat line;
-
+@property (nonatomic, assign) CTFramesetterRef framesetter;
 @end

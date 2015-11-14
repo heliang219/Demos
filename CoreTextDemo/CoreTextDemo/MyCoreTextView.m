@@ -7,8 +7,10 @@
 //
 
 #import "MyCoreTextView.h"
-#import <CoreText/CoreText.h>
 
+@interface MyCoreTextView ()
+@property (nonatomic, assign) CGFloat textHeight;
+@end
 @implementation MyCoreTextView
 
 
@@ -17,33 +19,49 @@
     if (self = [super initWithFrame:frame]) {
         
         self.font = 15.0f;
-        self.character = 20.0f;
+        self.character = 10.0f;
         self.line = 10.0f;
         self.paragraph = 20.0f;
         self.text = @"这是myView,请赋值";
+        self.backgroundColor = [UIColor greenColor];
+        
+        CGAffineTransform transform = CGAffineTransformMakeScale(1.0, -1.0);
+        CGAffineTransformTranslate(transform, 0, -self.bounds.size.height);
+        self.transform = transform;
     }
     return self;
 }
 
-
-
-- (void)drawRect:(CGRect)rect {
-   
-#if 1
+- (void)setText:(NSString *)text {
+    if (_text == text) {
+        return;
+    }
+    _text = text;
     
-    // 创建attributeString
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc]initWithString:_text];
-    
+    CFStringRef string = (__bridge CFStringRef)(CFBridgingRelease((__bridge CFTypeRef _Nullable)(_text)));
+
     // 创建字体以及字体大小
     
     CTFontRef helvatica = CTFontCreateWithName(CFSTR("Helvetica"), _font, NULL);
     CTFontRef helvaticaBlod = CTFontCreateWithName(CFSTR("Helvatica"), _font, NULL);
-    [string addAttribute:(id)kCTFontAttributeName value:(__bridge id)helvatica range:NSMakeRange(0, _text.length)];
+//    [string addAttribute:(id)kCTFontAttributeName value:(__bridge id)helvatica range:NSMakeRange(0, _text.length * 0.5)];
+//    [string addAttribute:(id)kCTFontAttributeName value:(__bridge id)helvaticaBlod range:NSMakeRange(0, [_text length])];
     
-    [string addAttribute:(id)kCTFontAttributeName value:(__bridge id)helvaticaBlod range:NSMakeRange(0, [_text length])];
+    CTFontRef boldFont = CTFontCreateUIFontForLanguage(kCTFontUserFontType, 16, NULL);
+    
+    CFMutableAttributedStringRef attributedString = CFAttributedStringCreateMutable(NULL, 0);
+    CFAttributedStringReplaceString(attributedString, CFRangeMake(0,0), string);
+    
+    CFAttributedStringSetAttribute(attributedString, CFRangeMake(0, CFStringGetLength(string)/2), kCTFontAttributeName, boldFont);
+    
+    CGColorRef color = [UIColor redColor].CGColor;
+    CFAttributedStringSetAttribute(attributedString, CFStringFind(string,
+                                                                  CFSTR("下面"),
+                                                                  0), kCTForegroundColorAttributeName, color);
     
     // 设置字体的颜色
-    [string addAttribute:(id)kCTForegroundColorAttributeName value:(__bridge id)[UIColor blackColor].CGColor range:NSMakeRange(0, _text.length)];
+//    [string addAttribute:(id)kCTForegroundColorAttributeName value:(__bridge id)[UIColor redColor].CGColor range:NSMakeRange(0, _text.length * 0.5)];
+//    [string addAttribute:(id)kCTForegroundColorAttributeName value:(__bridge id)[UIColor blueColor].CGColor range:NSMakeRange(_text.length * 0.5, _text.length)];
     
     // 创建文本的对其方式
     
@@ -55,10 +73,11 @@
     
     
     //设置字体间距
-    
     long number = _character;
     CFNumberRef num = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt8Type, &number);
-    [string addAttribute:(id)kCTKernAttributeName value:(__bridge id)num range:NSMakeRange(0, _text.length)];
+//    [string addAttribute:(id)kCTKernAttributeName value:(__bridge id)num range:NSMakeRange(0, _text.length)];
+    CFAttributedStringSetAttribute(attributedString, CFRangeMake(0, _text.length), kCTKernAttributeName, num);
+
     CFRelease(num);
     
     //设置  段落间距
@@ -81,51 +100,74 @@
     CTParagraphStyleSetting setting[] = {alignmentStyleSetting,lineStyleSetting,paragraphStyleSetting};
     
     CTParagraphStyleRef paragraphStyly = CTParagraphStyleCreate(setting, sizeof(setting));
-    [string addAttribute:(id)kCTParagraphStyleAttributeName value:(__bridge id)paragraphStyly range:NSMakeRange(0, _text.length)];
+//    [string addAttribute:(id)kCTParagraphStyleAttributeName value:(__bridge id)paragraphStyly range:NSMakeRange(0, _text.length)];
     
+    CFAttributedStringSetAttribute(attributedString, CFRangeMake(0, _text.length), kCTParagraphStyleAttributeName, paragraphStyly);
     
-    // layout master
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef) string);
-    CGSize temSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, CGSizeMake(300, MAXFLOAT), NULL);
-    CGSize textBoxSize = CGSizeMake(temSize.width+1, temSize.height+1);
-    self.frame = CGRectMake(0, 0, textBoxSize.width, textBoxSize.height);
+    _framesetter = CTFramesetterCreateWithAttributedString(attributedString);
+
+    [self setNeedsDisplay];
     
-    CGMutablePathRef leftColumnPath = CGPathCreateMutable();
-    CGPathAddRect(leftColumnPath, NULL, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height));
-    CTFrameRef leftFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), leftColumnPath, NULL);
+    CFRelease(helvatica);
+    CFRelease(helvaticaBlod);
+
+
+}
+
+
+- (void)drawRect:(CGRect)rect {
+   
+#if 1
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextClearRect(context, self.frame);
-    
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    
-    CGContextFillRect(context, CGRectMake(0, 0, 320, CGRectGetHeight(self.frame)));
-    
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+
     
-    CGContextTranslateCTM(context, 0, self.bounds.size.height);
+//    CGContextClearRect(context, self.frame);
+//
+//    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+//
+//    CGContextFillRect(context, CGRectMake(0, 0, 320, CGRectGetHeight(self.frame)));
+//    
+//    
+//    CGContextTranslateCTM(context, 0, self.bounds.size.height);
+//    
+//    CGContextScaleCTM(context, 1.0, -1.0);
     
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    
-    
+    CGPathRef leftColumnPath = CGPathCreateWithRect(CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [self getHeightForString:_text]), nil);
+//    CGPathAddRect(leftColumnPath, NULL, CGRectMake(0, 0, self.bounds.size.width, 33));
+    CTFrameRef leftFrame = CTFramesetterCreateFrame(_framesetter, CFRangeMake(0, 0), leftColumnPath, NULL);
     
     CTFrameDraw(leftFrame, context);
     
     
     CGPathRelease(leftColumnPath);
-    CFRelease(framesetter);
-    CFRelease(helvatica);
-    CFRelease(helvaticaBlod);
+    CFRelease(_framesetter);
     
-    UIGraphicsPushContext(context);
+//    UIGraphicsPushContext(context);
     
     
 #endif
     
    
     
+}
+
+- (CGFloat)getHeightForString:(NSString*)string {
+ 
+    CGSize temSize = CTFramesetterSuggestFrameSizeWithConstraints(_framesetter, CFRangeMake(0, 0), NULL, CGSizeMake([UIScreen mainScreen].bounds.size.width, 2000), NULL);
+    return temSize.height;
+}
+
+
+- (void)sizeToFit {
+    [super sizeToFit];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGFloat width = CGRectGetWidth(self.frame);
+    CGFloat height = [self getHeightForString:_text];
+    return CGSizeMake(width, height);
 }
 
 
