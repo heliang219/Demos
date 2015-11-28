@@ -23,7 +23,7 @@
 		83FD14541BC8A7F9002B4286 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD14531BC8A7F9002B4286 /* BaseModel.m */; };
 		83FD14571BC8AD97002B4286 /* UIImageView+PFL.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD14561BC8AD97002B4286 /* UIImageView+PFL.m */; };
 		83FD145C1BC8DCB3002B4286 /* CacheSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD145B1BC8DCB3002B4286 /* CacheSingleton.m */; };
-		D87F76A69F04AEA82FE0DC09 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F067AB6EC63AD92FD33FBA71 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D87F76A69F04AEA82FE0DC09 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F067AB6EC63AD92FD33FBA71 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */

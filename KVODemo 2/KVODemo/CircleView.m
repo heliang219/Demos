@@ -19,6 +19,7 @@
         self.layer.contentsScale = [UIScreen mainScreen].scale;
         self.layer.shouldRasterize = YES;
         self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        self.layer.drawsAsynchronously = YES;
 
     }
     return self;
