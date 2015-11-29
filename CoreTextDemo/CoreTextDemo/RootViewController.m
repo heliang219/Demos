@@ -39,15 +39,16 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    MyCoreTextView *view = [[MyCoreTextView alloc]initWithFrame:CGRectMake(0, 164, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+    self.navigationController.navigationBar.translucent = NO;
+    MyCoreTextView *view_ = [[MyCoreTextView alloc]initWithFrame:CGRectMake(0, 20, CGRectGetWidth(self.view.frame), 0)];
+    view_.text = @"下面主要讲，如何设置字体，间距，并计算（带特定段间距，行间距，字间距，字大小）文字的高度。";
+    [self.view addSubview:view_];
     
-
-    view.text = @"下面主要讲，如何设置字体，间距，并计算（带特定段间距，行间距，字间距，字大小）文字的高度。";
-
+    [view_ sizeToFit];
     
-    DrawView *drawView = [[DrawView alloc]initWithFrame:self.view.frame];
-    
-    [self.view addSubview:drawView];
+//    DrawView *drawView = [[DrawView alloc]initWithFrame:self.view.frame];
+//    
+//    [self.view addSubview:drawView];
     
     
     
@@ -62,25 +63,14 @@
            
 //    [self animateFromStartAngle:kAngle(0) toStartAngle:kAngle(0) fromEndAngle:kAngle(180) toEndAngle:kAngle(360)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:(UIBarButtonSystemItemDone) target:self action:@selector(run1)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:(UIBarButtonSystemItemDone) target:self action:@selector(run1)];
     
 //    AudioView *audio = [[AudioView alloc]initWithFrame:self.view.frame];
-////    [self.view addSubview:audio];
-//    
-//    
-//  
-//    
+//    [self.view addSubview:audio];
 //    self.audioLayer.volume = .1f;
-//    
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"黄沾 - 为自己当好汉.mp3" ofType:nil];
-//    
 //    self.audioLayer = [[AudioLayer alloc]initWithAudioFileURL:[NSURL fileURLWithPath:path]];
-//    
-//    
-//    
 //    [self.view.layer addSublayer:self.audioLayer];
-//    
-//    
 //    self.audioLayer.player.delegate = self;
 //    
 //    [self.audioLayer callBackStateAudioState:^(AVAudioPlayer *play) {
