@@ -20,13 +20,49 @@ class ViewController: UIViewController {
         return imgView
     }()
     
+    
+    private lazy var progress: UIProgressView = {
+        let progress = UIProgressView(frame: CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.height, 200, 30))
+        progress.trackTintColor = UIColor.redColor()
+        progress.progressTintColor = UIColor.greenColor()
+        self.view.addSubview(progress)
+        return progress
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.data = NSMutableData()
-        let Url = NSURL(string: url)
-        let request = NSURLRequest(URL: Url!)
-        let _ = NSURLConnection(request: request, delegate: self)
-    
+        
+        let queue = NSOperationQueue()
+//        let operation = NSBlockOperation()
+//        operation.addExecutionBlock({ () -> Void in
+            let Url = NSURL(string: url)
+//            let request = NSURLRequest(URL: Url!)
+//            let _ = NSURLConnection(request: request, delegate: self)
+//            let runloop = NSRunLoop.currentRunLoop()
+//            runloop.run()
+//
+//        })
+        
+        let operation = MyOperation2(URL: Url, response: { (response, error) -> Void in
+            let data = response ?? NSData()
+//            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.imageView.image = UIImage(data:data as! NSData)
+//                })
+
+//            })
+            }) { (progress) -> Void in
+//                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.progress.progress = progress;
+//                    })
+                
+//                })
+
+        }
+        
+        queue.addOperation(operation)
     }
 
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		835109781C0ADAC50047F528 /* MyOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835109771C0ADAC50047F528 /* MyOperation.swift */; };
+		8351097C1C0ADE080047F528 /* MyOperation2.m in Sources */ = {isa = PBXBuildFile; fileRef = 8351097B1C0ADE080047F528 /* MyOperation2.m */; };
 		8358BDE01BFF073600549696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8358BDDF1BFF073600549696 /* AppDelegate.swift */; };
 		8358BDE21BFF073600549696 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8358BDE11BFF073600549696 /* ViewController.swift */; };
 		8358BDE51BFF073600549696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8358BDE31BFF073600549696 /* Main.storyboard */; };
@@ -15,6 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		835109771C0ADAC50047F528 /* MyOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOperation.swift; sourceTree = "<group>"; };
+		835109791C0ADE070047F528 /* RunLoop&ThreadDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RunLoop&ThreadDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		8351097A1C0ADE080047F528 /* MyOperation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOperation2.h; sourceTree = "<group>"; };
+		8351097B1C0ADE080047F528 /* MyOperation2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOperation2.m; sourceTree = "<group>"; };
 		8358BDDC1BFF073600549696 /* RunLoop&ThreadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RunLoop&ThreadDemo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8358BDDF1BFF073600549696 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8358BDE11BFF073600549696 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,10 +62,14 @@
 			children = (
 				8358BDDF1BFF073600549696 /* AppDelegate.swift */,
 				8358BDE11BFF073600549696 /* ViewController.swift */,
+				835109771C0ADAC50047F528 /* MyOperation.swift */,
+				8351097A1C0ADE080047F528 /* MyOperation2.h */,
+				8351097B1C0ADE080047F528 /* MyOperation2.m */,
 				8358BDE31BFF073600549696 /* Main.storyboard */,
 				8358BDE61BFF073600549696 /* Assets.xcassets */,
 				8358BDE81BFF073600549696 /* LaunchScreen.storyboard */,
 				8358BDEB1BFF073700549696 /* Info.plist */,
+				835109791C0ADE070047F528 /* RunLoop&ThreadDemo-Bridging-Header.h */,
 			);
 			path = "RunLoop&ThreadDemo";
 			sourceTree = "<group>";
@@ -137,6 +147,8 @@
 			files = (
 				8358BDE21BFF073600549696 /* ViewController.swift in Sources */,
 				8358BDE01BFF073600549696 /* AppDelegate.swift in Sources */,
+				8351097C1C0ADE080047F528 /* MyOperation2.m in Sources */,
+				835109781C0ADAC50047F528 /* MyOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,10 +261,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "RunLoop&ThreadDemo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pfl.RunLoop-ThreadDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RunLoop&ThreadDemo/RunLoop&ThreadDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -260,10 +276,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "RunLoop&ThreadDemo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pfl.RunLoop-ThreadDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RunLoop&ThreadDemo/RunLoop&ThreadDemo-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -286,6 +305,7 @@
 				8358BDF01BFF073700549696 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
