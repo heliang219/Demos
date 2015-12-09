@@ -11,12 +11,12 @@
 
 @implementation UIWebView (SNFoundation)
 
-- (NSString *)documentTitle
+- (NSString *)documentTitle // 获取webview的标题
 {
    	return [self stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
-- (void)fixViewPort
+- (void)fixViewPort//网页content自适应
 {
     //适应客户端页面
     NSString* js =
@@ -28,7 +28,7 @@
     [self stringByEvaluatingJavaScriptFromString: js];
 }
 
-- (void)cleanBackground
+- (void)cleanBackground  //清除默认的背景高光
 {
     self.backgroundColor = [UIColor clearColor];
     for (UIView *view in [[[self subviews] safeObjectAtIndex:0] subviews])
