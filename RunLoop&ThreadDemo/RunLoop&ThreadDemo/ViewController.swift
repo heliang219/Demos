@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Foundation
 
 let url = "https://d13yacurqjgara.cloudfront.net/users/345826/screenshots/1780193/dots18.gif"
 
 class ViewController: UIViewController {
 
+    
+    
+    
     var data: NSMutableData?
     private lazy var imageView: UIImageView = {
         let imgView = UIImageView(frame: CGRectMake(0, 0, 200, 200))
@@ -46,30 +50,23 @@ class ViewController: UIViewController {
         
         let operation = MyOperation2(URL: Url, response: { (response, error) -> Void in
             let data = response ?? NSData()
-//            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.imageView.image = UIImage(data:data as! NSData)
-//                })
-
-//            })
+            self.imageView.image = UIImage(data:data as! NSData)
             }) { (progress) -> Void in
-//                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.progress.progress = progress;
-//                    })
-                
-//                })
-
+                self.progress.progress = progress;
         }
         
+        NSLog("add:%f",CFAbsoluteTimeGetCurrent());
+
         queue.addOperation(operation)
+        
+
+        
+       operation.performSelector("cancelOperation", withObject: nil, afterDelay: 2)
+        
     }
 
-    
-    
-    
-
 }
+
 
 extension ViewController: NSURLConnectionDataDelegate {
    

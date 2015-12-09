@@ -10,6 +10,8 @@
 
 @interface MyOperation2 : NSOperation
 
+- (void)cancelOperation;
+
 - (instancetype)initWithURL:(NSURL*)url response:(void(^)(id response, NSError*error))response progrss:(void(^)(float progress))progress;
 
 @end

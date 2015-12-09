@@ -1201,6 +1201,7 @@
     }
     
     self.openSectionsFlag ^= 1 << indexPath.section;
+    NSLog(@"openSectionsFlag:%llu",self.openSectionsFlag);
     [self.tableView reloadData];
 }
 

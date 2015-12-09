@@ -17,9 +17,13 @@
 @property (nonatomic, readwrite, assign) long long expectLength;
 @property (nonatomic, readwrite, assign) float currentLength;
 @property (nonatomic, readwrite, strong) NSMutableData *data;
+@property (nonatomic, readwrite, getter=isExecuting) BOOL executing;
+@property (nonatomic, readwrite, getter=isFinished) BOOL finished;
+
 @end
 
 @implementation MyOperation2
+@synthesize executing = _executing, finished = _finished;
 
 - (instancetype)initWithURL:(NSURL *)url response:(void (^)(id response, NSError *error))response progrss:(void (^)(float progress))progress {
     self = [super init];
@@ -35,6 +39,8 @@
 - (void)start {
     
     [self willChangeValueForKey:@"isExecuting"];
+    _executing = YES;
+    NSLog(@"start:%f",CFAbsoluteTimeGetCurrent());
     [self didChangeValueForKey:@"isExecuting"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
@@ -56,7 +62,8 @@
 }
 
 - (void)finish {
-    CFRunLoopStop(self.runloop);
+    !self.runloop?:CFRunLoopStop(self.runloop);
+    [self.connection cancel];
     self.connection = nil;
     [self willChangeValueForKey:@"isExecuting"];
     [self willChangeValueForKey:@"isFinished"];
@@ -65,14 +72,52 @@
 
 }
 
-- (void)cancel {
-    if (!self.isExecuting) {
-        return;
+
+- (void)setExecuting:(BOOL)executing {
+    if (_executing != executing) {
+        [self willChangeValueForKey:@"isExecuting"];
+        _executing = executing;
+        [self didChangeValueForKey:@"isExecuting"];
+    }
+
+}
+
+- (BOOL)isExecuting {
+    return _executing;
+}
+
+- (void)setFinished:(BOOL)finished {
+    if (_finished != finished) {
+        [self willChangeValueForKey:@"isFinished"];
+        _finished = finished;
+        [self didChangeValueForKey:@"isFinished"];
     }
     
+}
+
+- (BOOL)isFinished {
+    return _finished;
+}
+
+
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key {
+    if ([key isEqualToString:@"isExecuting"] || [key isEqualToString:@"isFinished"]) {
+        return NO;
+    }
+    return [super automaticallyNotifiesObserversForKey:key];
+}
+
+- (void)cancel {
     [super cancel];
     [self finish];
 }
+
+- (void)cancelOperation {
+    NSLog(@"cancel:%f",CFAbsoluteTimeGetCurrent());
+    [self cancel];
+}
+
 
 - (void)dealloc {
     [self.connection cancel];
@@ -101,7 +146,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         !self.response ?: self.response(self.data, nil);
     });
-
+    
     [self finish];
 }
 

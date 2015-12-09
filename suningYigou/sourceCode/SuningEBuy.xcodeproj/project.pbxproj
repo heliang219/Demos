@@ -1612,6 +1612,7 @@
 		7CF606BA199C260C00F40972 /* NBNearbyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6064B199C260C00F40972 /* NBNearbyTableCell.m */; };
 		7CF606BB199C260C00F40972 /* NBNearbyTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6064C199C260C00F40972 /* NBNearbyTableCell.xib */; };
 		7CF606BD199C260C00F40972 /* NBShakeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6064F199C260C00F40972 /* NBShakeButton.m */; };
+		8361DB621C1803F300BDFC1C /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8361DB611C1803F300BDFC1C /* libbaidumapapi.a */; };
 		8483A49E160B027E00B7AA9F /* BusinessTravelRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483A49D160B027E00B7AA9F /* BusinessTravelRootViewController.m */; };
 		8483A4AA160B049C00B7AA9F /* GradientBackgroundTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483A4A9160B049C00B7AA9F /* GradientBackgroundTable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8483A4B4160B054800B7AA9F /* RoundRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 8483A4AD160B054800B7AA9F /* RoundRect.m */; };
@@ -2399,7 +2400,6 @@
 		F21BC48C1A0B5181002DD77A /* suning_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F21BC4871A0B5181002DD77A /* suning_logo.png */; };
 		F226F1DF19D4231700FFCED4 /* fuzhi_.png in Resources */ = {isa = PBXBuildFile; fileRef = F226F1DE19D4231700FFCED4 /* fuzhi_.png */; };
 		F22CC1ED19C0666D00311E29 /* libSNMPaySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F22CC1EC19C0666D00311E29 /* libSNMPaySDK.a */; };
-		F22E1F0C19FDF12500EC3050 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F22E1F0B19FDF12500EC3050 /* libbaidumapapi.a */; };
 		F238A5371A1DCA02006BBFC8 /* NEWHELPER_1-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = F238A5331A1DCA02006BBFC8 /* NEWHELPER_1-568h.png */; };
 		F238A5381A1DCA02006BBFC8 /* NEWHELPER_2-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = F238A5341A1DCA02006BBFC8 /* NEWHELPER_2-568h.png */; };
 		F238A5391A1DCA02006BBFC8 /* NEWHELPER_3-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = F238A5351A1DCA02006BBFC8 /* NEWHELPER_3-568h.png */; };
@@ -5073,6 +5073,7 @@
 		7CF6064C199C260C00F40972 /* NBNearbyTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NBNearbyTableCell.xib; sourceTree = "<group>"; };
 		7CF6064E199C260C00F40972 /* NBShakeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBShakeButton.h; sourceTree = "<group>"; };
 		7CF6064F199C260C00F40972 /* NBShakeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBShakeButton.m; sourceTree = "<group>"; };
+		8361DB611C1803F300BDFC1C /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		8483A49C160B027E00B7AA9F /* BusinessTravelRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessTravelRootViewController.h; sourceTree = "<group>"; };
 		8483A49D160B027E00B7AA9F /* BusinessTravelRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessTravelRootViewController.m; sourceTree = "<group>"; };
 		8483A4A8160B049C00B7AA9F /* GradientBackgroundTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientBackgroundTable.h; sourceTree = "<group>"; };
@@ -6623,6 +6624,7 @@
 				04393E0E166FE7C600DB6FE7 /* CoreLocation.framework in Frameworks */,
 				04BD924115DC7DA600BA623C /* CoreTelephony.framework in Frameworks */,
 				F20C9DAD196A51EB000C62FF /* libdvsn.a in Frameworks */,
+				8361DB621C1803F300BDFC1C /* libbaidumapapi.a in Frameworks */,
 				6E16577C18D1A70900D11BC5 /* MessageUI.framework in Frameworks */,
 				04AB820818D0ED8500779440 /* CoreMotion.framework in Frameworks */,
 				04C6938A18BDF0DD002E583E /* AdSupport.framework in Frameworks */,
@@ -6633,7 +6635,6 @@
 				049E09021699E44D00A4AB53 /* MapKit.framework in Frameworks */,
 				04CB830715EBBF4400B4E8BC /* CoreMedia.framework in Frameworks */,
 				04BEC44E15DCB42D00455261 /* AddressBookUI.framework in Frameworks */,
-				F22E1F0C19FDF12500EC3050 /* libbaidumapapi.a in Frameworks */,
 				04BEC44C15DCB42700455261 /* AddressBook.framework in Frameworks */,
 				09571F5E19EF993700167CFF /* SSA_IOS.framework in Frameworks */,
 				04BEC44A15DCB41100455261 /* AVFoundation.framework in Frameworks */,
@@ -7765,6 +7766,7 @@
 		04BD924515DC7DA600BA623C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8361DB611C1803F300BDFC1C /* libbaidumapapi.a */,
 				57C54CF519C6C6D200299858 /* static */,
 				04BD924615DC7DA600BA623C /* SuningEBuy-Info.plist */,
 				04BD924715DC7DA600BA623C /* InfoPlist.strings */,
