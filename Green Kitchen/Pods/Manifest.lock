@@ -21,13 +21,18 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - YYKit (0.9.10):
+    - YYKit/no-arc (= 0.9.10)
+  - YYKit/no-arc (0.9.10)
 
 DEPENDENCIES:
   - AFNetworking
   - ReactiveCocoa
+  - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  YYKit: c220d01f6fe9fd4b4b379e2dad50fffd2b2ce633
 
 COCOAPODS: 0.39.0

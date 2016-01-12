@@ -67,6 +67,10 @@ typedef enum{
 }ProductType;
 
 
+/*
+ * 商品详情
+ */
+
 @interface ProductDetailViewController : CommonViewController<ProductDetailServiceDelegate,DetailCollectServiceDelegate,MyFavoriteServiceDelegate,NProDetailFirstCellDelegate,NDetailSecondCellDelegate,NProDetailSixCellDelegate,NProDtailAppraiseViewControllerDelagete,ChooseShareWayDelegate,ChooseShareWayViewDelegate,NDetailHeadProImagesdelegate,OSChatServiceDelegate,ProductCuViewDelegate,NDetailFirstCellDelegate,NProDetailRecoCellDelegate,PurchaseServiceDelegate,DJGroupDetailServiceDelegate,DJGroupApplyServiceDelegate,ConsultationDelegate,ConsultationViewDelegate,ConsulDelegate,ProductNumberCellDelegate>
 {
     BOOL _isFold;

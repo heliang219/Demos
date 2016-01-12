@@ -160,9 +160,10 @@ static char ja_kvoContext;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
+
     self.centerPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];
     _centerPanelRestingFrame = self.centerPanelContainer.frame;
+    _centerPanelContainer.backgroundColor = [UIColor redColor];
     _centerPanelHidden = NO;
     
     self.leftPanelContainer = [[UIView alloc] initWithFrame:self.view.bounds];

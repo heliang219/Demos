@@ -124,7 +124,7 @@
     {
         _proImagesScroll = [[NDetailHeadProImages alloc] initWithFrame:CGRectMake(0, -40, self.frame.size.width, self.frame.size.width)];
         
-        _proImagesScroll.backgroundColor = [UIColor clearColor];
+        _proImagesScroll.backgroundColor = [UIColor redColor];
         
         _proImagesScroll.userInteractionEnabled = YES;     
     }
