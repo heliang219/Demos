@@ -8,7 +8,7 @@
 
 import Foundation
 
-println("Hello, World!")
+print("Hello, World!")
 
 //class ClassA {
 //    let numA: Int
@@ -68,23 +68,42 @@ class A {
     
     func method(a: ()->())
     {
-        println(a)
+        print(a)
     }
     
     
     deinit {
-    println("A deinit")
+    print("A deinit")
     } }
 class B {
    weak var a: A? = nil
     deinit {
-    println("B deinit")
+    print("B deinit")
     } }
 
 
 var obj: A? = A()
 obj?.method{}
     obj = nil
+
+var go = []
+go = [1,2,3,4,5,6]
+for inde in go {
+    print(inde)
+}
+
+for index in 0...4 {
+    print(index+100)
+}
+
+var go2: [String]
+go2 = ["1","2","4","3","5"]
+for var obj in go2 {
+    var i = ind
+    obj = obj.substringFromIndex(Index(2))
+    print(obj)
+}
+
 
 
 

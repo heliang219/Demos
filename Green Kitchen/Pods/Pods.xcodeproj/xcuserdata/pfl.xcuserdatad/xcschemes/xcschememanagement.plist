@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RxSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>YYKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>773D79FD73C0968F8F6665CDACFFC9C4</key>
+		<key>68912E62A86E7AAEF6CAAE67C3FD2819</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6901F797369EAC62F042C4F6D5CF569</key>
+		<key>70EC17AD9EA062854F09CA0A6C30F93F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E3A877715C735E7C08883715765567CD</key>
+		<key>7E5836F735CDE65A21DC3D43EA5D82A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0296FAFD941794DA1A1895309FE5397</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -12,6 +12,7 @@
 #import "CollectionViewLayout.h"
 #import "ImageTableView.h"
 #import <YYKit/YYKit.h>
+#import "DataCenter.h"
 
 #define kScreen_width  [[UIScreen mainScreen]bounds].size.width
 #define kScreen_height  [[UIScreen mainScreen]bounds].size.height
@@ -29,6 +30,11 @@
 @property (nonatomic, readwrite, assign) BOOL isRefresh;
 @property (nonatomic, readwrite, assign) NSInteger pageIndex;
 @property (nonatomic, readwrite, assign) BOOL isFirst;
+@property (nonatomic, readwrite, strong) OperationManager *operationManager;
+@property (nonatomic, readwrite, strong) DataCenter *dataCenter;
+@property (nonatomic, readwrite, assign) CGPoint tapPoint;
+@property (nonatomic, readwrite, assign) CGPoint originPoint;
+
 @end
 
 @implementation ViewController
@@ -53,6 +59,37 @@
 
 }
 
+- (OperationManager *)operationManager {
+    if (!_operationManager) {
+        _operationManager = [[OperationManager alloc]init];
+    }
+    return _operationManager;
+}
+
+- (DataCenter *)dataCenter {
+    if (!_dataCenter) {
+        _dataCenter = [[DataCenter alloc]init];
+    }
+    return _dataCenter;
+}
+
+- (void)getData:(NSInteger)pageIndex isRefresh:(BOOL)isRefresh {
+    __weak typeof(self) weakself = self;
+    [self.dataCenter.dataSignal subscribeNext:^(id x) {
+       
+        if ([x isKindOfClass:[NSArray class]]) {
+            if (isRefresh) {
+                [weakself.dataArr removeAllObjects];
+            }
+            [weakself.dataArr addObjectsFromArray:(NSArray*)x];
+            NSLog(@"count:%d",self.dataArr.count);
+            [weakself.collectionView reloadData];
+        }
+        weakself.isRefresh = NO;
+    }];
+    
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     
     if (!self.isFirst) {
@@ -64,7 +101,7 @@
 
     
     if ([keyPath isEqualToString:@"contentOffset"]) {
-        if (self.collectionView.contentOffset.y < -64 ) {
+        if (self.collectionView.contentOffset.y < -150 ) {
             if (!self.isRefresh) {
                 self.isRefresh = YES;
             }
@@ -73,7 +110,7 @@
                 [self.collectionView setContentInset:UIEdgeInsetsMake(64*2, 0, 0, 0)];
             }];
         }
-        if (self.pageIndex ==  [[self URLArr]count]) {
+        if (6 ==  self.dataCenter.pageIndex) {
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.isRefresh = NO;
@@ -85,7 +122,7 @@
 
 - (void)setIsRefresh:(BOOL)isRefresh {
     _isRefresh = isRefresh;
-    if (isRefresh && self.pageIndex < [[self URLArr]count]) {
+    if (isRefresh) {
         self.refreshLabel.text = @"正在加载...";
         [self sendRequestForDataRefresh:NO];
     }
@@ -94,6 +131,8 @@
         self.refreshLabel.text = @"加载完成";
         [UIView animateWithDuration:1.0 animations:^{
             [self.collectionView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
+        } completion:^(BOOL finished) {
+            self.refreshLabel.text = @"正在加载...";
         }];
 
     }
@@ -139,10 +178,31 @@
     
     
     UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(btn.right, 0, backView.width/2, backView.height)];
+    
+    RACSignal *enableSignal = [RACSignal combineLatest:@[RACObserve(self, self.dataArr)] reduce:^id(NSArray *arr){
+        return @(arr.count > 30);
+    }];
+
+    btn2.rac_command = [[RACCommand alloc]initWithEnabled:nil signalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [subscriber sendNext:@"btn2被点击了"];
+            [subscriber sendCompleted];
+            return [RACDisposable disposableWithBlock:^{}];
+        }];
+    }];
+    
+    
+    [[btn2 rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [self btnClicked:btn2];
+        [btn2.rac_command.executionSignals.switchToLatest subscribeNext:^(id x) {
+            NSLog(@"%@",x);
+        }];
+    }];
+    
     btn2.tag = 2;
     [btn2 setTitle:@"Grid" forState:UIControlStateNormal];
     [btn2 setTitleColor:[UIColor colorWithRed:0.275 green:0.886 blue:0.333 alpha:1.00] forState:UIControlStateNormal];
-    [btn2 addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    [btn2 addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:btn2];
     
     UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 1, backView.height-10)];
@@ -163,6 +223,11 @@
         layout.numberOfColumns = 3;
         layout.interItemSpacing = 5;
     }
+    [self.collectionView scrollToTopAnimated:YES];
+    self.dataCenter.pageIndex = 0;
+    self.isFirst = NO;
+    [self.imageCache removeAllObjects];
+    [self sendRequestForDataRefresh:YES];
     [self.collectionView reloadData];
 }
 
@@ -182,13 +247,12 @@
 }
 
 
-- (NSArray*)URLArr
-{
-    return @[@"http://www.wanzhoumo.com/wanzhoumo?UUID=97B42FCB-7D7A-4D41-A80B-24644CBEE429&app_key=800000002&app_v_code=12&app_v_name=2.2.1&format=json&is_near=1&is_valid=1&lat=22.562433&lon=113.904398&method=activity.List&os=iphone&pagesize=30&r=wanzhoumo&sign=0f97295d4c92c73217ff8341fb11b20c&sort=default&timestamp=1409632143&top_session=n8i2d0ie4g77qfb8dmoot08ct7&v=2.0",@"http://www.wanzhoumo.com/wanzhoumo?UUID=97B42FCB-7D7A-4D41-A80B-24644CBEE429&app_key=800000002&app_v_code=12&app_v_name=2.2.1&format=json&is_near=1&is_valid=1&lat=22.535044&lon=113.944849&method=activity.List&offset=30&os=iphone&pagesize=30&r=wanzhoumo&sign=7cf20949bd9c5990598836ba6ef073da&sort=default&timestamp=1410335762&v=2.0",@"http://www.wanzhoumo.com/wanzhoumo?UUID=97B42FCB-7D7A-4D41-A80B-24644CBEE429&app_key=800000002&app_v_code=12&app_v_name=2.2.1&format=json&is_near=1&is_valid=1&lat=22.535044&lon=113.944849&method=activity.List&offset=60&os=iphone&pagesize=30&r=wanzhoumo&sign=de3ff25211b760930bb81433e527b5df&sort=default&timestamp=1410335834&v=2.0",@"http://www.wanzhoumo.com/wanzhoumo?UUID=97B42FCB-7D7A-4D41-A80B-24644CBEE429&app_key=800000002&app_v_code=12&app_v_name=2.2.1&format=json&is_near=1&is_valid=1&lat=22.535044&lon=113.944849&method=activity.List&offset=90&os=iphone&pagesize=30&r=wanzhoumo&sign=8f2e34692044cb173e023e6d5ef6e9f5&sort=default&timestamp=1410335871&v=2.0",@"http://www.wanzhoumo.com/wanzhoumo?UUID=97B42FCB-7D7A-4D41-A80B-24644CBEE429&app_key=800000002&app_v_code=12&app_v_name=2.2.1&format=json&is_near=1&is_valid=1&lat=22.535044&lon=113.944849&method=activity.List&offset=120&os=iphone&pagesize=30&r=wanzhoumo&sign=46db75331082d7beb1c11efac327df23&sort=default&timestamp=1410335913&v=2.0",@"http://www.wanzhoumo.com/wanzhoumo?UUID=97B42FCB-7D7A-4D41-A80B-24644CBEE429&app_key=800000002&app_v_code=12&app_v_name=2.2.1&format=json&is_near=1&is_valid=1&lat=22.535044&lon=113.944849&method=activity.List&offset=150&os=iphone&pagesize=30&r=wanzhoumo&sign=f1f7bb7819db7b4fd36464ef41b9d477&sort=default&timestamp=1410335945&v=2.0"];
-}
 
 
 - (void)sendRequestForDataRefresh:(BOOL)refresh {
+    
+    [self getData:self.pageIndex isRefresh:refresh];
+#if 0
     AFEngine *angine = [AFEngine shareEngine];
     [angine POST:self.URLArr[self.pageIndex++] parameters:@{} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -234,7 +298,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self setIsRefresh:NO];
     }];
-    
+#endif
     
 }
 
@@ -338,37 +402,40 @@
     [cell.favBtn addTarget:self action:@selector(btnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     cell.model = model;
     
-    __block UIImage *thumbImage;
-    thumbImage = [imageCache objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-    if (thumbImage) {
-        cell.imgView.image = thumbImage;
-    }
-    else {
-        NSBlockOperation *operation = [operationStack objectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
-        if (!operation) {
-            operation = [[NSBlockOperation alloc]init];
-            [operationStack setObject:operation forKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
-        }
-        
+    [self.operationManager pushImageToImageCachFromURL:model.face indexPath:indexPath cell:cell imageView:cell.imgView];
+    
+    
+//    __block UIImage *thumbImage;
+//    thumbImage = [imageCache objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+//    if (thumbImage) {
+//        cell.imgView.image = thumbImage;
+//    }
+//    else {
+//        NSBlockOperation *operation = [operationStack objectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
+//        if (!operation) {
+//            operation = [[NSBlockOperation alloc]init];
+//            [operationStack setObject:operation forKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
+//        }
+    
 //        [cell.imgView setImageWithURL:[NSURL URLWithString:model.face] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
         
-        __weak typeof(operation) weakOp = operation;
-        [operation addExecutionBlock:^{
-            UIImage *image = [UIImage imageWithData:[model isKindOfClass:[StoryModel class]]?[NSData dataWithContentsOfURL:[NSURL URLWithString:model.face]]:model.facePic];
-            float scale = [UIScreen mainScreen].scale;
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(cell.bounds.size.width, 230), YES, scale);
-            [image drawInRect:CGRectMake(0, 0, self.view.bounds.size.width, 230)];
-            thumbImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                if (![weakOp isCancelled]) {
-                    cell.imgView.image = thumbImage;
-                    [imageCache setObject:thumbImage forKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-                }
-            }];
-        }];
-        [operationQueue addOperation:operation];
-    }
+//        __weak typeof(operation) weakOp = operation;
+//        [operation addExecutionBlock:^{
+//            UIImage *image = [UIImage imageWithData:[model isKindOfClass:[StoryModel class]]?[NSData dataWithContentsOfURL:[NSURL URLWithString:model.face]]:model.facePic];
+//            float scale = [UIScreen mainScreen].scale;
+//            UIGraphicsBeginImageContextWithOptions(CGSizeMake(cell.bounds.size.width, 230), YES, scale);
+//            [image drawInRect:CGRectMake(0, 0, self.view.bounds.size.width, 230)];
+//            thumbImage = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext();
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                if (![weakOp isCancelled]) {
+//                    cell.imgView.image = thumbImage;
+//                    [imageCache setObject:thumbImage forKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+//                }
+//            }];
+//        }];
+//        [operationQueue addOperation:operation];
+//    }
         
     return cell;
 }
@@ -376,14 +443,22 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSBlockOperation *operation = [operationStack objectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
+//    NSBlockOperation *operation = [operationStack objectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
+//    if (operation) {
+//        if (!operation.cancelled) {
+//            [operation cancel];
+//            [operationStack removeObjectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
+//        }
+//    }
+    NSBlockOperation *operation = [self.operationManager.operationStack objectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
     if (operation) {
         if (!operation.cancelled) {
             [operation cancel];
-            [operationStack removeObjectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
+            [self.operationManager.operationStack removeObjectForKey:[NSString stringWithFormat:@"%d",(int)indexPath.row]];
         }
     }
-    cell.alpha = 0.1;
+    
+    cell.alpha = 1.0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -416,24 +491,60 @@
     return YES;
 }
 
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    TableViewCell *cell = (TableViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    CGPoint point = [cell.imgView convertPoint:CGPointMake(20, 200) fromView:cell.contentView];
+    
+    self.originPoint = (CGPoint){CGRectGetWidth(cell.frame)/2 + cell.frame.origin.x,cell.frame.origin.y-collectionView.contentOffset.y+170/2};
+    
+    [self getCoverView:cell.imgView.image point:point];
+    
+}
+
 #pragma mark UICollectionViewDelegateFlowLayout
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 10;
 }
 
+
+
+
 #pragma mark UIScrollViewDelegate
 
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+//    [self.refreshControl startAnimating];
+//    if (self.collectionView.contentOffset.y < -150 ) {
+//        if (!self.isRefresh) {
+//            self.isRefresh = YES;
+//        }
+//        
+//        [UIView animateWithDuration:0.5 animations:^{
+//            [self.collectionView setContentInset:UIEdgeInsetsMake(64*2, 0, 0, 0)];
+//        }];
+//    }
+//    if (6 ==  self.dataCenter.pageIndex) {
+//        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            self.isRefresh = NO;
+//        });
+//    }
+    
     NSArray *visibleCells = [self.collectionView visibleCells];
     for (__unused TableViewCell *cell in visibleCells) {
         CGFloat offSetY = scrollView.contentOffset.y;
         CGFloat picViewHeight = 230;
         
-        NSLog(@"==cell==%0.2f",cell.frame.origin.y-offSetY);
+//        NSLog(@"==cell==%0.2f",cell.frame.origin.y-offSetY);
         
         CGFloat Y = - 30.0/CGRectGetHeight([UIScreen mainScreen].bounds) * (cell.frame.origin.y-offSetY) - 30;
         
-        NSLog(@"==Y==%0.2f",Y);
+//        NSLog(@"==Y==%0.2f",Y);
         
         [UIView animateWithDuration:0.3 animations:^{
             cell.imgView.frame = CGRectMake(0,Y,CGRectGetWidth(self.collectionView.frame), picViewHeight);
@@ -454,6 +565,49 @@
 
 
 #pragma mark 
+
+- (void)getCoverView:(UIImage*)image point:(CGPoint)point {
+    
+    UIImageView *coverImageView = [[UIImageView alloc]initWithImage:image];
+   
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        CGRect rect = coverImageView.frame;
+        rect.origin.y = point.y;
+        rect.size.width = [[UIScreen mainScreen] bounds].size.width;
+        coverImageView.frame = rect;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    UIView *cover = [[UIView alloc]initWithFrame:self.view.bounds];
+    [cover addSubview:coverImageView];
+    coverImageView.tag = 10000;
+    cover.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    [cover addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(removeFromParentView:)]];
+    [[[UIApplication sharedApplication] keyWindow]addSubview:cover];
+    
+}
+
+- (void)removeFromParentView:(UIGestureRecognizer*)tap {
+
+    [UIView animateWithDuration:1 animations:^{
+        UIView *imageView = [tap.view viewWithTag:10000];
+        CGRect rect = imageView.frame;
+        rect.size.width = 30;
+        rect.size.height = 30;
+        imageView.alpha = 0.0;
+        imageView.frame = rect;
+        imageView.center = self.originPoint;
+
+    } completion:^(BOOL finished) {
+        [tap.view removeFromSuperview];
+
+    }];
+    
+    
+}
+
 
 - (void)btnClick:(UIButton*)btn {
     

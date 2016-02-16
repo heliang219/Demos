@@ -101,7 +101,7 @@ class ClassB: ClassA {
     
     func prints()
     {
-        print("firstname:\(firstName),myAge:\(myAge)")
+        print("firstname:\(firstName),myAge:\(myAge)", terminator: "")
     }
     
     
@@ -141,9 +141,9 @@ struct TargetActionWrapper<T: AnyObject>: TargetAction
         if let t = target
         {
           action(t)()
-            print("dddddddddd")
+            print("dddddddddd", terminator: "")
         }
-         print("dddddddddd")
+         print("dddddddddd", terminator: "")
     }
     
 }
@@ -182,7 +182,7 @@ class MyClass: Control {
 
 func afunc(any: AnyObject)()->()
 {
-    print("hahhaha")
+    print("hahhaha", terminator: "")
 }
 
 let myClass = MyClass()
