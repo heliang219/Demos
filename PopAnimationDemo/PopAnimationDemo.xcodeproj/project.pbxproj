@@ -10,6 +10,9 @@
 		836F68B21C717E570025C3F1 /* Waver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836F68B11C717E560025C3F1 /* Waver.swift */; };
 		836F68B41C7182470025C3F1 /* PFLWaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836F68B31C7182470025C3F1 /* PFLWaver.swift */; };
 		838E2A0E1C71BFB50006B60C /* RadarAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838E2A0D1C71BFB50006B60C /* RadarAnimation.swift */; };
+		838E2A8B1C72CA360006B60C /* SawAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838E2A8A1C72CA360006B60C /* SawAnimationView.swift */; };
+		838E2A8D1C72E2680006B60C /* RollAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838E2A8C1C72E2680006B60C /* RollAnimationView.swift */; };
+		838E2A8F1C72F8FA0006B60C /* RefreshAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838E2A8E1C72F8FA0006B60C /* RefreshAnimationView.swift */; };
 		83F823271C68CF9A009C2B85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F823261C68CF9A009C2B85 /* AppDelegate.swift */; };
 		83F823291C68CF9A009C2B85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F823281C68CF9A009C2B85 /* ViewController.swift */; };
 		83F8232C1C68CF9A009C2B85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F8232A1C68CF9A009C2B85 /* Main.storyboard */; };
@@ -39,6 +42,9 @@
 		836F68B11C717E560025C3F1 /* Waver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waver.swift; sourceTree = "<group>"; };
 		836F68B31C7182470025C3F1 /* PFLWaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFLWaver.swift; sourceTree = "<group>"; };
 		838E2A0D1C71BFB50006B60C /* RadarAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarAnimation.swift; sourceTree = "<group>"; };
+		838E2A8A1C72CA360006B60C /* SawAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SawAnimationView.swift; sourceTree = "<group>"; };
+		838E2A8C1C72E2680006B60C /* RollAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollAnimationView.swift; sourceTree = "<group>"; };
+		838E2A8E1C72F8FA0006B60C /* RefreshAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAnimationView.swift; sourceTree = "<group>"; };
 		83F823231C68CF9A009C2B85 /* PopAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F823261C68CF9A009C2B85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F823281C68CF9A009C2B85 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +139,9 @@
 				83F823381C68CFAA009C2B85 /* pop */,
 				83F823261C68CF9A009C2B85 /* AppDelegate.swift */,
 				83F823281C68CF9A009C2B85 /* ViewController.swift */,
+				838E2A8E1C72F8FA0006B60C /* RefreshAnimationView.swift */,
+				838E2A8C1C72E2680006B60C /* RollAnimationView.swift */,
+				838E2A8A1C72CA360006B60C /* SawAnimationView.swift */,
 				838E2A0D1C71BFB50006B60C /* RadarAnimation.swift */,
 				836F68B31C7182470025C3F1 /* PFLWaver.swift */,
 				836F68B11C717E560025C3F1 /* Waver.swift */,
@@ -298,13 +307,16 @@
 				83F823771C68CFAB009C2B85 /* POPDecayAnimation.mm in Sources */,
 				83F823741C68CFAB009C2B85 /* POPBasicAnimation.mm in Sources */,
 				83F8237C1C68CFAB009C2B85 /* POPSpringAnimation.mm in Sources */,
+				838E2A8D1C72E2680006B60C /* RollAnimationView.swift in Sources */,
 				83F823821C68D0C4009C2B85 /* POPAnimatableProperty.mm in Sources */,
 				83F823701C68CFAB009C2B85 /* POPAnimationExtras.mm in Sources */,
 				83F8237A1C68CFAB009C2B85 /* POPMath.mm in Sources */,
 				83F823721C68CFAB009C2B85 /* POPAnimationTracer.mm in Sources */,
+				838E2A8F1C72F8FA0006B60C /* RefreshAnimationView.swift in Sources */,
 				83F8236E1C68CFAB009C2B85 /* POPAnimation.mm in Sources */,
 				83F823761C68CFAB009C2B85 /* POPCustomAnimation.mm in Sources */,
 				838E2A0E1C71BFB50006B60C /* RadarAnimation.swift in Sources */,
+				838E2A8B1C72CA360006B60C /* SawAnimationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

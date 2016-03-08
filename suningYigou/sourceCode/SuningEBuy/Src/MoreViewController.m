@@ -407,7 +407,7 @@
             {
                 if (indexPath.row == 0) {
                     cell.textLabel.text=L(@"Image Cache");
-                    //cell.accessoryView = _moreView.imageMemoryLabel;
+                    cell.accessoryView = _moreView.imageMemoryLabel;
                     
                     //chupeng 2014.3.31 不再提示缓存大小
                     //[cell.contentView addSubview:_moreView.imageMemoryLabel];
