@@ -60,8 +60,8 @@ class OperationManager: NSObject {
             let image = UIImage(data: data1)
             guard let image1 = image else {return}
             
-            let scale = UIScreen.mainScreen().scale;
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(cell.bounds.width, 230), true, scale)
+            let _ = UIScreen.mainScreen().scale;
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(cell.bounds.width, 230), false, 0)
             image1.drawInRect(CGRectMake(0, 0, cell.bounds.width, 230))
             let thumbImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext();
